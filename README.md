@@ -15,10 +15,12 @@ Things you may want to cover:
 
 * Database initialization
 
-* How to run the test suite
+Feature to learn and take quiz
 
 * Services (job queues, cache servers, search engines, etc.)
 
 * Deployment instructions
 
 * ...
+
+Take picture to save names and pictures automatically
