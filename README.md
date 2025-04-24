@@ -1,6 +1,6 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/DBaAVOQl)
 # Photo Quiz for Professors
-**Purpose**: Quiz for professors to learn student names in their classes.
+**Purpose**: Quiz for professors to learn student names and faces in their classes.
 
 **Team Members**: 
 - Paula Fregene
