@@ -25,12 +25,12 @@
 * Go through student name and picture flashcard
 * Mark as learnt or unlearnt, go thorugh flashcards
 * Option to learn first name, or full name
-* Feature to add glasses or not using llm 
-* Take picture to save names and pictures automatically
 
 ### Future Features:
 * Fill in the Blank
 * Matching
+* Feature to add glasses or not using llm 
+* Take picture to save names and pictures automatically
 
   
 ## Resources:
