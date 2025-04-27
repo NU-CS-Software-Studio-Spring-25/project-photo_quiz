@@ -7,3 +7,18 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+more_students = [
+  {:first_name => 'Paula', :last_name => 'Fregene',
+    :course => 'CS 397', :profile_picture => '25-Nov-1992'},
+  {:first_name => 'Sophie', :last_name => 'Shin',
+  :course => 'CS 397', :profile_picture => '25-Nov-1992'},
+  {:first_name => 'Yuyang', :last_name => 'Pan',
+  :course => 'CS 397', :profile_picture => '25-Nov-1992'},
+  {:first_name => 'Samar', :last_name => 'Salaam',
+  :course => 'CS 397', :profile_picture => '25-Nov-1992'},
+]
+
+more_students.each do |student|
+  Student.create!(student)
+end
