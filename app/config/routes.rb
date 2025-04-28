@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :students
-  root :to => redirect('/students')
+  root "students#index"
+  #root :to => redirect('/students')
 
   # Default Stuffs => Might need to be deleted later
   # # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
