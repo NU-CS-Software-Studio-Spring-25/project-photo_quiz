@@ -141,7 +141,7 @@
   <div class="container py-4">
 
     <div class="hero">
-      <img src="Northwestern_University_seal.svg.png" alt="NU Shield">
+      <img src="<%= asset_path('Northwestern_University_seal.svg.png') %>" alt="NU Shield">
       <h1>Photo Quiz</h1>
       <p>Northwestern University Edition</p>
     </div>
@@ -156,36 +156,15 @@
 
     <!-- card list -->
     <div class="cards-container">
-      <!-- CS340 -->
-      <div class="card card-large">
-        <div class="card-img-top"></div>
-        <div class="card-body">
-          <p class="course-code">CS340</p>
-          <p class="course-name">Networking</p>
-          <h6>CS340: Networking</h6>
-        </div>
+      <% @student.each do |student| %>
+        <div class="card card-large">
+            <div class="card-img-top"></div>
+            <div class="card-body">
+            <p class="course-code"> <%= student.course %> </p>
+            <h6> <%= student.first_name %> <%= student.last_name %></h6>
+            </div>
       </div>
-
-      <!-- CS348 -->
-      <div class="card card-large">
-        <div class="card-img-top"></div>
-        <div class="card-body">
-          <p class="course-code">CS348</p>
-          <p class="course-name">AI Planning</p>
-          <h6>CS348: AI Planning</h6>
-        </div>
-      </div>
-
-      <!-- CS394 -->
-      <div class="card card-large">
-        <div class="card-img-top"></div>
-        <div class="card-body">
-          <p class="course-code">CS394</p>
-          <p class="course-name">Databases</p>
-          <h6>CS394: Databases</h6>
-        </div>
-      </div>
-    </div>
+    <% end %>
 
   </div>
 
