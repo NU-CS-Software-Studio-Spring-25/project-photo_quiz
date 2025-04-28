@@ -1,0 +1,19 @@
+<!-- filepath: /home/soshin4072/photoquiz/project-photo_quiz/app/views/students/index.html.erb -->
+<div class="container">
+  <h1>Student List</h1>
+  <div class="row">
+    <% @student.each do |student| %>
+      <div class="col-md-4">
+        <div class="card">
+          <%= image_tag "default-profile.png", class: "card-img-top", alt: "Default Profile" %>
+          <div class="card-body">
+            <h5 class="card-title"><%= student.first_name %> <%= student.last_name %></h5>
+            <p class="card-text">Class: <%= student.course %></p>
+            <%= link_to "Edit", edit_student_path(student), class: "btn btn-primary" %>
+            <%= link_to "Delete", student, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
