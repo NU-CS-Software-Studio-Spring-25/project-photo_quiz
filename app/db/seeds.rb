@@ -10,13 +10,13 @@
 
 more_students = [
   {:first_name => 'Paula', :last_name => 'Fregene',
-    :course => 'CS 397', :profile_picture => '25-Nov-1992'},
+    :course => 'CS 397'},
   {:first_name => 'Sophie', :last_name => 'Shin',
-  :course => 'CS 397', :profile_picture => '25-Nov-1992'},
+  :course => 'CS 397'},
   {:first_name => 'Yuyang', :last_name => 'Pan',
-  :course => 'CS 397', :profile_picture => '25-Nov-1992'},
+  :course => 'CS 397'},
   {:first_name => 'Samar', :last_name => 'Salaam',
-  :course => 'CS 397', :profile_picture => '25-Nov-1992'},
+  :course => 'CS 397'}
 ]
 
 more_students.each do |student|
