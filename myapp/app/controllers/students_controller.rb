@@ -24,11 +24,11 @@ class StudentsController < ApplicationController
     # POST /students
     # POST /students.json
     def create
-      @students = Student.new(student_params)
+      @student = Student.new(student_params)
   
       respond_to do |format|
         if @student.save
-          format.html { redirect_to @student, notice: 'Student was successfully created.' }
+          format.html { redirect_to students_path, notice: 'Student was successfully created.' }
           format.json { render :show, status: :created, location: @student }
         else
           format.html { render :new }
@@ -42,7 +42,7 @@ class StudentsController < ApplicationController
     def update
       respond_to do |format|
         if @student.update(student_params)
-          format.html { redirect_to @student, notice: 'Student was successfully updated.' }
+          format.html { redirect_to students_path, notice: 'Student was successfully updated.' }
           format.json { render :show, status: :ok, location: @student }
         else
           format.html { render :edit }
@@ -54,7 +54,13 @@ class StudentsController < ApplicationController
     # DELETE /students/1
     # DELETE /students/1.json
     def destroy
-      @student.destroy
+      Rails.logger.debug "Destroying student with ID: #{params[:id]}"
+      Rails.logger.debug "Student object before destroy: #{@student.inspect}"
+      if @student.destroy
+        Rails.logger.debug "Student destroyed successfully"
+      else
+        Rails.logger.debug "Failed to destroy student"
+      end
       respond_to do |format|
         format.html { redirect_to students_url, notice: 'Student was successfully destroyed.' }
         format.json { head :no_content }
