@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
   <title>Photo Quiz (NU)</title>
 
+  <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css"/>
 
   <style>
@@ -22,7 +23,7 @@
 
     .hero {
       position: relative;
-      background: 
+      background:
         linear-gradient(135deg, rgba(78,42,132,0.8), rgba(58,31,102,0.8)),
         url('./images/hero.jpg') center/cover no-repeat;
       padding: 3.5rem 1rem;
@@ -36,12 +37,10 @@
       position: absolute;
       top: 1rem;
       left: 1rem;
-      width: 8rem; 
-      height: auto;
+      width: 8rem;
     }
     .hero h1 {
       font-size: 3.5rem;
-      font-weight: 700;
       margin: 0;
     }
     .hero p {
@@ -62,11 +61,13 @@
       font-size: 1.5rem;
       font-weight: 600;
     }
-    .actions .form-control {
+    .actions .form-control,
+    .actions .form-select {
       flex: 1 1 300px;
       border-color: var(--nu-purple-dark);
     }
-    .actions .form-control:focus {
+    .actions .form-control:focus,
+    .actions .form-select:focus {
       box-shadow: 0 0 0 0.2rem rgba(58,31,102,0.25);
       border-color: var(--nu-purple-dark);
     }
@@ -76,9 +77,7 @@
       border: none;
       padding: .6rem 1.2rem;
     }
-    .btn-nu:hover {
-      opacity: .9;
-    }
+    .btn-nu:hover { opacity: .9; }
 
     .cards-container {
       display: flex;
@@ -94,8 +93,6 @@
       flex: 0 0 auto;
       border-radius: .75rem;
       overflow: hidden;
-      display: flex;
-      flex-direction: column;
       background: #fff;
       transition: transform .2s, box-shadow .2s;
     }
@@ -110,26 +107,15 @@
     }
     .card-large .card-body {
       padding: 1rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      flex: 1;
     }
-
-    .course-code,
-    .course-name {
+    .course-code {
       font-size: .9rem;
       color: var(--nu-purple-dark);
       text-decoration: underline;
       margin: 0;
     }
-    .course-name {
-      margin-top: .25rem;
-      margin-bottom: .75rem;
-    }
-
     .card-large h6 {
-      margin: 0;
+      margin: .25rem 0 0;
       font-size: 1.05rem;
       font-weight: 500;
       color: #333;
@@ -138,8 +124,30 @@
 </head>
 
 <body>
-  <div class="container py-4">
+  <!-- NAVIGATION -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white mb-4">
+    <div class="container">
+      <a class="navbar-brand text-purple" href="#">Photo Quiz</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+              data-bs-target="#navbarNav" aria-controls="navbarNav"
+              aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="#" data-target="directory-section">Directory</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" data-target="quiz-section">Quiz</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
+  <!-- DIRECTORY -->
+  <div id="directory-section" class="container py-4">
     <div class="hero">
       <img src="<%= asset_path('Northwestern_University_seal.svg.png') %>" alt="NU Shield">
       <h1>Photo Quiz</h1>
@@ -150,24 +158,110 @@
       <h4>Directory</h4>
       <input type="text"
              class="form-control rounded-pill"
-             placeholder="Search students..." />
+             placeholder="Search students…" />
       <button class="btn btn-nu">Quiz</button>
     </div>
 
-    <!-- card list -->
     <div class="cards-container">
-      <% @student.each do |student| %>
+      <% @students.each do |student| %>
         <div class="card card-large">
-            <div class="card-img-top"></div>
-            <div class="card-body">
-            <p class="course-code"> <%= student.course %> </p>
-            <h6> <%= student.first_name %> <%= student.last_name %></h6>
-            </div>
-      </div>
-    <% end %>
-
+          <div class="card-img-top"></div>
+          <div class="card-body">
+            <p class="course-code"><%= student.course %></p>
+            <h6><%= student.first_name %> <%= student.last_name %></h6>
+          </div>
+        </div>
+      <% end %>
+    </div>
   </div>
 
+  <!-- QUIZ -->
+  <div id="quiz-section" class="container py-4" style="display:none;">
+    <div class="actions mb-4">
+      <h4>Quiz</h4>
+      <select id="class-select" class="form-select w-auto rounded-pill">
+        <option value="" selected>Select class…</option>
+        <% Student.distinct.pluck(:course).each do |c| %>
+          <option value="<%= c %>"><%= c %></option>
+        <% end %>
+      </select>
+      <button id="start-quiz" class="btn btn-nu">Start Quiz</button>
+    </div>
 
+    <div id="quiz-container" style="display:none;">
+      <div class="card card-large mb-4">
+        <div id="question-photo" class="card-img-top"></div>
+        <div class="card-body">
+          <form id="quiz-form">
+            <div id="options-container" class="mb-3"></div>
+            <button type="button" id="next-question" class="btn btn-nu">Next</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS & Quiz logic -->
+  <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // NAV TABS
+      document.querySelectorAll(".nav-link").forEach(link => {
+        link.addEventListener("click", e => {
+          e.preventDefault();
+          const tgt = link.dataset.target;
+          document.querySelectorAll("[id$='-section']")
+                  .forEach(sec => sec.style.display = sec.id===tgt ? "block" : "none");
+          document.querySelectorAll(".nav-link").forEach(l=>l.classList.remove("active"));
+          link.classList.add("active");
+        });
+      });
+
+      // QUIZ
+      let questions = [], current = 0, results = [];
+
+      document.getElementById("start-quiz").addEventListener("click", () => {
+        const course = document.getElementById("class-select").value;
+        if (!course) return alert("Select a class first.");
+        fetch(`/quizzes?course=${encodeURIComponent(course)}`)
+          .then(res => res.json())
+          .then(data => {
+            questions = data; current = 0; results = [];
+            document.getElementById("quiz-container").style.display = "block";
+            showQuestion();
+          })
+          .catch(() => alert("Could not load quiz."));
+      });
+
+      function showQuestion() {
+        const q = questions[current];
+        document.getElementById("question-photo").style.background =
+          `#EDE0F7 url('${q.photo_url}') center/cover`;
+        const opts = document.getElementById("options-container");
+        opts.innerHTML = "";
+        q.options.forEach((opt,i) => {
+          opts.insertAdjacentHTML("beforeend", `
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="answer"
+                     id="opt${i}" value="${opt}">
+              <label class="form-check-label" for="opt${i}">${opt}</label>
+            </div>`);
+        });
+      }
+
+      document.getElementById("next-question").addEventListener("click", () => {
+        const sel = document.querySelector("input[name='answer']:checked");
+        if (!sel) return;
+        results.push(sel.value === questions[current].correct_name);
+        current++;
+        if (current < questions.length) {
+          showQuestion();
+        } else {
+          alert(`Score: ${results.filter(Boolean).length} / ${questions.length}`);
+          document.getElementById("quiz-container").style.display = "none";
+        }
+      });
+    });
+  </script>
 </body>
 </html>
