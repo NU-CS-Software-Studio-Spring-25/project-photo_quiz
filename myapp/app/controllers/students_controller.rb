@@ -54,9 +54,15 @@ class StudentsController < ApplicationController
     # DELETE /students/1
     # DELETE /students/1.json
     def destroy
-      @student.destroy
+      Rails.logger.debug "Destroying student with ID: #{params[:id]}"
+      Rails.logger.debug "Student object before destroy: #{@student.inspect}"
+      if @student.destroy
+        Rails.logger.debug "Student destroyed successfully"
+      else
+        Rails.logger.debug "Failed to destroy student"
+      end
       respond_to do |format|
-        format.html { redirect_to students_path, notice: 'Student was successfully destroyed.' }
+        format.html { redirect_to students_url, notice: 'Student was successfully destroyed.' }
         format.json { head :no_content }
       end
     end
