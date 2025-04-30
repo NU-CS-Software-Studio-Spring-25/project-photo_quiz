@@ -39,3 +39,20 @@ plugin :solid_queue if ENV["SOLID_QUEUE_IN_PUMA"]
 # Specify the PID file. Defaults to tmp/pids/server.pid in development.
 # In other environments, only set the PID file if requested.
 pidfile ENV["PIDFILE"] if ENV["PIDFILE"]
+
+# Specify the environment that Puma will run in. Defaults to development.
+# In other environments, only set the environment if requested.
+environment ENV.fetch("RAILS_ENV", "development")
+
+# Specify the number of workers. Defaults to 1.
+workers ENV.fetch("WEB_CONCURRENCY", 2)
+
+# Preload the application before forking workers. This allows workers to
+# share application code and memory, which can improve performance.
+preload_app!
+
+# On worker boot, set up the database connection pool and any other
+# necessary resources.
+on_worker_boot do
+  ActiveRecord::Base.establish_connection if defined?(ActiveRecord)
+end
