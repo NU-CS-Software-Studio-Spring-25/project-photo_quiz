@@ -3,3 +3,6 @@ import "@hotwired/turbo-rails"
 import "controllers"
 import "bootstrap"
 import "@popperjs/core" // Required for Bootstrap tooltips and popovers
+import "@rails/ujs";
+
+Rails.start();
