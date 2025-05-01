@@ -9,4 +9,4 @@ Rails.start();
 
 import "@hotwired/turbo-rails"   // if you’re using Turbo
 import "./controllers"           // if you have Stimulus
-
+import "./quiz"
