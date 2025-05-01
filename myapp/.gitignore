@@ -9,6 +9,7 @@
 # Ignore bundler config.
 /.bundle
 
+
 # Ignore all environment files.
 /.env*
 
@@ -24,6 +25,7 @@
 !/tmp/pids/.keep
 
 # Ignore storage (uploaded files in development and any SQLite databases).
+/cache/*
 /storage/*
 !/storage/.keep
 /tmp/storage/*
