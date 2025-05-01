@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :students
   root "students#index"
+  get 'quizzes', to: 'quizzes#index'
   #root :to => redirect('/students')
 
   # Default Stuffs => Might need to be deleted later
