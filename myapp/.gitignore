@@ -4,8 +4,11 @@
 # belong in git's global ignore instead:
 # `$XDG_CONFIG_HOME/git/ignore` or `~/.config/git/ignore`
 
+!/app
+
 # Ignore bundler config.
 /.bundle
+
 
 # Ignore all environment files.
 /.env*
@@ -22,6 +25,7 @@
 !/tmp/pids/.keep
 
 # Ignore storage (uploaded files in development and any SQLite databases).
+/cache/*
 /storage/*
 !/storage/.keep
 /tmp/storage/*

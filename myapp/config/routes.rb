@@ -1,8 +1,16 @@
 Rails.application.routes.draw do
   resources :students
   root "students#index"
-  get 'quizzes', to: 'quizzes#index'
-  #root :to => redirect('/students')
+
+  resources :students do
+    member do
+      get "confirm_destroy"
+    end
+  end
+
+
+  get "quizzes", to: "quizzes#index"
+  # root :to => redirect('/students')
 
   # Default Stuffs => Might need to be deleted later
   # # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
