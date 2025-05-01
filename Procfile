@@ -1,1 +1,1 @@
-web: cd myapp && bundle exec puma -C config/puma.rb
+bundle exec puma -C config/puma.rb
