@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
   resources :students
   root "students#index"
+  
+  resources :students do
+    member do
+      get 'confirm_destroy'
+    end
+  end
+
+
   get 'quizzes', to: 'quizzes#index'
   #root :to => redirect('/students')
 
