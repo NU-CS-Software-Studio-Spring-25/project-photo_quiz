@@ -1,0 +1,473 @@
+Started GET "/" for 127.0.0.1 at 2025-04-28 17:50:39 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='App'*/[0m
+Processing by StudentsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering students/index.html.erb within layouts/application
+  Rendered students/index.html.erb within layouts/application (Duration: 1.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 39.3ms | GC: 4.2ms)
+Completed 200 OK in 208ms (Views: 53.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 68.6ms)
+
+
+Started GET "/node_modules/bootstrap/dist/css/bootstrap.min.css" for 127.0.0.1 at 2025-04-28 17:50:39 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/node_modules/bootstrap/dist/css/bootstrap.min.css"):
+  
+Started GET "/Northwestern_University_seal.svg.png" for 127.0.0.1 at 2025-04-28 17:50:39 -0500
+Started GET "/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js" for 127.0.0.1 at 2025-04-28 17:50:39 -0500
+Started GET "/assets/popper.js" for 127.0.0.1 at 2025-04-28 17:50:40 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/Northwestern_University_seal.svg.png"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"):
+  
+Started GET "/assets/popper-lite.js" for 127.0.0.1 at 2025-04-28 17:50:40 -0500
+Started GET "/assets/utils/detectOverflow.js" for 127.0.0.1 at 2025-04-28 17:50:40 -0500
+Started GET "/assets/modifiers/applyStyles.js" for 127.0.0.1 at 2025-04-28 17:50:40 -0500
+Started GET "/assets/modifiers/arrow.js" for 127.0.0.1 at 2025-04-28 17:50:40 -0500
+Started GET "/assets/modifiers/computeStyles.js" for 127.0.0.1 at 2025-04-28 17:50:40 -0500
+Started GET "/assets/modifiers/eventListeners.js" for 127.0.0.1 at 2025-04-28 17:50:40 -0500
+Started GET "/assets/modifiers/flip.js" for 127.0.0.1 at 2025-04-28 17:50:40 -0500
+Started GET "/assets/modifiers/hide.js" for 127.0.0.1 at 2025-04-28 17:50:40 -0500
+Started GET "/assets/modifiers/offset.js" for 127.0.0.1 at 2025-04-28 17:50:40 -0500
+Started GET "/assets/modifiers/popperOffsets.js" for 127.0.0.1 at 2025-04-28 17:50:40 -0500
+Started GET "/_/7a91f8b9.js" for 127.0.0.1 at 2025-04-28 17:50:41 -0500
+Started GET "/assets/modifiers/preventOverflow.js" for 127.0.0.1 at 2025-04-28 17:50:41 -0500
+Started GET "/assets/dom-utils/getCompositeRect.js" for 127.0.0.1 at 2025-04-28 17:50:41 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/_/7a91f8b9.js"):
+  
+Started GET "/assets/dom-utils/instanceOf.js" for 127.0.0.1 at 2025-04-28 17:50:41 -0500
+Started GET "/assets/dom-utils/getWindow.js" for 127.0.0.1 at 2025-04-28 17:50:41 -0500
+Started GET "/_/7742d4ca.js" for 127.0.0.1 at 2025-04-28 17:50:41 -0500
+Started GET "/_/b8df2d1e.js" for 127.0.0.1 at 2025-04-28 17:50:41 -0500
+Started GET "/assets/dom-utils/getNodeScroll.js" for 127.0.0.1 at 2025-04-28 17:50:41 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/_/7742d4ca.js"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/_/b8df2d1e.js"):
+  
+Started GET "/_/084d303b.js" for 127.0.0.1 at 2025-04-28 17:50:41 -0500
+Started GET "/assets/dom-utils/getWindowScroll.js" for 127.0.0.1 at 2025-04-28 17:50:41 -0500
+Started GET "/assets/enums.js" for 127.0.0.1 at 2025-04-28 17:50:41 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/_/084d303b.js"):
+  
+Started GET "/assets/dom-utils/getNodeName.js" for 127.0.0.1 at 2025-04-28 17:50:42 -0500
+Started GET "/assets/dom-utils/getWindowScrollBarX.js" for 127.0.0.1 at 2025-04-28 17:50:42 -0500
+Started GET "/assets/modifiers/index.js" for 127.0.0.1 at 2025-04-28 17:50:42 -0500
+Started GET "/_/a9ca29ce.js" for 127.0.0.1 at 2025-04-28 17:50:42 -0500
+Started GET "/_/bb24ce41.js" for 127.0.0.1 at 2025-04-28 17:50:42 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/_/a9ca29ce.js"):
+  
+Started GET "/_/2d19854a.js" for 127.0.0.1 at 2025-04-28 17:50:42 -0500
+Started GET "/_/a0ba12d2.js" for 127.0.0.1 at 2025-04-28 17:50:42 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/_/bb24ce41.js"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/_/2d19854a.js"):
+  
+Started GET "/assets/dom-utils/getHTMLElementScroll.js" for 127.0.0.1 at 2025-04-28 17:50:42 -0500
+Started GET "/assets/dom-utils/getLayoutRect.js" for 127.0.0.1 at 2025-04-28 17:50:42 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/_/a0ba12d2.js"):
+  
+Started GET "/assets/dom-utils/listScrollParents.js" for 127.0.0.1 at 2025-04-28 17:50:43 -0500
+Started GET "/assets/dom-utils/getScrollParent.js" for 127.0.0.1 at 2025-04-28 17:50:43 -0500
+Started GET "/assets/dom-utils/getParentNode.js" for 127.0.0.1 at 2025-04-28 17:50:43 -0500
+Started GET "/assets/dom-utils/getOffsetParent.js" for 127.0.0.1 at 2025-04-28 17:50:43 -0500
+Started GET "/assets/dom-utils/getViewportRect.js" for 127.0.0.1 at 2025-04-28 17:50:43 -0500
+Started GET "/assets/dom-utils/getDocumentRect.js" for 127.0.0.1 at 2025-04-28 17:50:43 -0500
+Started GET "/_/c7d11060.js" for 127.0.0.1 at 2025-04-28 17:50:43 -0500
+Started GET "/assets/utils/getMainAxisFromPlacement.js" for 127.0.0.1 at 2025-04-28 17:50:43 -0500
+Started GET "/_/1ba79728.js" for 127.0.0.1 at 2025-04-28 17:50:43 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/_/c7d11060.js"):
+  
+Started GET "/_/6a201025.js" for 127.0.0.1 at 2025-04-28 17:50:43 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/_/1ba79728.js"):
+  
+Started GET "/assets/dom-utils/getDocumentElement.js" for 127.0.0.1 at 2025-04-28 17:50:43 -0500
+Started GET "/assets/utils/getOppositeVariationPlacement.js" for 127.0.0.1 at 2025-04-28 17:50:44 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/_/6a201025.js"):
+  
+Started GET "/assets/utils/computeAutoPlacement.js" for 127.0.0.1 at 2025-04-28 17:50:44 -0500
+Started GET "/images/nu_shield.png" for 127.0.0.1 at 2025-04-28 17:50:44 -0500
+Started GET "/images/hero.jpg" for 127.0.0.1 at 2025-04-28 17:50:44 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/images/nu_shield.png"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/images/hero.jpg"):
+  
+Started GET "/assets/dom-utils/isScrollParent.js" for 127.0.0.1 at 2025-04-28 17:50:44 -0500
+Started GET "/assets/dom-utils/getComputedStyle.js" for 127.0.0.1 at 2025-04-28 17:50:44 -0500
+Started GET "/assets/utils/getOppositePlacement.js" for 127.0.0.1 at 2025-04-28 17:50:44 -0500
+Started GET "/" for 127.0.0.1 at 2025-04-28 18:03:32 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='App'*/[0m
+Processing by StudentsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering students/index.html.erb within layouts/application
+  [1m[36mStudent Load (23.7ms)[0m  [1m[34mSELECT "students".* FROM "students" /*action='index',application='App',controller='students'*/[0m
+  ↳ app/views/students/index.html.erb:159
+  Rendered students/index.html.erb within layouts/application (Duration: 83.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 126.1ms | GC: 0.0ms)
+Completed 200 OK in 254ms (Views: 85.6ms | ActiveRecord: 45.6ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/node_modules/bootstrap/dist/css/bootstrap.min.css" for 127.0.0.1 at 2025-04-28 18:03:33 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/node_modules/bootstrap/dist/css/bootstrap.min.css"):
+  
+Started GET "/assets/Northwestern_University_seal.svg-f7590444.png" for 127.0.0.1 at 2025-04-28 18:03:33 -0500
+Started GET "/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js" for 127.0.0.1 at 2025-04-28 18:03:33 -0500
+Started GET "/assets/popper.js" for 127.0.0.1 at 2025-04-28 18:03:33 -0500
+Started GET "/assets/popper-lite.js" for 127.0.0.1 at 2025-04-28 18:03:33 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"):
+  
+Started GET "/assets/utils/detectOverflow.js" for 127.0.0.1 at 2025-04-28 18:03:34 -0500
+Started GET "/assets/modifiers/applyStyles.js" for 127.0.0.1 at 2025-04-28 18:03:34 -0500
+Started GET "/assets/modifiers/arrow.js" for 127.0.0.1 at 2025-04-28 18:03:34 -0500
+Started GET "/assets/modifiers/computeStyles.js" for 127.0.0.1 at 2025-04-28 18:03:34 -0500
+Started GET "/assets/modifiers/eventListeners.js" for 127.0.0.1 at 2025-04-28 18:03:34 -0500
+Started GET "/assets/modifiers/flip.js" for 127.0.0.1 at 2025-04-28 18:03:34 -0500
+Started GET "/assets/modifiers/hide.js" for 127.0.0.1 at 2025-04-28 18:03:34 -0500
+Started GET "/assets/modifiers/offset.js" for 127.0.0.1 at 2025-04-28 18:03:34 -0500
+Started GET "/assets/modifiers/popperOffsets.js" for 127.0.0.1 at 2025-04-28 18:03:34 -0500
+Started GET "/assets/modifiers/preventOverflow.js" for 127.0.0.1 at 2025-04-28 18:03:34 -0500
+Started GET "/assets/dom-utils/getCompositeRect.js" for 127.0.0.1 at 2025-04-28 18:03:34 -0500
+Started GET "/_/7a91f8b9.js" for 127.0.0.1 at 2025-04-28 18:03:34 -0500
+Started GET "/assets/dom-utils/instanceOf.js" for 127.0.0.1 at 2025-04-28 18:03:34 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/_/7a91f8b9.js"):
+  
+Started GET "/assets/dom-utils/getWindow.js" for 127.0.0.1 at 2025-04-28 18:03:34 -0500
+Started GET "/_/b8df2d1e.js" for 127.0.0.1 at 2025-04-28 18:03:34 -0500
+Started GET "/_/7742d4ca.js" for 127.0.0.1 at 2025-04-28 18:03:34 -0500
+Started GET "/assets/dom-utils/getNodeScroll.js" for 127.0.0.1 at 2025-04-28 18:03:34 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/_/b8df2d1e.js"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/_/7742d4ca.js"):
+  
+Started GET "/assets/dom-utils/getWindowScroll.js" for 127.0.0.1 at 2025-04-28 18:03:35 -0500
+Started GET "/assets/dom-utils/getHTMLElementScroll.js" for 127.0.0.1 at 2025-04-28 18:03:35 -0500
+Started GET "/_/a0ba12d2.js" for 127.0.0.1 at 2025-04-28 18:03:35 -0500
+Started GET "/assets/dom-utils/getWindowScrollBarX.js" for 127.0.0.1 at 2025-04-28 18:03:35 -0500
+Started GET "/assets/modifiers/index.js" for 127.0.0.1 at 2025-04-28 18:03:35 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/_/a0ba12d2.js"):
+  
+Started GET "/assets/dom-utils/isScrollParent.js" for 127.0.0.1 at 2025-04-28 18:03:35 -0500
+Started GET "/assets/dom-utils/getComputedStyle.js" for 127.0.0.1 at 2025-04-28 18:03:35 -0500
+Started GET "/assets/enums.js" for 127.0.0.1 at 2025-04-28 18:03:35 -0500
+Started GET "/assets/dom-utils/getLayoutRect.js" for 127.0.0.1 at 2025-04-28 18:03:35 -0500
+Started GET "/_/a9ca29ce.js" for 127.0.0.1 at 2025-04-28 18:03:35 -0500
+Started GET "/_/bb24ce41.js" for 127.0.0.1 at 2025-04-28 18:03:35 -0500
+Started GET "/_/2d19854a.js" for 127.0.0.1 at 2025-04-28 18:03:35 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/_/a9ca29ce.js"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/_/bb24ce41.js"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/_/2d19854a.js"):
+  
+Started GET "/assets/dom-utils/getNodeName.js" for 127.0.0.1 at 2025-04-28 18:03:36 -0500
+Started GET "/assets/dom-utils/listScrollParents.js" for 127.0.0.1 at 2025-04-28 18:03:36 -0500
+Started GET "/assets/dom-utils/getScrollParent.js" for 127.0.0.1 at 2025-04-28 18:03:36 -0500
+Started GET "/assets/dom-utils/getParentNode.js" for 127.0.0.1 at 2025-04-28 18:03:36 -0500
+Started GET "/assets/dom-utils/getOffsetParent.js" for 127.0.0.1 at 2025-04-28 18:03:36 -0500
+Started GET "/assets/dom-utils/getViewportRect.js" for 127.0.0.1 at 2025-04-28 18:03:36 -0500
+Started GET "/assets/dom-utils/getDocumentRect.js" for 127.0.0.1 at 2025-04-28 18:03:36 -0500
+Started GET "/assets/utils/getMainAxisFromPlacement.js" for 127.0.0.1 at 2025-04-28 18:03:36 -0500
+Started GET "/_/1ba79728.js" for 127.0.0.1 at 2025-04-28 18:03:36 -0500
+Started GET "/_/6a201025.js" for 127.0.0.1 at 2025-04-28 18:03:36 -0500
+Started GET "/assets/utils/getOppositePlacement.js" for 127.0.0.1 at 2025-04-28 18:03:36 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/_/1ba79728.js"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/_/6a201025.js"):
+  
+Started GET "/assets/utils/getOppositeVariationPlacement.js" for 127.0.0.1 at 2025-04-28 18:03:37 -0500
+Started GET "/assets/utils/computeAutoPlacement.js" for 127.0.0.1 at 2025-04-28 18:03:37 -0500
+Started GET "/images/hero.jpg" for 127.0.0.1 at 2025-04-28 18:03:37 -0500
+Started GET "/images/nu_shield.png" for 127.0.0.1 at 2025-04-28 18:03:37 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/images/hero.jpg"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/images/nu_shield.png"):
+  
+Started GET "/assets/dom-utils/getDocumentElement.js" for 127.0.0.1 at 2025-04-28 18:03:37 -0500
+Started GET "/_/084d303b.js" for 127.0.0.1 at 2025-04-28 18:03:37 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/_/084d303b.js"):
+  
+Started GET "/_/c7d11060.js" for 127.0.0.1 at 2025-04-28 18:03:38 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/_/c7d11060.js"):
+  
+Started GET "/" for 127.0.0.1 at 2025-04-28 18:04:06 -0500
+Processing by StudentsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering students/index.html.erb within layouts/application
+  [1m[36mStudent Load (0.6ms)[0m  [1m[34mSELECT "students".* FROM "students" /*action='index',application='App',controller='students'*/[0m
+  ↳ app/views/students/index.html.erb:159
+  Rendered students/index.html.erb within layouts/application (Duration: 3.0ms | GC: 0.3ms)
+  Rendered layout layouts/application.html.erb (Duration: 5.2ms | GC: 0.3ms)
+Completed 200 OK in 25ms (Views: 5.6ms | ActiveRecord: 0.6ms (1 query, 0 cached) | GC: 0.3ms)
+
+
+Started GET "/node_modules/bootstrap/dist/css/bootstrap.min.css" for 127.0.0.1 at 2025-04-28 18:04:06 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/node_modules/bootstrap/dist/css/bootstrap.min.css"):
+  
+Started GET "/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js" for 127.0.0.1 at 2025-04-28 18:04:06 -0500
+Started GET "/assets/enums.js" for 127.0.0.1 at 2025-04-28 18:04:06 -0500
+Started GET "/assets/popper-lite.js" for 127.0.0.1 at 2025-04-28 18:04:06 -0500
+Started GET "/assets/utils/detectOverflow.js" for 127.0.0.1 at 2025-04-28 18:04:06 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"):
+  
+Started GET "/assets/modifiers/applyStyles.js" for 127.0.0.1 at 2025-04-28 18:04:07 -0500
+Started GET "/assets/modifiers/arrow.js" for 127.0.0.1 at 2025-04-28 18:04:07 -0500
+Started GET "/assets/modifiers/computeStyles.js" for 127.0.0.1 at 2025-04-28 18:04:07 -0500
+Started GET "/_/7742d4ca.js" for 127.0.0.1 at 2025-04-28 18:04:07 -0500
+Started GET "/assets/modifiers/eventListeners.js" for 127.0.0.1 at 2025-04-28 18:04:07 -0500
+Started GET "/assets/modifiers/flip.js" for 127.0.0.1 at 2025-04-28 18:04:07 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/_/7742d4ca.js"):
+  
+Started GET "/assets/modifiers/hide.js" for 127.0.0.1 at 2025-04-28 18:04:07 -0500
+Started GET "/assets/modifiers/offset.js" for 127.0.0.1 at 2025-04-28 18:04:07 -0500
+Started GET "/assets/modifiers/popperOffsets.js" for 127.0.0.1 at 2025-04-28 18:04:07 -0500
+Started GET "/assets/modifiers/preventOverflow.js" for 127.0.0.1 at 2025-04-28 18:04:07 -0500
+Started GET "/assets/dom-utils/getCompositeRect.js" for 127.0.0.1 at 2025-04-28 18:04:07 -0500
+Started GET "/_/7a91f8b9.js" for 127.0.0.1 at 2025-04-28 18:04:07 -0500
+Started GET "/assets/dom-utils/instanceOf.js" for 127.0.0.1 at 2025-04-28 18:04:07 -0500
+Started GET "/assets/dom-utils/getWindow.js" for 127.0.0.1 at 2025-04-28 18:04:07 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/_/7a91f8b9.js"):
+  
+Started GET "/_/b8df2d1e.js" for 127.0.0.1 at 2025-04-28 18:04:08 -0500
+Started GET "/assets/dom-utils/getNodeScroll.js" for 127.0.0.1 at 2025-04-28 18:04:08 -0500
+Started GET "/assets/dom-utils/getWindowScroll.js" for 127.0.0.1 at 2025-04-28 18:04:08 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/_/b8df2d1e.js"):
+  
+Started GET "/assets/dom-utils/getHTMLElementScroll.js" for 127.0.0.1 at 2025-04-28 18:04:08 -0500
+Started GET "/_/a9ca29ce.js" for 127.0.0.1 at 2025-04-28 18:04:08 -0500
+Started GET "/assets/dom-utils/getNodeName.js" for 127.0.0.1 at 2025-04-28 18:04:08 -0500
+Started GET "/assets/dom-utils/getWindowScrollBarX.js" for 127.0.0.1 at 2025-04-28 18:04:08 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/_/a9ca29ce.js"):
+  
+Started GET "/assets/dom-utils/getDocumentElement.js" for 127.0.0.1 at 2025-04-28 18:04:08 -0500
+Started GET "/assets/modifiers/index.js" for 127.0.0.1 at 2025-04-28 18:04:08 -0500
+Started GET "/assets/dom-utils/getComputedStyle.js" for 127.0.0.1 at 2025-04-28 18:04:08 -0500
+Started GET "/assets/dom-utils/getLayoutRect.js" for 127.0.0.1 at 2025-04-28 18:04:08 -0500
+Started GET "/assets/dom-utils/listScrollParents.js" for 127.0.0.1 at 2025-04-28 18:04:08 -0500
+Started GET "/_/a0ba12d2.js" for 127.0.0.1 at 2025-04-28 18:04:08 -0500
+Started GET "/assets/popper.js" for 127.0.0.1 at 2025-04-28 18:04:08 -0500
+Started GET "/assets/dom-utils/getOffsetParent.js" for 127.0.0.1 at 2025-04-28 18:04:09 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/_/a0ba12d2.js"):
+  
+Started GET "/_/084d303b.js" for 127.0.0.1 at 2025-04-28 18:04:09 -0500
+Started GET "/assets/dom-utils/getViewportRect.js" for 127.0.0.1 at 2025-04-28 18:04:09 -0500
+Started GET "/assets/dom-utils/getDocumentRect.js" for 127.0.0.1 at 2025-04-28 18:04:09 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/_/084d303b.js"):
+  
+Started GET "/_/bb24ce41.js" for 127.0.0.1 at 2025-04-28 18:04:09 -0500
+Started GET "/_/2d19854a.js" for 127.0.0.1 at 2025-04-28 18:04:09 -0500
+Started GET "/_/c7d11060.js" for 127.0.0.1 at 2025-04-28 18:04:09 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/_/bb24ce41.js"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/_/c7d11060.js"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/_/2d19854a.js"):
+  
+Started GET "/assets/dom-utils/isScrollParent.js" for 127.0.0.1 at 2025-04-28 18:04:10 -0500
+Started GET "/_/1ba79728.js" for 127.0.0.1 at 2025-04-28 18:04:10 -0500
+Started GET "/_/6a201025.js" for 127.0.0.1 at 2025-04-28 18:04:10 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/_/1ba79728.js"):
+  
+Started GET "/assets/utils/getOppositePlacement.js" for 127.0.0.1 at 2025-04-28 18:04:10 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/_/6a201025.js"):
+  
+Started GET "/assets/utils/getOppositeVariationPlacement.js" for 127.0.0.1 at 2025-04-28 18:04:10 -0500
+Started GET "/images/hero.jpg" for 127.0.0.1 at 2025-04-28 18:04:10 -0500
+Started GET "/assets/utils/computeAutoPlacement.js" for 127.0.0.1 at 2025-04-28 18:04:10 -0500
+Started GET "/images/nu_shield.png" for 127.0.0.1 at 2025-04-28 18:04:10 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/images/nu_shield.png"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/images/hero.jpg"):
+  
+Started GET "/assets/dom-utils/getScrollParent.js" for 127.0.0.1 at 2025-04-28 18:04:11 -0500
+Started GET "/assets/dom-utils/getParentNode.js" for 127.0.0.1 at 2025-04-28 18:04:11 -0500
+Started GET "/assets/utils/getMainAxisFromPlacement.js" for 127.0.0.1 at 2025-04-28 18:04:11 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='App'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='App'*/[0m
+  [1m[36mStudent Create (4.4ms)[0m  [1m[32mINSERT INTO "students" ("first_name", "last_name", "course", "profile_picture", "created_at", "updated_at") VALUES ('Paula', 'Fregene', 'CS 397', NULL, '2025-04-28 23:06:45.865502', '2025-04-28 23:06:45.865502') RETURNING "id" /*application='App'*/[0m
+  [1m[36mTRANSACTION (15.6ms)[0m  [1m[35mCOMMIT /*application='App'*/[0m
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN /*application='App'*/[0m
+  [1m[36mStudent Create (9.8ms)[0m  [1m[32mINSERT INTO "students" ("first_name", "last_name", "course", "profile_picture", "created_at", "updated_at") VALUES ('Sophie', 'Shin', 'CS 397', NULL, '2025-04-28 23:06:45.895253', '2025-04-28 23:06:45.895253') RETURNING "id" /*application='App'*/[0m
+  [1m[36mTRANSACTION (2.7ms)[0m  [1m[35mCOMMIT /*application='App'*/[0m
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN /*application='App'*/[0m
+  [1m[36mStudent Create (5.0ms)[0m  [1m[32mINSERT INTO "students" ("first_name", "last_name", "course", "profile_picture", "created_at", "updated_at") VALUES ('Yuyang', 'Pan', 'CS 397', NULL, '2025-04-28 23:06:45.920305', '2025-04-28 23:06:45.920305') RETURNING "id" /*application='App'*/[0m
+  [1m[36mTRANSACTION (2.9ms)[0m  [1m[35mCOMMIT /*application='App'*/[0m
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN /*application='App'*/[0m
+  [1m[36mStudent Create (28.6ms)[0m  [1m[32mINSERT INTO "students" ("first_name", "last_name", "course", "profile_picture", "created_at", "updated_at") VALUES ('Samar', 'Salaam', 'CS 397', NULL, '2025-04-28 23:06:45.940854', '2025-04-28 23:06:45.940854') RETURNING "id" /*application='App'*/[0m
+  [1m[36mTRANSACTION (2.3ms)[0m  [1m[35mCOMMIT /*application='App'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='App'*/[0m
+  [1m[36mStudent Create (2.9ms)[0m  [1m[32mINSERT INTO "students" ("first_name", "last_name", "course", "profile_picture", "created_at", "updated_at") VALUES ('Jack', 'Olantern', 'CS 150', NULL, '2025-04-28 23:06:45.975472', '2025-04-28 23:06:45.975472') RETURNING "id" /*application='App'*/[0m
+  [1m[36mTRANSACTION (2.7ms)[0m  [1m[35mCOMMIT /*application='App'*/[0m
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN /*application='App'*/[0m
+  [1m[36mStudent Create (3.7ms)[0m  [1m[32mINSERT INTO "students" ("first_name", "last_name", "course", "profile_picture", "created_at", "updated_at") VALUES ('Kim', 'Okay', 'CS 310', NULL, '2025-04-28 23:06:45.985039', '2025-04-28 23:06:45.985039') RETURNING "id" /*application='App'*/[0m
+  [1m[36mTRANSACTION (3.4ms)[0m  [1m[35mCOMMIT /*application='App'*/[0m
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN /*application='App'*/[0m
+  [1m[36mStudent Create (5.0ms)[0m  [1m[32mINSERT INTO "students" ("first_name", "last_name", "course", "profile_picture", "created_at", "updated_at") VALUES ('Watt', 'Electric', 'HIST 210', NULL, '2025-04-28 23:06:45.997937', '2025-04-28 23:06:45.997937') RETURNING "id" /*application='App'*/[0m
+  [1m[36mTRANSACTION (3.0ms)[0m  [1m[35mCOMMIT /*application='App'*/[0m
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN /*application='App'*/[0m
+  [1m[36mStudent Create (3.8ms)[0m  [1m[32mINSERT INTO "students" ("first_name", "last_name", "course", "profile_picture", "created_at", "updated_at") VALUES ('Jenny', 'Jiang', 'PHIL 210', NULL, '2025-04-28 23:06:46.010659', '2025-04-28 23:06:46.010659') RETURNING "id" /*application='App'*/[0m
+  [1m[36mTRANSACTION (3.1ms)[0m  [1m[35mCOMMIT /*application='App'*/[0m
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN /*application='App'*/[0m
+  [1m[36mStudent Create (2.9ms)[0m  [1m[32mINSERT INTO "students" ("first_name", "last_name", "course", "profile_picture", "created_at", "updated_at") VALUES ('Mark', 'Brown', 'MATH 210', NULL, '2025-04-28 23:06:46.022474', '2025-04-28 23:06:46.022474') RETURNING "id" /*application='App'*/[0m
+  [1m[36mTRANSACTION (2.8ms)[0m  [1m[35mCOMMIT /*application='App'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='App'*/[0m
+  [1m[36mStudent Create (6.1ms)[0m  [1m[32mINSERT INTO "students" ("first_name", "last_name", "course", "profile_picture", "created_at", "updated_at") VALUES ('Kenny', 'Lin', 'English 210', NULL, '2025-04-28 23:06:46.032129', '2025-04-28 23:06:46.032129') RETURNING "id" /*application='App'*/[0m
+  [1m[36mTRANSACTION (2.5ms)[0m  [1m[35mCOMMIT /*application='App'*/[0m
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN /*application='App'*/[0m
+  [1m[36mStudent Create (3.8ms)[0m  [1m[32mINSERT INTO "students" ("first_name", "last_name", "course", "profile_picture", "created_at", "updated_at") VALUES ('Pom', 'Merang', 'CHEM 150', NULL, '2025-04-28 23:06:46.045388', '2025-04-28 23:06:46.045388') RETURNING "id" /*application='App'*/[0m
+  [1m[36mTRANSACTION (2.8ms)[0m  [1m[35mCOMMIT /*application='App'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='App'*/[0m
+  [1m[36mStudent Create (2.8ms)[0m  [1m[32mINSERT INTO "students" ("first_name", "last_name", "course", "profile_picture", "created_at", "updated_at") VALUES ('Jj', 'Jung', 'POL 310', NULL, '2025-04-28 23:06:46.056611', '2025-04-28 23:06:46.056611') RETURNING "id" /*application='App'*/[0m
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[35mCOMMIT /*application='App'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='App'*/[0m
+  [1m[36mStudent Create (2.7ms)[0m  [1m[32mINSERT INTO "students" ("first_name", "last_name", "course", "profile_picture", "created_at", "updated_at") VALUES ('Wow', 'Ee', 'KOR 450', NULL, '2025-04-28 23:06:46.066294', '2025-04-28 23:06:46.066294') RETURNING "id" /*application='App'*/[0m
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[35mCOMMIT /*application='App'*/[0m
+Started GET "/" for 127.0.0.1 at 2025-04-28 18:07:00 -0500
+Processing by StudentsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering students/index.html.erb within layouts/application
+  [1m[36mStudent Load (0.9ms)[0m  [1m[34mSELECT "students".* FROM "students" /*action='index',application='App',controller='students'*/[0m
+  ↳ app/views/students/index.html.erb:159
+  Rendered students/index.html.erb within layouts/application (Duration: 3.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 5.3ms | GC: 0.0ms)
+Completed 200 OK in 26ms (Views: 5.5ms | ActiveRecord: 0.9ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/node_modules/bootstrap/dist/css/bootstrap.min.css" for 127.0.0.1 at 2025-04-28 18:07:00 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/node_modules/bootstrap/dist/css/bootstrap.min.css"):
+  
+Started GET "/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js" for 127.0.0.1 at 2025-04-28 18:07:00 -0500
+Started GET "/assets/enums.js" for 127.0.0.1 at 2025-04-28 18:07:00 -0500
+Started GET "/assets/popper-lite.js" for 127.0.0.1 at 2025-04-28 18:07:00 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"):
+  
+Started GET "/assets/utils/detectOverflow.js" for 127.0.0.1 at 2025-04-28 18:07:00 -0500
+Started GET "/assets/modifiers/applyStyles.js" for 127.0.0.1 at 2025-04-28 18:07:01 -0500
+Started GET "/assets/modifiers/arrow.js" for 127.0.0.1 at 2025-04-28 18:07:01 -0500
+Started GET "/assets/modifiers/computeStyles.js" for 127.0.0.1 at 2025-04-28 18:07:01 -0500
+Started GET "/assets/modifiers/eventListeners.js" for 127.0.0.1 at 2025-04-28 18:07:01 -0500
+Started GET "/assets/modifiers/flip.js" for 127.0.0.1 at 2025-04-28 18:07:01 -0500
+Started GET "/assets/modifiers/hide.js" for 127.0.0.1 at 2025-04-28 18:07:01 -0500
+Started GET "/assets/modifiers/offset.js" for 127.0.0.1 at 2025-04-28 18:07:01 -0500
+Started GET "/assets/modifiers/popperOffsets.js" for 127.0.0.1 at 2025-04-28 18:07:01 -0500
+Started GET "/assets/modifiers/preventOverflow.js" for 127.0.0.1 at 2025-04-28 18:07:01 -0500
+Started GET "/assets/dom-utils/getCompositeRect.js" for 127.0.0.1 at 2025-04-28 18:07:01 -0500
+Started GET "/_/7a91f8b9.js" for 127.0.0.1 at 2025-04-28 18:07:01 -0500
+Started GET "/assets/dom-utils/instanceOf.js" for 127.0.0.1 at 2025-04-28 18:07:01 -0500
+Started GET "/assets/dom-utils/getWindow.js" for 127.0.0.1 at 2025-04-28 18:07:01 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/_/7a91f8b9.js"):
+  
+Started GET "/_/7742d4ca.js" for 127.0.0.1 at 2025-04-28 18:07:01 -0500
+Started GET "/_/b8df2d1e.js" for 127.0.0.1 at 2025-04-28 18:07:01 -0500
+Started GET "/assets/dom-utils/getNodeScroll.js" for 127.0.0.1 at 2025-04-28 18:07:02 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/_/7742d4ca.js"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/_/b8df2d1e.js"):
+  
+Started GET "/assets/dom-utils/getWindowScroll.js" for 127.0.0.1 at 2025-04-28 18:07:02 -0500
+Started GET "/assets/dom-utils/getHTMLElementScroll.js" for 127.0.0.1 at 2025-04-28 18:07:02 -0500
+Started GET "/assets/dom-utils/getNodeName.js" for 127.0.0.1 at 2025-04-28 18:07:02 -0500
+Started GET "/assets/dom-utils/getWindowScrollBarX.js" for 127.0.0.1 at 2025-04-28 18:07:02 -0500
+Started GET "/assets/dom-utils/getDocumentElement.js" for 127.0.0.1 at 2025-04-28 18:07:02 -0500
+Started GET "/assets/dom-utils/isScrollParent.js" for 127.0.0.1 at 2025-04-28 18:07:02 -0500
+Started GET "/assets/dom-utils/getComputedStyle.js" for 127.0.0.1 at 2025-04-28 18:07:02 -0500
+Started GET "/assets/dom-utils/getLayoutRect.js" for 127.0.0.1 at 2025-04-28 18:07:02 -0500
+Started GET "/assets/modifiers/index.js" for 127.0.0.1 at 2025-04-28 18:07:02 -0500
+Started GET "/_/a0ba12d2.js" for 127.0.0.1 at 2025-04-28 18:07:03 -0500
+Started GET "/assets/popper.js" for 127.0.0.1 at 2025-04-28 18:07:03 -0500
+Started GET "/assets/dom-utils/getOffsetParent.js" for 127.0.0.1 at 2025-04-28 18:07:03 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/_/a0ba12d2.js"):
+  
+Started GET "/_/084d303b.js" for 127.0.0.1 at 2025-04-28 18:07:03 -0500
+Started GET "/assets/dom-utils/getViewportRect.js" for 127.0.0.1 at 2025-04-28 18:07:03 -0500
+Started GET "/assets/dom-utils/getDocumentRect.js" for 127.0.0.1 at 2025-04-28 18:07:03 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/_/084d303b.js"):
+  
+Started GET "/_/a9ca29ce.js" for 127.0.0.1 at 2025-04-28 18:07:03 -0500
+Started GET "/_/bb24ce41.js" for 127.0.0.1 at 2025-04-28 18:07:03 -0500
+Started GET "/_/2d19854a.js" for 127.0.0.1 at 2025-04-28 18:07:03 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/_/a9ca29ce.js"):
+  
+Started GET "/_/c7d11060.js" for 127.0.0.1 at 2025-04-28 18:07:04 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/_/bb24ce41.js"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/_/2d19854a.js"):
+  
+Started GET "/_/6a201025.js" for 127.0.0.1 at 2025-04-28 18:07:04 -0500
+Started GET "/assets/utils/getMainAxisFromPlacement.js" for 127.0.0.1 at 2025-04-28 18:07:04 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/_/c7d11060.js"):
+  
+Started GET "/_/1ba79728.js" for 127.0.0.1 at 2025-04-28 18:07:04 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/_/6a201025.js"):
+  
+Started GET "/assets/utils/getOppositePlacement.js" for 127.0.0.1 at 2025-04-28 18:07:04 -0500
+Started GET "/assets/utils/getOppositeVariationPlacement.js" for 127.0.0.1 at 2025-04-28 18:07:05 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/_/1ba79728.js"):
+  
+Started GET "/assets/utils/computeAutoPlacement.js" for 127.0.0.1 at 2025-04-28 18:07:05 -0500
+Started GET "/images/hero.jpg" for 127.0.0.1 at 2025-04-28 18:07:05 -0500
+Started GET "/images/nu_shield.png" for 127.0.0.1 at 2025-04-28 18:07:05 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/images/hero.jpg"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/images/nu_shield.png"):
+  
+Started GET "/assets/dom-utils/listScrollParents.js" for 127.0.0.1 at 2025-04-28 18:07:05 -0500
+Started GET "/assets/dom-utils/getScrollParent.js" for 127.0.0.1 at 2025-04-28 18:07:06 -0500
+Started GET "/assets/dom-utils/getParentNode.js" for 127.0.0.1 at 2025-04-28 18:07:06 -0500
