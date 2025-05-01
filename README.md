@@ -32,6 +32,5 @@
 * Feature to add glasses or not using llm 
 * Take picture to save names and pictures automatically
 
-  
 ## Resources:
 * [Figma Design ](https://www.figma.com/design/3pKGqlUHoGMVZaht0CENrw/397_photo_quiz?node-id=0-1&t=V6bWKGZVVu7EHnBC-1)
