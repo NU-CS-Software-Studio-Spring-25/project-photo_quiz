@@ -1,5 +1,5 @@
 class StudentsController < ApplicationController
-    before_action :set_student, only: [:show, :edit, :update, :destroy]
+    before_action :set_student, only: [:show, :edit, :update, :destroy, :confirm_destroy]
   
     # GET /students
     # GET /students.json
@@ -54,16 +54,14 @@ class StudentsController < ApplicationController
     # DELETE /students/1
     # DELETE /students/1.json
     def destroy
-      Rails.logger.debug "Destroying student with ID: #{params[:id]}"
-      Rails.logger.debug "Student object before destroy: #{@student.inspect}"
-      if @student.destroy
-        Rails.logger.debug "Student destroyed successfully"
-      else
-        Rails.logger.debug "Failed to destroy student"
-      end
       respond_to do |format|
-        format.html { redirect_to students_url, notice: 'Student was successfully destroyed.' }
-        format.json { head :no_content }
+        if @student.destroy
+          format.html { redirect_to students_path, notice: 'Student was successfully destroyed.' }
+          format.json { head :no_content }
+        else
+          format.html { redirect_to students_url, alert: 'Failed to destroy student.' }
+          format.json { render json: @student.errors, status: :unprocessable_entity }
+        end
       end
     end
   
