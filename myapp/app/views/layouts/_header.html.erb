@@ -1,0 +1,23 @@
+# filepath: app/views/shared/_header.html.erb
+<nav class="navbar navbar-expand-lg navbar-light bg-white mb-4">
+  <div class="container">
+    <a class="navbar-brand text-purple" href="#"><%= Rails.application.class.module_parent_name %></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarNav" aria-controls="navbarNav"
+            aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><%= link_to 'Directory', students_path, class: 'nav-link' %></li>
+        <li class="nav-item"><%= link_to 'Quiz', quizzes_path, class: 'nav-link' %></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="hero">
+  <img src=<img src="<%= asset_path('Northwestern_University_seal.svg.png') %>" alt="NU Shield">
+  <h1>Photo Quiz</h1>
+  <p>Northwestern University Edition</p>
+</div>

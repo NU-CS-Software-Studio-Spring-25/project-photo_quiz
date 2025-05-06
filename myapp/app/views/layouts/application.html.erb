@@ -24,6 +24,10 @@
   </head>
 
   <body>
-    <%= yield %>
+    <%= render "layouts/header" %>
+
+    <div class="container py-4">
+      <%= yield %>
+    </div>
   </body>
 </html>
