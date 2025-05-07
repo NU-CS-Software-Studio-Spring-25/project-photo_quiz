@@ -1,9 +1,10 @@
-<!-- HERO -->
 <div class="hero">
   <div class="hero-left">
-    <%= image_tag "Northwestern_University_seal.svg.png",
-                  class: "hero-logo",
-                  alt: "NU Shield" %>
+    <%= link_to root_path, class: "hero-logo-link" do %>
+      <%= image_tag "Northwestern_University_seal.svg.png",
+                    class: "hero-logo",
+                    alt: "NU Shield" %>
+    <% end %>
     <div class="hero-text">
       <h1>Photo Quiz</h1>
       <p>Northwestern University Edition</p>
