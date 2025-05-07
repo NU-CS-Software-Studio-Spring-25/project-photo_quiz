@@ -17,6 +17,7 @@
 body {
     margin: 0;
     padding: 0;
+    
     background-color: var(--bg-page);
     color: var(--text-default);
     font-family: "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
@@ -38,6 +39,8 @@ body {
   .container,
   .hero {
     padding-inline: clamp(var(--page-pad-min), 5vw, var(--page-pad-max));
+    margin-top: 4rem;
+    margin-bottom: 2rem;
   }
   
   /* 2) Full‐width purple backgrounds */
@@ -51,7 +54,9 @@ body {
     display: flex;
     align-items: center;                     /* vertical centering */
     justify-content: space-between;          /* push links to right */
-    padding: 2rem 50px;                      /* 2rem top/bottom, 50px left/right */
+    margin-top: 0;
+
+    padding: 1rem 50px;                      /* 2rem top/bottom, 50px left/right */
     background:
       linear-gradient(135deg, rgba(78,42,132,0.8), rgba(58,31,102,0.8)),
       url('<%= asset_path("hero.jpg") %>') center/cover no-repeat;
@@ -89,6 +94,7 @@ body {
     font-size: 1.25rem;                      /* larger text */
     padding: .5rem 1rem;
   }
+
 /* Actions on student page */
 .actions {
     display: flex;
@@ -98,13 +104,18 @@ body {
     margin-bottom: 1.5rem;
   }
 .actions h4 {
-    margin-bottom: 0;
+    margin: 0;
+    white-space: nowrap;
+    margin-right: auto;
     font-size: 1.5rem;
     font-weight: 600;
   }
 .actions .form-control,
 .actions .form-select {
-    flex: 1 1 300px;
+    flex: 0.2 0.2 5rem;
+    padding: .8rem 1.5rem;     /* same vertical/horizontal padding as .btn-nu */
+    height: auto;              /* let padding drive the height */
+    border-radius: .75rem;
     border-color: var(--nu-purple-dark);
   }
 .actions .form-control:focus,
@@ -112,6 +123,20 @@ body {
     box-shadow: 0 0 0 0.2rem rgba(58,31,102,0.25);
     border-color: var(--nu-purple-dark);
   }
+.btn-nu {
+    background-color: var(--nu-purple-dark);
+    color: #fff;
+    border: none;
+    padding: .6rem 1.2rem;
+    border-radius: .75rem;
+    
+    font-size: 1.2rem;
+    display: inline-block;    /* ensure it behaves like a button */
+    text-decoration: none;    /* remove the underline on <a> */
+    }
+.btn-nu:hover {
+    opacity: .8;
+}
   
   /* Cards */
 .cards-container {
@@ -159,3 +184,27 @@ body {
   font-weight: 500;
   color: #333;
 }
+
+@media (max-width: 767px) {
+    .hero {
+      flex-direction: column;
+      text-align: center;
+      padding: 1rem 20px;              /* narrower inset on mobile */
+    }
+    .hero-left {
+      margin-bottom: 1rem;
+    }
+    .hero-links {
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .btn-nu {
+        display: block;
+        width: 100%;            /* full width of the inset container */
+        display: inline-block; 
+        margin: .1rem 0;        /* vertical spacing between buttons */
+        text-align: center;
+
+      }
+    
+  }

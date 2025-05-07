@@ -7,99 +7,10 @@
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUa1zYhlsU6pdt36U8Hft8z8sL6b1Z8n3e6e5eF5e5e5e5e5e5e5e5e5e5e5" crossorigin="anonymous">
 
-  <style>
-
-    .actions {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-    }
-    .actions h4 {
-      margin-bottom: 0;
-      font-size: 1.5rem;
-      font-weight: 600;
-    }
-    .actions .form-control {
-      flex: 1 1 300px;
-      border-color: var(--nu-purple-dark);
-    }
-    .actions .form-control:focus {
-      box-shadow: 0 0 0 0.2rem rgba(58,31,102,0.25);
-      border-color: var(--nu-purple-dark);
-    }
-    .btn-nu {
-      background-color: var(--nu-purple-dark);
-      color: #fff;
-      border: none;
-      padding: .6rem 1.2rem;
-    }
-    .btn-nu:hover {
-      opacity: .9;
-    }
-
-    .cards-container {
-      display: flex;
-      gap: 1.5rem;
-      overflow-x: auto;
-      padding: 1rem 0;
-    }
-    .cards-container::-webkit-scrollbar { display: none; }
-    .cards-container { -ms-overflow-style: none; scrollbar-width: none; }
-
-    .card-large {
-      width: 16rem;
-      flex: 0 0 auto;
-      border-radius: .75rem;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      background: #fff;
-      transition: transform .2s, box-shadow .2s;
-    }
-    .card-large:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-      cursor: pointer;
-    }
-    .card-large .card-img-top {
-      height: 16rem;
-      background: #EDE0F7 url('./images/nu_shield.png') center/40% no-repeat;
-    }
-    .card-large .card-body {
-      padding: 1rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      flex: 1;
-    }
-
-    .course-code,
-    .course-name {
-      font-size: .9rem;
-      color: var(--nu-purple-dark);
-      text-decoration: underline;
-      margin: 0;
-    }
-    .course-name {
-      margin-top: .25rem;
-      margin-bottom: .75rem;
-    }
-
-    .card-large h6 {
-      margin: 0;
-      font-size: 1.05rem;
-      font-weight: 500;
-      color: #333;
-    }
-  </style>
 </head>
 
 <body>
   <div class="container py-4">
-
-
 
     <div class="actions">
       <h4>Directory</h4>
