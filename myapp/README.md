@@ -50,6 +50,11 @@ npm install
 
 ## **3. Set Up the Database**
 
+### Before you continue:
+Ensure that your POSTSQL is running and working by running this command
+
+`sudo systemctl status postgresql` or `sudo service postgresql start`
+
 ### **Create and Migrate the Database**
 Run the following commands to set up the database:
 
@@ -62,6 +67,7 @@ rails db:migrate
 If your app includes seed data, run:
 
 ```bash
+rails db:schema:load
 rails db:seed
 ```
 
