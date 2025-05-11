@@ -13,9 +13,9 @@ prof1 = User.create!(full_name: "Alice Smith", email: "alice@example.com", passw
 prof2 = User.create!(full_name: "Bob Jones", email: "bob@example.com", password: "password", password_confirmation: "password")
 
 # Create Students
-student1 = Student.create!(first_name: "Paula", last_name: "Fregene")
-student2 = Student.create!(first_name: "Sophie", last_name: "Shin")
-student3 = Student.create!(first_name: "Yuyang", last_name: "Pan")
+student1 = Student.create!(first_name: "Paula", last_name: "Fregene", course: "CS 397")
+student2 = Student.create!(first_name: "Sophie", last_name: "Shin",  course: "CS 397")
+student3 = Student.create!(first_name: "Yuyang", last_name: "Pan", course: "CS 397")
 
 
 # Create Courses

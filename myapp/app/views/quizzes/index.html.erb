@@ -27,12 +27,14 @@
     </div>
     <div id="quiz-container" style="display:none;">
       <div class="card card-large mb-4">
+      <!-- Photo for quiz -->
         <div id="question-photo" class="card-img-top"></div>
         <div class="card-body">
-          <form id="quiz-form">
-            <div id="options-container" class="mb-3"></div>
-            <button type="button" id="next-question" class="btn btn-nu">Next</button>
-          </form>
+        <!-- Options -->
+          <div id="options-container" class="mb-3"></div>
+          <button type="button" id="check-next" class="btn btn-nu">
+            Check
+          </button>
         </div>
       </div>
     </div>
@@ -41,17 +43,6 @@
   <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      // NAV TABS
-      document.querySelectorAll(".nav-link").forEach(link => {
-        link.addEventListener("click", e => {
-          e.preventDefault();
-          const tgt = link.dataset.target;
-          document.querySelectorAll("[id$='-section']")
-                  .forEach(sec => sec.style.display = sec.id===tgt ? "block" : "none");
-          document.querySelectorAll(".nav-link").forEach(l=>l.classList.remove("active"));
-          link.classList.add("active");
-        });
-      });
       // QUIZ
       let questions = [], current = 0, results = [];
       document.getElementById("start-quiz").addEventListener("click", () => {
@@ -66,6 +57,9 @@
           })
           .catch(() => alert("Could not load quiz."));
       });
+
+      document.getElementById("check-next").onclick = () => {
+        const btn = document.get}
       function showQuestion() {
         const q = questions[current];
         document.getElementById("question-photo").style.background =
