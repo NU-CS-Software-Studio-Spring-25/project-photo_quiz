@@ -1,6 +1,5 @@
 # app/controllers/students_controller.rb
-class StudentsController < ApplicationController
-  respond_to :html, :json                                  
+class StudentsController < ApplicationController                                
   skip_before_action :verify_authenticity_token,           
                        only: %i[create update destroy]
 
