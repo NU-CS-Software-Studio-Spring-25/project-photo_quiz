@@ -21,28 +21,25 @@
        <%= link_to 'Quiz', quizzes_path, class: "btn btn-nu" %> 
     </div>
 
-    
-    // loop for all courses in the database
-    // Show first the course name
-    // and then below all the students in that course as a card list
-    
-    <!-- card list -->
-    <div class="cards-container">
-      <% @student.each do |student| %>
-        <div class="card card-large">
+    <% @courses.each do |course| %>
+      <h2><%= course.name %></h2> <!-- or course.title if you didn't define the alias -->
+
+      <div class="cards-container">
+        <% course.students.each do |student| %>
+          <div class="card card-large">
             <div class="card-img-top"></div>
             <div class="card-body">
-            <p class="course-code"> <%= student.course %> </p>
-            <h6> <%= student.first_name %> <%= student.last_name %></h6>
-            <div class="mt-3">
-              <%= link_to 'Edit', edit_student_path(student), class: "btn btn-warning btn-sm" %>
-              <%= link_to 'Delete', confirm_destroy_student_path(student), class: "btn btn-primary btn-sm" %>
-
+              <p class="course-code"><%= course.name %></p>
+              <h6><%= student.first_name %> <%= student.last_name %></h6>
+              <div class="mt-3">
+                <%= link_to 'Edit', edit_student_path(student), class: "btn btn-warning btn-sm" %>
+                <%= link_to 'Delete', confirm_destroy_student_path(student), class: "btn btn-primary btn-sm" %>
+              </div>
             </div>
-            </div>
+          </div>
+        <% end %>
       </div>
     <% end %>
-
   </div>
 
 

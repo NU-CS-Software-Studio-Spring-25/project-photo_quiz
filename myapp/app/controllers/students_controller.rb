@@ -5,7 +5,8 @@ class StudentsController < ApplicationController
     # GET /students
     # GET /students.json
     def index
-      @student = Student.all
+      @courses = Course.includes(:students).all
+      @students = Student.all
     end
 
     # GET /students/1
@@ -29,6 +30,9 @@ class StudentsController < ApplicationController
 
       respond_to do |format|
         if @student.save
+          course = Course.find(params[:course_id])
+          @student.update(course: course.name)
+          Membership.create!(student: @student, course: course, user: current_user)
           format.html { redirect_to students_path, notice: "Student was successfully created." }
           format.json { render :show, status: :created, location: @student }
         else
@@ -77,6 +81,6 @@ class StudentsController < ApplicationController
 
       # Never trust parameters from the scary internet, only allow the white list through.
       def student_params
-        params.require(:student).permit(:first_name, :last_name, :course, :profile_picture)
+        params.require(:student).permit(:first_name, :last_name, :profile_picture, :course)
       end
 end
