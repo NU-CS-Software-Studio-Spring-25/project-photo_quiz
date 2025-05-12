@@ -1,32 +1,7 @@
-<style>
-  :root {
-        --nu-purple-dark:  #3A1F66;
-        --bg-page:         #F7F2FA;
-        --text-default:    #2E0854;
-      }
-  body {
-    background-color: var(--bg-page);
-    color: var(--text-default);
-    font-family: "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
-  }
-
-
-  .btn-nu {
-    background-color: var(--nu-purple-dark);
-    color: #fff;
-    border: none;
-    padding: .6rem 1.2rem;
-  }
-
-  .btn-nu:hover {
-    opacity: .9;
-  }
-</style>
-
 <h1>Are you sure you want to delete "<%= @student.first_name %> <%= @student.last_name %>"?</h1>
 
 <%= form_with url: student_path(@student), method: :delete, local: true do %>
-  <%= submit_tag "Yes, Delete", class: "btn btn-danger" %>
+  <%= submit_tag "Yes, Delete", class: "btn btn-nu" %>
 <% end %>
 
-<%= link_to "Cancel", students_path, class: "btn btn-secondary" %>
+<%= link_to "Cancel", students_path, class: "btn btn-nu-secondary" %>

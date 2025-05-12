@@ -1,7 +1,9 @@
 class QuizzesController < ApplicationController
     def index
       if params[:course]
-        students = Student.where(course: params[:course])
+        course = Course.find_by(name: params[:course])
+        students = course ? course.students : Student.none
+        
 
         # Use ActionController::Base.helpers.asset_path for the default image
         default_image = ActionController::Base.helpers.asset_path("default-profile.png")
@@ -21,7 +23,7 @@ class QuizzesController < ApplicationController
         end
         render json: questions
       else
-        @courses = Student.distinct.pluck(:course)
+        @courses = Course.order(:name).pluck(:name)
       end
     end
 end
