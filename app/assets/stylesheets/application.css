@@ -113,8 +113,8 @@ body {
 .actions .form-control,
 .actions .form-select {
     flex: 0.2 0.2 5rem;
-    padding: .8rem 1.5rem;     /* same vertical/horizontal padding as .btn-nu */
-    height: auto;              /* let padding drive the height */
+    padding: .8rem 1.5rem;     
+    height: auto;           
     border-radius: .75rem;
     border-color: var(--nu-purple-dark);
   }
@@ -126,7 +126,7 @@ body {
 .btn-nu {
     background-color: var(--nu-purple-dark);
     color: #fff;
-    border: none;
+    border: 1px solid var(--nu-purple-dark);
     padding: .6rem 1.2rem;
     border-radius: .75rem;
     
@@ -137,7 +137,23 @@ body {
 .btn-nu:hover {
     opacity: .8;
 }
-  
+.btn-nu-secondary {
+    background-color: #fff;
+    color: var(--nu-purple-dark);
+    border: 1px solid var(--nu-purple-dark);
+    padding: .6rem 1.2rem;
+    border-radius: .75rem;
+    
+    font-size: 1.2rem;
+    display: inline-block;    /* ensure it behaves like a button */
+    text-decoration: none;    /* remove the underline on <a> */
+}
+.btn-nu-secondary:hover {
+  background-color: rgba(78,42,132,0.25);   /* light purple fill */
+  color: var(--nu-purple-dark);            /* keep text purple */
+  border-color: var(--nu-purple-dark);     /* keep outline purple */
+  opacity: 1;                              /* override any earlier opacity */
+}
   /* Cards */
 .cards-container {
     display: flex;
@@ -185,6 +201,180 @@ body {
   color: #333;
 }
 
+/* ---- Student Form Styles ---- */
+.form-card .form-group {
+  margin-bottom: 1.5rem;
+}
+/* outer wrapper: light purple background */
+.form-container {
+  display: flex;
+  justify-content: center;
+  padding: 2rem 0;
+}
+
+/* inner card: white background + purple outline */
+.form-card {
+  background-color: #fff;
+  border: 1px solid rgba(78,42,132,0.8);
+  box-shadow: rgba(78,42,132,0.8) 0px 0px 5px 0px;
+  padding: 2rem;
+  max-width: 1000px;
+  width: 100%;
+}
+
+/* title */
+.form-card-title {
+  margin-bottom: 1.5rem;
+  color: var(--nu-purple-dark);
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+/* photo preview container */
+.form-photo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+.photo-preview-box,
+.photo-preview-img {
+  width: 100%;
+  max-width: 400px;            /* same or larger than your input width */
+  aspect-ratio: 1 / 1;         /* keep it square */
+  border: 1px solid rgba(78,42,132,0.8);
+  border-radius: .5rem;
+  background-color: #fff;
+  object-fit: cover;
+}
+
+
+/* form controls */
+.form-card .form-control {
+  width: 100%;
+  margin-top: .5rem;
+  padding: .8rem 1.5rem;
+  border-radius: .75rem;
+  border: 1px solid rgba(78,42,132,0.8);
+  background-color: #fff;
+}
+
+.form-row {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.form-photo {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.form-fields {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* focus state */
+.form-card .form-control:focus {
+  box-shadow: 0 0 0 0.2rem rgba(78,42,132,0.25);
+  border-color: rgba(78,42,132,0.8);
+}
+
+/* action buttons */
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+.form-actions .btn {
+  padding: .6rem 1.2rem;
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+/* Quiz photo box */
+#question-photo {
+  width: 100%;
+  max-width: 500px;
+  height: 500px;
+  margin: 0 auto;
+  background-size: cover;
+  background-position: center;
+  border-radius: .5rem;
+  border: 2px solid var(--nu-purple-dark);
+}
+
+/* Option boxes */
+.options-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem;
+}
+.options-grid .option-box {
+  flex: 0 0 calc(50% - .75rem);
+}
+.option-box {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  margin-bottom: .75rem;
+  border: 2px solid #ccc;
+  border-radius: .5rem;
+  cursor: pointer;
+  transition: background .2s, border-color .2s;
+}
+.option-box:hover {
+  border-color: var(--nu-purple-dark);
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+  cursor: pointer;
+  
+}
+.option-box.selected {
+  background-color: rgba(78,42,132,0.25);
+  color: var(--nu-purple-dark);
+  border-color: var(--nu-purple-dark);
+  opacity: 1;
+}
+
+/* text-input correct/incorrect for name questions */
+#text-answer.correct {
+  border-color: #28a745;
+  background: #d4edda;
+}
+#text-answer.incorrect {
+  border-color: #dc3545;
+  background: #f8d7da;
+}
+
+.option-box.correct {
+  background: #d4edda;
+  border-color: #28a745;
+}
+.option-box.incorrect {
+  background: #f8d7da;
+  border-color: #dc3545;
+}
+.option-box input:checked + .option-text,
+.option-box input:checked + * {
+  font-weight: 600;
+}
+.option-text {
+  margin-left: .5rem;
+}
+#feedback {
+  min-height: 1.5em;
+}
+
 @media (max-width: 767px) {
     .hero {
       flex-direction: column;
@@ -204,7 +394,41 @@ body {
         display: inline-block; 
         margin: .1rem 0;        /* vertical spacing between buttons */
         text-align: center;
+      }
+    
 
+    .btn-nu-secondary {
+        display: block;
+        width: 100%;            /* full width of the inset container */
+        display: inline-block; 
+        margin: .1rem 0;        /* vertical spacing between buttons */
+        text-align: center;
+        background-color: #fff;
+        color: var(--nu-purple-dark);
+        border: 1px solid var(--nu-purple-dark);
+      }
+      .form-container {
+        padding: 1rem;
+      }
+      .form-card {
+        width: 100%;
+        padding: 1.5rem;
+      }
+      /* shrink preview box a bit on phone */
+      .photo-preview-box,
+      .photo-preview-img {
+        max-width: 60%;
+      }
+      /* stack buttons full‐width */
+      .form-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .form-actions .btn {
+        width: 100%;
+      }
+      .form-row {
+        flex-direction: column;
       }
     
   }

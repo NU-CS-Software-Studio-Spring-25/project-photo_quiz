@@ -1,6 +1,6 @@
 class StudentsController < ApplicationController
     before_action :set_student, only: [ :show, :edit, :update, :destroy, :confirm_destroy ]
-
+    before_action :load_courses,  only: %i[ new edit create update ]
     # GET /students
     # GET /students.json
     def index
@@ -66,6 +66,9 @@ class StudentsController < ApplicationController
     end
 
     private
+      def load_courses
+        @courses = Student.distinct.pluck(:course)
+      end
       # Use callbacks to share common setup or constraints between actions.
       def set_student
         @student = Student.find(params[:id])
