@@ -22,9 +22,9 @@ prof2.password_confirmation = "password"
 prof2.save!
 
 # Create Students
-student1 = Student.create!(first_name: "Paula", last_name: "Fregene", course: "CS 397")
-student2 = Student.create!(first_name: "Sophie", last_name: "Shin",  course: "CS 397")
-student3 = Student.create!(first_name: "Yuyang", last_name: "Pan", course: "CS 397")
+student1 = Student.create!(first_name: "Paula", last_name: "Fregene")
+student2 = Student.create!(first_name: "Sophie", last_name: "Shin")
+student3 = Student.create!(first_name: "Yuyang", last_name: "Pan")
 
 
 # Create Courses
