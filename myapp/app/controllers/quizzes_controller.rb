@@ -2,6 +2,7 @@ class QuizzesController < ApplicationController
     def index
       if params[:course]
         students = Student.where(course: params[:course])
+        
 
         # Use ActionController::Base.helpers.asset_path for the default image
         default_image = ActionController::Base.helpers.asset_path("default-profile.png")

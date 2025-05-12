@@ -301,6 +301,80 @@ body {
   line-height: 1;
 }
 
+/* Quiz photo box */
+#question-photo {
+  width: 100%;
+  max-width: 500px;
+  height: 500px;
+  margin: 0 auto;
+  background-size: cover;
+  background-position: center;
+  border-radius: .5rem;
+  border: 2px solid var(--nu-purple-dark);
+}
+
+/* Option boxes */
+.options-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem;
+}
+.options-grid .option-box {
+  flex: 0 0 calc(50% - .75rem);
+}
+.option-box {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  margin-bottom: .75rem;
+  border: 2px solid #ccc;
+  border-radius: .5rem;
+  cursor: pointer;
+  transition: background .2s, border-color .2s;
+}
+.option-box:hover {
+  border-color: var(--nu-purple-dark);
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+  cursor: pointer;
+  
+}
+.option-box.selected {
+  background-color: rgba(78,42,132,0.25);
+  color: var(--nu-purple-dark);
+  border-color: var(--nu-purple-dark);
+  opacity: 1;
+}
+
+/* text-input correct/incorrect for name questions */
+#text-answer.correct {
+  border-color: #28a745;
+  background: #d4edda;
+}
+#text-answer.incorrect {
+  border-color: #dc3545;
+  background: #f8d7da;
+}
+
+.option-box.correct {
+  background: #d4edda;
+  border-color: #28a745;
+}
+.option-box.incorrect {
+  background: #f8d7da;
+  border-color: #dc3545;
+}
+.option-box input:checked + .option-text,
+.option-box input:checked + * {
+  font-weight: 600;
+}
+.option-text {
+  margin-left: .5rem;
+}
+#feedback {
+  min-height: 1.5em;
+}
+
 @media (max-width: 767px) {
     .hero {
       flex-direction: column;
