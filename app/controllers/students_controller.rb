@@ -1,9 +1,8 @@
-# app/controllers/students_controller.rb
 class StudentsController < ApplicationController                                
   skip_before_action :verify_authenticity_token,           
                        only: %i[create update destroy]
 
-  before_action :set_student,                            \
+  before_action :set_student,                            
                 only: %i[show edit update destroy confirm_destroy]
 
   # GET /students

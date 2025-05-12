@@ -1,2 +1,3 @@
 class Student < ActiveRecord::Base
-end
+    has_one_attached :profile_picture
+  end
