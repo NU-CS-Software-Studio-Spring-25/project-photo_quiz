@@ -23,68 +23,101 @@
       <button id="start-quiz" class="btn btn-nu">Start Quiz</button>
     </div>
     <div id="quiz-container" class="d-none">
-      <!-- Photo -->
-      <div id="question-photo" class="mx-auto mb-4 d-none"></div>
-      <!-- Options -->
-      <div id="options-container" class="mb-3"></div>
-      <!-- Feedback + Next button -->
-      <div class="d-flex justify-content-between align-items-center">
-        <div id="feedback" class="fs-5"></div>
+    <!-- Photo -->
+    <div id="question-photo" class="mx-auto mb-4 d-none"></div>
+    <!-- Options/Text-input -->
+    <div id="options-container" class="mb-3"></div>
+    <!-- Feedback + Progress + Next/Check button -->
+    <div class="d-flex justify-content-between align-items-center">
+      <span id="feedback" class="fs-5"></span>
+      <div class="d-flex align-items-center">
         <button id="action-btn" class="btn btn-nu d-none">Check</button>
+        <span id="progress" class="fs-6 ms-4 text-end"></span>
       </div>
     </div>
-  </div>
+  
   <!-- Bootstrap JS & Quiz logic -->
   <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <%= javascript_include_tag "application", "data-turbo-track": "reload" %>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      // QUIZ
-      let questions = [], current = 0, results =  [], mode = "check";
-      const photoEl   = document.getElementById("question-photo");
-      const optsEl    = document.getElementById("options-container");
-      const fbEl      = document.getElementById("feedback");
-      const btnEl     = document.getElementById("action-btn");
+  let questions = [], current = 0, results = [], mode = "check";
+  const photoEl = document.getElementById("question-photo");
+  const optsEl  = document.getElementById("options-container");
+  const fbEl    = document.getElementById("feedback");
+  const btnEl   = document.getElementById("action-btn");
 
-      function normalize(s) {
-        return s.toLowerCase().trim().replace(/\s+/g," ");
-      }
+  function normalize(s) {
+    return s.toLowerCase().trim().replace(/\s+/g, " ");
+  }
 
-      function renderQuestion() {
-        const q = questions[current];
-        photoEl.style.backgroundImage = `url('${q.photo_url}')`;
-        if (Array.isArray(q.options)) {
-          optsEl.innerHTML = `<div class="options-grid">` +
-            q.options.map(opt => `
-              <label class="option-box">
-                <input type="radio" name="answer" value="${opt}" hidden>
-                <div class="option-text">${opt}</div>
-              </label>
-            `).join("") +
-            `</div>`;
-        } else if (q.type === "name") {
-          optsEl.innerHTML = `
-            <input id="text-answer" type="text"
-                   class="form-control mb-3"
-                   placeholder="Type name…">`;
+  function renderQuestion() {
+    const q = questions[current];
+
+    // 1) photo
+    photoEl.style.backgroundImage = `url('${q.photo_url}')`;
+    photoEl.classList.toggle("d-none", !q.photo_url);
+
+    // 2) text vs MCQ
+    if (q.type === "name") {
+      optsEl.innerHTML = `
+        <input id="text-answer" type="text"
+               class="form-control mb-3 search-input"
+               placeholder="Type name…">`;
+    }
+    else {
+      optsEl.innerHTML = `<div class="options-grid">` +
+        q.options.map(opt => `
+          <label class="option-box">
+            <input type="radio" name="answer" value="${opt}" hidden>
+            <div class="option-text">${opt}</div>
+          </label>
+        `).join("") +
+        `</div>`;
+    }
+
+    // 3) reset feedback/button/progress
+    fbEl.textContent  = "";
+    btnEl.textContent = "Check";
+    btnEl.classList.remove("d-none");
+    document.getElementById("progress")
+            .textContent = `${current+1} / ${questions.length}`;
+    mode = "check";
+  } // ← make sure this closes renderQuestion!
+
+  // START QUIZ
+  document.getElementById("start-quiz").onclick = () => {
+    const course = document.getElementById("class-select").value;
+    if (!course) return alert("Select a class first.");
+
+    fetch(`/quizzes?course=${encodeURIComponent(course)}`)
+      .then(r => r.json())
+      .then(data => {
+        // Shuffle array
+        data.sort(() => Math.random() - .5);
+
+        // Pick 25% to be name‐type
+        const nameCount = Math.ceil(data.length * 0.25);
+        const nameIdxs  = new Set();
+        while (nameIdxs.size < nameCount) {
+          nameIdxs.add(Math.floor(Math.random() * data.length));
         }
-        fbEl.textContent = "";
-        btnEl.textContent = "Check";
-        btnEl.classList.remove("d-none");
-        mode = "check";
-      }
-      document.getElementById("start-quiz").onclick = () => {
-        const course = document.getElementById("class-select").value;
-        if (!course) return alert("Select a class first.");
-        fetch(`/quizzes?course=${encodeURIComponent(course)}`)
-          .then(r=>r.json())
-          .then(data => {
-            questions = data; current = 0; results = [];
-            document.getElementById("quiz-container").classList.remove("d-none");
-            
-            renderQuestion();
-          })
-          .catch(()=>alert("Could not load quiz."));
+
+        // Annotate each question with a type
+        questions = data.map((q,i) => ({
+          ...q,
+          type: (nameIdxs.has(i) && q.correct_name) ? "name" : "mcq"
+        }));
+
+        current = 0;
+        results = [];
+        document.getElementById("quiz-container")
+                .classList.remove("d-none");
+        renderQuestion();
+      })
+      .catch(() => alert("Could not load quiz."));
+
+
       };
       // delegate clicks on option-boxes to toggle “selected” class
       optsEl.addEventListener("click", e => {
@@ -100,7 +133,15 @@
         const q = questions[current];
         let ok = false;
         if (mode === "check") {
-          if (Array.isArray(q.options)) {
+          if (q.type === "name") {
+            const input = document.getElementById("text-answer");
+            const ans        = input.value;
+            const norm       = normalize(ans);
+            const correctNorm= normalize(q.correct_name);
+            ok = correctNorm.startsWith(norm) || norm.startsWith(correctNorm.split(" ")[0]);
+            input.classList.add(ok ? "correct" : "incorrect");
+          }
+          else if (Array.isArray(q.options)) {
             const sel = optsEl.querySelector("input[name='answer']:checked");
             if (!sel) return alert("Please pick an answer.");
             ok = (sel.value === q.correct_name);
@@ -113,13 +154,6 @@
               const trueInput = optsEl.querySelector(`input[value="${q.correct_name}"]`);
               if (trueInput) trueInput.closest(".option-box").classList.add("correct");
             }
-          } else if (q.type === "name") {
-            const ans = document.getElementById("text-answer").value;
-            const norm = normalize(ans);
-            const correctNorm = normalize(q.correct_name);
-            // accept first name or full name
-            ok = correctNorm.startsWith(norm) || norm.startsWith(correctNorm.split(" ")[0]);
-            document.getElementById("text-answer").classList.add(ok ? "correct" : "incorrect");
           }
           
           fbEl.textContent = ok ? "✅ Correct!" : "❌ Sorry, wrong.";
