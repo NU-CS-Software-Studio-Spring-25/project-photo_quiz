@@ -1,4 +1,5 @@
 class StudentsController < ApplicationController
+    skip_before_action :verify_authenticity_token, only: [:create, :update, :destroy]
     before_action :set_student, only: [ :show, :edit, :update, :destroy, :confirm_destroy ]
 
     # GET /students
