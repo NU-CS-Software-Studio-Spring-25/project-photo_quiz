@@ -21,6 +21,11 @@
        <%= link_to 'Quiz', quizzes_path, class: "btn btn-nu" %> 
     </div>
 
+    
+    // loop for all courses in the database
+    // Show first the course name
+    // and then below all the students in that course as a card list
+
     <!-- card list -->
     <div class="cards-container">
       <% @student.each do |student| %>

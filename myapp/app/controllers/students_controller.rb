@@ -1,4 +1,5 @@
 class StudentsController < ApplicationController
+    before_action :authenticate_user!
     before_action :set_student, only: [ :show, :edit, :update, :destroy, :confirm_destroy ]
     before_action :load_courses,  only: %i[ new edit create update ]
     # GET /students

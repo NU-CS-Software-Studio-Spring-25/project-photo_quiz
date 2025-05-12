@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :courses
   devise_for :users
-  root "dashboard#index"
+  root "students#index"
 
   resources :students do
     member do
