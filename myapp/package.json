@@ -1,8 +1,0 @@
-{
-  "engines": {
-    "node": "23.11.0"
-  },
-  "dependencies": {
-    "bootstrap": "^5.3.5"
-  }
-}

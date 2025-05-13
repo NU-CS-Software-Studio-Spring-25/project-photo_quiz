@@ -1,7 +1,0 @@
-class Student < ActiveRecord::Base
-    has_many :memberships
-    has_many :courses, through: :memberships
-
-    # # Optional: If a student has a profile picture, name_mastery, and learned
-    has_one_attached :profile_picture  # if using Active Storage
-end

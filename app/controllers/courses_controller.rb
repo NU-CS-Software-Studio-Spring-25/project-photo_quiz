@@ -8,7 +8,6 @@ class CoursesController < ApplicationController
 
   # GET /courses/1 or /courses/1.json
   def show
-    @course = Course.find(params[:id])
     @students = @course.students
   end
 
@@ -27,7 +26,7 @@ class CoursesController < ApplicationController
 
     respond_to do |format|
       if @course.save
-        format.html { redirect_to @course, notice: "Course was successfully created." }
+        format.html { redirect_to students_path, notice: "Course was successfully created. Now add a student." }
         format.json { render :show, status: :created, location: @course }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -67,6 +66,6 @@ class CoursesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def course_params
-      params.expect(course: [ :title, :user_id ])
+      params.require(:course).permit(:name)
     end
 end
