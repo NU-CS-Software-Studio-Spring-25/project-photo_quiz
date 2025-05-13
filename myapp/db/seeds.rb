@@ -3,9 +3,19 @@ require 'faker'
 # Seed Professors
 users = [
   { full_name: 'Alice Smith', email: 'alice@example.com', password: 'password', password_confirmation: 'password' },
-  { full_name: 'Bob Jones', email: 'bob@example.com', password: 'password', password_confirmation: 'password' },
+  { full_name: 'Bob Jones',   email: 'bob@example.com',   password: 'password', password_confirmation: 'password' },
 ]
-user_records = users.map { |data| User.create!(data) }
+
+users.each do |attrs|
+  u = User.find_or_initialize_by(email: attrs[:email])
+  u.full_name             = attrs[:full_name]
+  u.password              = attrs[:password]
+  u.password_confirmation = attrs[:password_confirmation]
+  u.save!
+end
+
+user_records = User.all.to_a
+
 # Seed Courses
 courses = [
   { name: 'CS 397' },
