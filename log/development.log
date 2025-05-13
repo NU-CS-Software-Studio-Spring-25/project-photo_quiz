@@ -48915,3 +48915,12 @@ puma (6.6.0) lib/puma/request.rb:98:in 'Puma::Request#handle_request'
 puma (6.6.0) lib/puma/server.rb:472:in 'Puma::Server#process_client'
 puma (6.6.0) lib/puma/server.rb:254:in 'block in Puma::Server#run'
 puma (6.6.0) lib/puma/thread_pool.rb:167:in 'block in Puma::ThreadPool#spawn_thread'
+  [1m[35mSQL (0.6ms)[0m  [1m[35mSET search_path TO public /*application='App'*/[0m
+  [1m[35m (27.0ms)[0m  [1m[35mCREATE DATABASE "app_development" ENCODING = 'unicode' /*application='App'*/[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[35mSET search_path TO public /*application='App'*/[0m
+  [1m[35m (45.0ms)[0m  [1m[35mCREATE DATABASE "app_test" ENCODING = 'unicode' /*application='App'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5277929974492897470) /*application='App'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='App'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='App'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(5277929974492897470) /*application='App'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='App'*/[0m
