@@ -1,26 +1,47 @@
-<%= form_with(model: @student, local: true) do |form| %>
-    <div class="form-group">
-      <%= form.label :first_name %>
-      <%= form.text_field :first_name, class: "form-control" %>
-    </div>
-  
-    <div class="form-group">
-      <%= form.label :last_name %>
-      <%= form.text_field :last_name, class: "form-control" %>
-    </div>
-  
-    <div class="form-group">
-      <%= form.label :course %>
-      <%= form.text_field :course, class: "form-control" %>
-    </div>
-  
-    <div class="form-group">
-      <%= form.label :profile_picture %>
-      <%= form.file_field :profile_picture, class: "form-control" %>
-    </div>
-  
-    <div class="form-group mt-3">
-      <%= form.submit class: "btn btn-primary" %>
-      <%= link_to 'Cancel', students_path, class: "btn btn-secondary" %>
-    </div>
-<% end %>
+<div class="form-container">
+  <div class="form-card">
+    <%= form_with(model: @student, local: true) do |form| %>
+      <h2 class="form-card-title">
+        <%= @student.new_record? ? "New Student" : "Edit Student" %>
+      </h2>
+
+      <div class="form-row">
+        <!-- LEFT: photo preview + upload -->
+        <div class="form-photo">
+            <div class="photo-preview-box"></div>
+          <div class="form-group mt-2">
+            <%= form.label :profile_picture %>
+            <%= form.file_field :profile_picture, class: "form-control" %>
+          </div>
+        </div>
+
+        <!-- RIGHT: all the other fields -->
+        <div class="form-fields">
+          <div class="form-group">
+            <%= form.label :first_name %>
+            <%= form.text_field :first_name, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= form.label :last_name %>
+            <%= form.text_field :last_name, class: "form-control" %>
+          </div>
+
+          <div class="form-group">
+            <%= form.label :course %>
+            <%= label_tag :course_id, "Select Course" %>
+            <%= select_tag :course_id,
+                  options_from_collection_for_select(Course.all, :id, :name),
+                  prompt: "Choose a Course",
+                  class: "form-control" %>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="form-actions mt-4">
+        <%= form.submit class: "btn btn-nu" %>
+        <%= link_to 'Cancel', students_path, class: "btn-nu-secondary" %>
+      </div>
+    <% end %>
+  </div>
+</div>

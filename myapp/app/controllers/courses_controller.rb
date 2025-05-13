@@ -3,24 +3,44 @@ class CoursesController < ApplicationController
 
   def index
     @courses = Course.all
-    render json: @courses
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @courses }
+    end
   end
 
   def show
-    render json: {
-      course: @course,
-      students: @course.students
-    }
-  end
-
-  def create
-    @course = Course.new(course_params)
-    if @course.save
-      render json: @course, status: :created
-    else
-      render json: @course.errors, status: :unprocessable_entity
+    respond_to do |format|
+      format.html # show.html.erb (if needed)
+      format.json {
+        render json: {
+          course: @course,
+          students: @course.students
+        }
+      }
     end
   end
+
+  # GET /courses/new
+  def new
+    @course = Course.new
+  end
+
+ def create
+    @course = Course.new(course_params)
+
+    respond_to do |format|
+      if @course.save
+        format.html { redirect_to students_path, notice: "Course was successfully created. Now add a student." }
+        format.json { render json: @course, status: :created }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @course.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+  
 
   def update
     if @course.update(course_params)
@@ -37,11 +57,12 @@ class CoursesController < ApplicationController
 
   private
 
-  def set_course
-    @course = Course.find(params[:id])
-  end
-
+#   def set_course
+#     @course = Course.find(params[:id])
+#   end
+  
+  # Only allow a list of trusted parameters through.
   def course_params
-    params.require(:course).permit(:title, :user_id)
+    params.require(:course).permit(:name)
   end
 end
