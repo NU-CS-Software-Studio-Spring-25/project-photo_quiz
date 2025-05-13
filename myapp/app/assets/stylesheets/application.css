@@ -1,0 +1,210 @@
+/*
+ * This is a manifest file that'll be compiled into application.css.
+ *
+ * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
+ * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
+ * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
+ * depending on specificity.
+ *
+ * Consider organizing styles into separate files for maintainability.
+ */
+
+
+@import "bootstrap";
+@import "bootstrap/scss/bootstrap";
+ 
+
+body {
+    margin: 0;
+    padding: 0;
+    
+    background-color: var(--bg-page);
+    color: var(--text-default);
+    font-family: "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  }
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+:root {
+    --nu-purple-dark: #3A1F66;
+    --bg-page:        #F7F2FA;
+    --text-default:   #2E0854;
+    --page-pad-min: 5px;
+    --page-pad-max: 50px;
+}
+
+
+  /* apply to all containers */
+  .container,
+  .hero {
+    padding-inline: clamp(var(--page-pad-min), 5vw, var(--page-pad-max));
+    margin-top: 4rem;
+    margin-bottom: 2rem;
+  }
+  
+  /* 2) Full‐width purple backgrounds */
+  .bg-nu-purple {
+    background-color: var(--nu-purple-dark) !important;
+    width: 100%;               /* spans full parent (body) */
+  }
+
+/* 4) Hero full‐width background, but content inset */
+.hero {
+    display: flex;
+    align-items: center;                     /* vertical centering */
+    justify-content: space-between;          /* push links to right */
+    margin-top: 0;
+
+    padding: 1rem 50px;                      /* 2rem top/bottom, 50px left/right */
+    background:
+      linear-gradient(135deg, rgba(78,42,132,0.8), rgba(58,31,102,0.8)),
+      url('<%= asset_path("hero.jpg") %>') center/cover no-repeat;
+    color: #fff;
+  }
+  
+  /* 1) Logo + title */
+  .hero-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;                               /* space between logo & text */
+  }
+  .hero-logo {
+    flex-shrink: 0;                          /* never squash */
+    margin-right: 20px;                      /* extra breathing-room */
+    width: 60px;                             /* optional fixed width */
+  }
+  
+  /* 2) Title + subtitle reset margins */
+  .hero-text h1,
+  .hero-text p {
+    margin: 0;
+  }
+  
+  /* 5) Hero‐links on right */
+  .hero-links {
+    display: flex;
+    align-items: center; 
+    gap: 30px;                               /* space between buttons */
+    margin-right: 50px;                      /* distance from right edge */
+  }
+  .hero-links .btn {
+    color: #fff;
+    border-color: #fff;
+    font-size: 1.25rem;                      /* larger text */
+    padding: .5rem 1rem;
+  }
+
+/* Actions on student page */
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+.actions h4 {
+    margin: 0;
+    white-space: nowrap;
+    margin-right: auto;
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+.actions .form-control,
+.actions .form-select {
+    flex: 0.2 0.2 5rem;
+    padding: .8rem 1.5rem;     /* same vertical/horizontal padding as .btn-nu */
+    height: auto;              /* let padding drive the height */
+    border-radius: .75rem;
+    border-color: var(--nu-purple-dark);
+  }
+.actions .form-control:focus,
+.actions .form-select:focus {
+    box-shadow: 0 0 0 0.2rem rgba(58,31,102,0.25);
+    border-color: var(--nu-purple-dark);
+  }
+.btn-nu {
+    background-color: var(--nu-purple-dark);
+    color: #fff;
+    border: none;
+    padding: .6rem 1.2rem;
+    border-radius: .75rem;
+    
+    font-size: 1.2rem;
+    display: inline-block;    /* ensure it behaves like a button */
+    text-decoration: none;    /* remove the underline on <a> */
+    }
+.btn-nu:hover {
+    opacity: .8;
+}
+  
+  /* Cards */
+.cards-container {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    padding: 1rem 0;
+  }
+.cards-container::-webkit-scrollbar { display: none; }
+.cards-container { -ms-overflow-style: none; scrollbar-width: none; }
+
+.card-large {
+    width: 16rem;
+    flex: 0 0 auto;
+    border-radius: .75rem;
+    overflow: hidden;
+    background: #fff;
+    transition: transform .2s, box-shadow .2s;
+  }
+.card-large:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    cursor: pointer;
+  }
+.card-large .card-img-top {
+    height: 16rem;
+    background: #EDE0F7 url('<%= asset_path("nu_shield.png") %>') center/40% no-repeat;
+  }
+.card-large .card-body {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+.course-code,
+.course-name {
+    font-size: .9rem;
+    color: var(--nu-purple-dark);
+    text-decoration: underline;
+    margin: 0;
+}
+.card-large h6 {
+  margin: .25rem 0 0;
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: #333;
+}
+
+@media (max-width: 767px) {
+    .hero {
+      flex-direction: column;
+      text-align: center;
+      padding: 1rem 20px;              /* narrower inset on mobile */
+    }
+    .hero-left {
+      margin-bottom: 1rem;
+    }
+    .hero-links {
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .btn-nu {
+        display: block;
+        width: 100%;            /* full width of the inset container */
+        display: inline-block; 
+        margin: .1rem 0;        /* vertical spacing between buttons */
+        text-align: center;
+
+      }
+    
+  }
