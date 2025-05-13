@@ -1,0 +1,15 @@
+<% @students.each do |student| %>
+    <div class="student-card border p-3 mb-3 shadow-sm rounded">
+      <h5><%= student.first_name %> <%= student.last_name %></h5>
+      <p><strong>Course:</strong> <%= student.course %></p>
+      <p><strong>Name Mastery:</strong> <%= student.name_mastery %></p>
+      <p><strong>Learned:</strong> <%= student.learned %></p>
+  
+      <% if student.profile_picture.attached? %>
+        <%= image_tag url_for(student.profile_picture), class: "img-thumbnail mt-2", style: "width: 150px; height: 150px; object-fit: cover;" %>
+      <% else %>
+        <p class="text-muted">No profile picture</p>
+      <% end %>
+    </div>
+  <% end %>
+  

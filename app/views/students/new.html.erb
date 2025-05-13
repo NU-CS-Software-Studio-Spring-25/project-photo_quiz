@@ -1,0 +1,35 @@
+<h4>New Student</h4>
+
+<%= form_with model: @student, local: true, html: { multipart: true } do |form| %>
+  <div class="mb-3">
+    <%= form.label :first_name %>
+    <%= form.text_field :first_name, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :last_name %>
+    <%= form.text_field :last_name, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :course %>
+    <%= form.text_field :course, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :name_mastery %>
+    <%= form.text_field :name_mastery, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :learned %>
+    <%= form.text_field :learned, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :profile_picture, "Profile Picture" %>
+    <%= form.file_field :profile_picture, class: "form-control" %>
+  </div>
+
+  <%= form.submit "Create Student", class: "btn btn-primary" %>
+<% end %>
