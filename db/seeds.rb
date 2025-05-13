@@ -14,6 +14,8 @@ users.each do |attrs|
   u.save!
 end
 
+user_records = User.all.to_a
+
 # Seed Courses
 courses = [
   { name: 'CS 397' },
