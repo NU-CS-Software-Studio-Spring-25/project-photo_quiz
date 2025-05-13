@@ -9,18 +9,27 @@
 #   end
 
 # Create Users (professors)
-prof1 = User.create!(full_name: "Alice Smith", email: "alice@example.com", password: "password", password_confirmation: "password")
-prof2 = User.create!(full_name: "Bob Jones", email: "bob@example.com", password: "password", password_confirmation: "password")
+prof1 = User.find_or_initialize_by(email: "alice@example.com")
+prof1.full_name             = "Alice Smith"
+prof1.password              = "password"
+prof1.password_confirmation = "password"
+prof1.save!
+
+prof2 = User.find_or_initialize_by(email: "bob@example.com")
+prof2.full_name             = "Bob Jones"
+prof2.password              = "password"
+prof2.password_confirmation = "password"
+prof2.save!
 
 # Create Students
-student1 = Student.create!(first_name: "Paula", last_name: "Fregene", course: "CS 397")
-student2 = Student.create!(first_name: "Sophie", last_name: "Shin",  course: "CS 397")
-student3 = Student.create!(first_name: "Yuyang", last_name: "Pan", course: "CS 397")
+student1 = Student.create!(first_name: "Paula", last_name: "Fregene")
+student2 = Student.create!(first_name: "Sophie", last_name: "Shin")
+student3 = Student.create!(first_name: "Yuyang", last_name: "Pan")
 
 
 # Create Courses
-course1 = Course.create!(title: "CS 397")
-course2 = Course.create!(title: "CS 150")
+course1 = Course.create!(name: "CS 397")
+course2 = Course.create!(name: "CS 150")
 
 # Create Memberships
 Membership.create!(student: student1, user: prof1, course: course1)

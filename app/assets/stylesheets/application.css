@@ -304,9 +304,10 @@ body {
 /* Quiz photo box */
 #question-photo {
   width: 100%;
-  max-width: 500px;
-  height: 500px;
+  max-width: 400px;
+  height: 400px;
   margin: 0 auto;
+  margin-bottom: 50px;
   background-size: cover;
   background-position: center;
   border-radius: .5rem;
@@ -317,7 +318,7 @@ body {
 .options-grid {
   display: flex;
   flex-wrap: wrap;
-  gap: .75rem;
+  gap: 1rem;
 }
 .options-grid .option-box {
   flex: 0 0 calc(50% - .75rem);
@@ -325,7 +326,7 @@ body {
 .option-box {
   display: flex;
   align-items: center;
-  padding: 1rem;
+  padding: 1.25rem;
   margin-bottom: .75rem;
   border: 2px solid #ccc;
   border-radius: .5rem;
@@ -374,7 +375,17 @@ body {
 #feedback {
   min-height: 1.5em;
 }
-
+.search-input {
+  display: block;
+  margin: 0 auto 1rem;
+  width: 60%;
+  padding: .8rem 1.5rem .8rem 2.5rem;
+  border: 1px solid rgba(58,31,102,0.8);
+  border-radius: .75rem;
+  
+  background: #fff url('<%= asset_path("search.svg") %>') no-repeat 1rem center;
+  background-size: 1.2em;
+}
 @media (max-width: 767px) {
     .hero {
       flex-direction: column;
