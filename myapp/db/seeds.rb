@@ -1,5 +1,4 @@
 require 'faker'
-
 # Seed Professors
 users = [
   { full_name: 'Alice Smith', email: 'alice@example.com', password: 'password', password_confirmation: 'password' },
