@@ -48924,3 +48924,231 @@ puma (6.6.0) lib/puma/thread_pool.rb:167:in 'block in Puma::ThreadPool#spawn_thr
   [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='App'*/[0m
   [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(5277929974492897470) /*application='App'*/[0m
   [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='App'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='App'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='App'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='App'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='App'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='App'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='App'*/[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[35mSET search_path TO public /*application='App'*/[0m
+  [1m[35m (50.4ms)[0m  [1m[35mDROP DATABASE IF EXISTS "app_development" /*application='App'*/[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[35mSET search_path TO public /*application='App'*/[0m
+  [1m[35m (66.6ms)[0m  [1m[35mDROP DATABASE IF EXISTS "app_test" /*application='App'*/[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[35mSET search_path TO public /*application='App'*/[0m
+  [1m[35m (263.4ms)[0m  [1m[35mCREATE DATABASE "app_development" ENCODING = 'unicode' /*application='App'*/[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[35mSET search_path TO public /*application='App'*/[0m
+  [1m[35m (190.9ms)[0m  [1m[35mCREATE DATABASE "app_test" ENCODING = 'unicode' /*application='App'*/[0m
+  [1m[35mSQL (27.6ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql" SCHEMA pg_catalog /*application='App'*/[0m
+  [1m[35m (1.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "active_storage_attachments" CASCADE /*application='App'*/[0m
+  [1m[35m (17.9ms)[0m  [1m[35mCREATE TABLE "active_storage_attachments" ("id" bigserial primary key, "name" character varying NOT NULL, "record_type" character varying NOT NULL, "record_id" bigint NOT NULL, "blob_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL) /*application='App'*/[0m
+  [1m[35m (3.5ms)[0m  [1m[35mCREATE INDEX "index_active_storage_attachments_on_blob_id" ON "active_storage_attachments" ("blob_id") /*application='App'*/[0m
+  [1m[35m (4.0ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_attachments_uniqueness" ON "active_storage_attachments" ("record_type", "record_id", "name", "blob_id") /*application='App'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "active_storage_blobs" CASCADE /*application='App'*/[0m
+  [1m[35m (7.7ms)[0m  [1m[35mCREATE TABLE "active_storage_blobs" ("id" bigserial primary key, "key" character varying NOT NULL, "filename" character varying NOT NULL, "content_type" character varying, "metadata" text, "service_name" character varying NOT NULL, "byte_size" bigint NOT NULL, "checksum" character varying, "created_at" timestamp(6) NOT NULL) /*application='App'*/[0m
+  [1m[35m (3.5ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_blobs_on_key" ON "active_storage_blobs" ("key") /*application='App'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "active_storage_variant_records" CASCADE /*application='App'*/[0m
+  [1m[35m (6.8ms)[0m  [1m[35mCREATE TABLE "active_storage_variant_records" ("id" bigserial primary key, "blob_id" bigint NOT NULL, "variation_digest" character varying NOT NULL) /*application='App'*/[0m
+  [1m[35m (3.6ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_variant_records_uniqueness" ON "active_storage_variant_records" ("blob_id", "variation_digest") /*application='App'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "courses" CASCADE /*application='App'*/[0m
+  [1m[35m (7.6ms)[0m  [1m[35mCREATE TABLE "courses" ("id" bigserial primary key, "name" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='App'*/[0m
+  [1m[35m (0.6ms)[0m  [1m[35mDROP TABLE IF EXISTS "memberships" CASCADE /*application='App'*/[0m
+  [1m[35m (5.5ms)[0m  [1m[35mCREATE TABLE "memberships" ("id" bigserial primary key, "student_id" bigint NOT NULL, "user_id" bigint NOT NULL, "course_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='App'*/[0m
+  [1m[35m (3.7ms)[0m  [1m[35mCREATE INDEX "index_memberships_on_course_id" ON "memberships" ("course_id") /*application='App'*/[0m
+  [1m[35m (3.2ms)[0m  [1m[35mCREATE INDEX "index_memberships_on_student_id" ON "memberships" ("student_id") /*application='App'*/[0m
+  [1m[35m (3.4ms)[0m  [1m[35mCREATE INDEX "index_memberships_on_user_id" ON "memberships" ("user_id") /*application='App'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "students" CASCADE /*application='App'*/[0m
+  [1m[35m (7.0ms)[0m  [1m[35mCREATE TABLE "students" ("id" bigserial primary key, "first_name" character varying, "last_name" character varying, "course" character varying, "profile_picture" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='App'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE /*application='App'*/[0m
+  [1m[35m (7.2ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "email" character varying DEFAULT '' NOT NULL, "encrypted_password" character varying DEFAULT '' NOT NULL, "reset_password_token" character varying, "reset_password_sent_at" timestamp(6), "remember_created_at" timestamp(6), "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, "full_name" character varying) /*application='App'*/[0m
+  [1m[35m (3.5ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email") /*application='App'*/[0m
+  [1m[35m (3.5ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token") /*application='App'*/[0m
+  [1m[35m (3.4ms)[0m  [1m[35mALTER TABLE "active_storage_attachments" ADD CONSTRAINT "fk_rails_c3b3935057"
+FOREIGN KEY ("blob_id")
+  REFERENCES "active_storage_blobs" ("id")
+ /*application='App'*/[0m
+  [1m[35m (1.6ms)[0m  [1m[35mALTER TABLE "active_storage_variant_records" ADD CONSTRAINT "fk_rails_993965df05"
+FOREIGN KEY ("blob_id")
+  REFERENCES "active_storage_blobs" ("id")
+ /*application='App'*/[0m
+  [1m[35m (2.0ms)[0m  [1m[35mALTER TABLE "memberships" ADD CONSTRAINT "fk_rails_08057cfdc1"
+FOREIGN KEY ("course_id")
+  REFERENCES "courses" ("id")
+ /*application='App'*/[0m
+  [1m[35m (1.4ms)[0m  [1m[35mALTER TABLE "memberships" ADD CONSTRAINT "fk_rails_b03b4f60a1"
+FOREIGN KEY ("student_id")
+  REFERENCES "students" ("id")
+ /*application='App'*/[0m
+  [1m[35m (1.7ms)[0m  [1m[35mALTER TABLE "memberships" ADD CONSTRAINT "fk_rails_99326fb65d"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+ /*application='App'*/[0m
+  [1m[35m (6.8ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY) /*application='App'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='App'*/[0m
+  [1m[35m (1.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20250512201931) /*application='App'*/[0m
+  [1m[35m (1.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20250512070055),
+(20250509065716),
+(20250509062657),
+(20250509062553),
+(20250509061324),
+(20250509054713),
+(20250509054523),
+(20250509054314),
+(20250509054138),
+(20250430151037),
+(20250427231638); /*application='App'*/[0m
+  [1m[35m (7.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='App'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='App'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.8ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2025-05-13 06:03:43.204700', '2025-05-13 06:03:43.204705') RETURNING "key" /*application='App'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='App'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'schema_sha1' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='App'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', 'e8774de74375881e37e61fe387df4045e68f8b04', '2025-05-13 06:03:43.211672', '2025-05-13 06:03:43.211674') RETURNING "key" /*application='App'*/[0m
+  [1m[35mSQL (12.2ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql" SCHEMA pg_catalog /*application='App'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "active_storage_attachments" CASCADE /*application='App'*/[0m
+  [1m[35m (11.9ms)[0m  [1m[35mCREATE TABLE "active_storage_attachments" ("id" bigserial primary key, "name" character varying NOT NULL, "record_type" character varying NOT NULL, "record_id" bigint NOT NULL, "blob_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL) /*application='App'*/[0m
+  [1m[35m (3.8ms)[0m  [1m[35mCREATE INDEX "index_active_storage_attachments_on_blob_id" ON "active_storage_attachments" ("blob_id") /*application='App'*/[0m
+  [1m[35m (3.9ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_attachments_uniqueness" ON "active_storage_attachments" ("record_type", "record_id", "name", "blob_id") /*application='App'*/[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "active_storage_blobs" CASCADE /*application='App'*/[0m
+  [1m[35m (9.3ms)[0m  [1m[35mCREATE TABLE "active_storage_blobs" ("id" bigserial primary key, "key" character varying NOT NULL, "filename" character varying NOT NULL, "content_type" character varying, "metadata" text, "service_name" character varying NOT NULL, "byte_size" bigint NOT NULL, "checksum" character varying, "created_at" timestamp(6) NOT NULL) /*application='App'*/[0m
+  [1m[35m (3.8ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_blobs_on_key" ON "active_storage_blobs" ("key") /*application='App'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "active_storage_variant_records" CASCADE /*application='App'*/[0m
+  [1m[35m (7.8ms)[0m  [1m[35mCREATE TABLE "active_storage_variant_records" ("id" bigserial primary key, "blob_id" bigint NOT NULL, "variation_digest" character varying NOT NULL) /*application='App'*/[0m
+  [1m[35m (3.7ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_variant_records_uniqueness" ON "active_storage_variant_records" ("blob_id", "variation_digest") /*application='App'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "courses" CASCADE /*application='App'*/[0m
+  [1m[35m (7.0ms)[0m  [1m[35mCREATE TABLE "courses" ("id" bigserial primary key, "name" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='App'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "memberships" CASCADE /*application='App'*/[0m
+  [1m[35m (4.4ms)[0m  [1m[35mCREATE TABLE "memberships" ("id" bigserial primary key, "student_id" bigint NOT NULL, "user_id" bigint NOT NULL, "course_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='App'*/[0m
+  [1m[35m (4.0ms)[0m  [1m[35mCREATE INDEX "index_memberships_on_course_id" ON "memberships" ("course_id") /*application='App'*/[0m
+  [1m[35m (3.5ms)[0m  [1m[35mCREATE INDEX "index_memberships_on_student_id" ON "memberships" ("student_id") /*application='App'*/[0m
+  [1m[35m (4.2ms)[0m  [1m[35mCREATE INDEX "index_memberships_on_user_id" ON "memberships" ("user_id") /*application='App'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "students" CASCADE /*application='App'*/[0m
+  [1m[35m (7.3ms)[0m  [1m[35mCREATE TABLE "students" ("id" bigserial primary key, "first_name" character varying, "last_name" character varying, "course" character varying, "profile_picture" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='App'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE /*application='App'*/[0m
+  [1m[35m (6.9ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "email" character varying DEFAULT '' NOT NULL, "encrypted_password" character varying DEFAULT '' NOT NULL, "reset_password_token" character varying, "reset_password_sent_at" timestamp(6), "remember_created_at" timestamp(6), "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, "full_name" character varying) /*application='App'*/[0m
+  [1m[35m (3.5ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email") /*application='App'*/[0m
+  [1m[35m (3.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token") /*application='App'*/[0m
+  [1m[35m (2.4ms)[0m  [1m[35mALTER TABLE "active_storage_attachments" ADD CONSTRAINT "fk_rails_c3b3935057"
+FOREIGN KEY ("blob_id")
+  REFERENCES "active_storage_blobs" ("id")
+ /*application='App'*/[0m
+  [1m[35m (1.6ms)[0m  [1m[35mALTER TABLE "active_storage_variant_records" ADD CONSTRAINT "fk_rails_993965df05"
+FOREIGN KEY ("blob_id")
+  REFERENCES "active_storage_blobs" ("id")
+ /*application='App'*/[0m
+  [1m[35m (2.7ms)[0m  [1m[35mALTER TABLE "memberships" ADD CONSTRAINT "fk_rails_08057cfdc1"
+FOREIGN KEY ("course_id")
+  REFERENCES "courses" ("id")
+ /*application='App'*/[0m
+  [1m[35m (1.5ms)[0m  [1m[35mALTER TABLE "memberships" ADD CONSTRAINT "fk_rails_b03b4f60a1"
+FOREIGN KEY ("student_id")
+  REFERENCES "students" ("id")
+ /*application='App'*/[0m
+  [1m[35m (2.1ms)[0m  [1m[35mALTER TABLE "memberships" ADD CONSTRAINT "fk_rails_99326fb65d"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+ /*application='App'*/[0m
+  [1m[35m (7.7ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY) /*application='App'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='App'*/[0m
+  [1m[35m (1.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20250512201931) /*application='App'*/[0m
+  [1m[35m (1.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20250512070055),
+(20250509065716),
+(20250509062657),
+(20250509062553),
+(20250509061324),
+(20250509054713),
+(20250509054523),
+(20250509054314),
+(20250509054138),
+(20250430151037),
+(20250427231638); /*application='App'*/[0m
+  [1m[35m (6.3ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='App'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='App'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2025-05-13 06:03:43.442965', '2025-05-13 06:03:43.442970') RETURNING "key" /*application='App'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='App'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Update (1.4ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = 'test', "updated_at" = '2025-05-13 06:03:43.447915' WHERE "ar_internal_metadata"."key" = 'environment' /*application='App'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'schema_sha1' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='App'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', 'e8774de74375881e37e61fe387df4045e68f8b04', '2025-05-13 06:03:43.452148', '2025-05-13 06:03:43.452152') RETURNING "key" /*application='App'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='App'*/[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'alice@example.com' LIMIT 1 /*application='App'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='App'*/[0m
+  [1m[36mUser Exists? (2.6ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'alice@example.com' LIMIT 1 /*application='App'*/[0m
+  [1m[36mUser Create (1.2ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at", "full_name") VALUES ('alice@example.com', '$2a$12$l.gdcF1Ns1K./RWUjRJX1u4G4DOr52n68I.C935mVN1BR5Kn4bSBG', NULL, NULL, NULL, '2025-05-13 06:03:43.840571', '2025-05-13 06:03:43.840571', 'Alice Smith') RETURNING "id" /*application='App'*/[0m
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT /*application='App'*/[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'bob@example.com' LIMIT 1 /*application='App'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='App'*/[0m
+  [1m[36mUser Exists? (2.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'bob@example.com' LIMIT 1 /*application='App'*/[0m
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at", "full_name") VALUES ('bob@example.com', '$2a$12$4BWDiKzw5Oz3ka/eSbsPx.Cb.MSp1q/ecHTv8lrk1.5v552Dqn2IC', NULL, NULL, NULL, '2025-05-13 06:03:44.166933', '2025-05-13 06:03:44.166933', 'Bob Jones') RETURNING "id" /*application='App'*/[0m
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT /*application='App'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='App'*/[0m
+  [1m[36mStudent Create (3.6ms)[0m  [1m[32mINSERT INTO "students" ("first_name", "last_name", "course", "profile_picture", "created_at", "updated_at") VALUES ('Paula', 'Fregene', NULL, NULL, '2025-05-13 06:03:44.194369', '2025-05-13 06:03:44.194369') RETURNING "id" /*application='App'*/[0m
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT /*application='App'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='App'*/[0m
+  [1m[36mStudent Create (1.8ms)[0m  [1m[32mINSERT INTO "students" ("first_name", "last_name", "course", "profile_picture", "created_at", "updated_at") VALUES ('Sophie', 'Shin', NULL, NULL, '2025-05-13 06:03:44.202117', '2025-05-13 06:03:44.202117') RETURNING "id" /*application='App'*/[0m
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT /*application='App'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='App'*/[0m
+  [1m[36mStudent Create (1.8ms)[0m  [1m[32mINSERT INTO "students" ("first_name", "last_name", "course", "profile_picture", "created_at", "updated_at") VALUES ('Yuyang', 'Pan', NULL, NULL, '2025-05-13 06:03:44.207761', '2025-05-13 06:03:44.207761') RETURNING "id" /*application='App'*/[0m
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT /*application='App'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='App'*/[0m
+  [1m[36mCourse Create (2.2ms)[0m  [1m[32mINSERT INTO "courses" ("name", "created_at", "updated_at") VALUES ('CS 397', '2025-05-13 06:03:44.223975', '2025-05-13 06:03:44.223975') RETURNING "id" /*application='App'*/[0m
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT /*application='App'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='App'*/[0m
+  [1m[36mCourse Create (1.7ms)[0m  [1m[32mINSERT INTO "courses" ("name", "created_at", "updated_at") VALUES ('CS 150', '2025-05-13 06:03:44.230340', '2025-05-13 06:03:44.230340') RETURNING "id" /*application='App'*/[0m
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT /*application='App'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='App'*/[0m
+  [1m[36mMembership Create (5.4ms)[0m  [1m[32mINSERT INTO "memberships" ("student_id", "user_id", "course_id", "created_at", "updated_at") VALUES (1, 1, 1, '2025-05-13 06:03:44.248786', '2025-05-13 06:03:44.248786') RETURNING "id" /*application='App'*/[0m
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT /*application='App'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='App'*/[0m
+  [1m[36mMembership Create (1.8ms)[0m  [1m[32mINSERT INTO "memberships" ("student_id", "user_id", "course_id", "created_at", "updated_at") VALUES (2, 1, 1, '2025-05-13 06:03:44.259234', '2025-05-13 06:03:44.259234') RETURNING "id" /*application='App'*/[0m
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT /*application='App'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='App'*/[0m
+  [1m[36mMembership Create (1.9ms)[0m  [1m[32mINSERT INTO "memberships" ("student_id", "user_id", "course_id", "created_at", "updated_at") VALUES (3, 2, 2, '2025-05-13 06:03:44.265327', '2025-05-13 06:03:44.265327') RETURNING "id" /*application='App'*/[0m
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT /*application='App'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='App'*/[0m
+  [1m[36mMembership Create (1.7ms)[0m  [1m[32mINSERT INTO "memberships" ("student_id", "user_id", "course_id", "created_at", "updated_at") VALUES (1, 2, 2, '2025-05-13 06:03:44.270964', '2025-05-13 06:03:44.270964') RETURNING "id" /*application='App'*/[0m
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT /*application='App'*/[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[35mSET search_path TO public /*application='App'*/[0m
+  [1m[35m (17.7ms)[0m  [1m[35mCREATE DATABASE "app_development" ENCODING = 'unicode' /*application='App'*/[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[35mSET search_path TO public /*application='App'*/[0m
+  [1m[35m (15.1ms)[0m  [1m[35mCREATE DATABASE "app_test" ENCODING = 'unicode' /*application='App'*/[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5277929974492897470) /*application='App'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='App'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='App'*/[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_advisory_unlock(5277929974492897470) /*application='App'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='App'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='App'*/[0m
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'alice@example.com' LIMIT 1 /*application='App'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='App'*/[0m
+  [1m[36mUser Update (7.7ms)[0m  [1m[33mUPDATE "users" SET "encrypted_password" = '$2a$12$Du3zu7aC0LoGVCi.5NUSuOEYKN8.uGfk8EaOxqndtFFV0KKR5v93O', "updated_at" = '2025-05-13 06:04:01.408547' WHERE "users"."id" = 1 /*application='App'*/[0m
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT /*application='App'*/[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'bob@example.com' LIMIT 1 /*application='App'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='App'*/[0m
+  [1m[36mUser Update (6.0ms)[0m  [1m[33mUPDATE "users" SET "encrypted_password" = '$2a$12$3pnc.B7QC9eFYh7rrmeXAO1Vr.hpfa3KKKOBaLcjYaTg8ZLAMHWo2', "updated_at" = '2025-05-13 06:04:01.747988' WHERE "users"."id" = 2 /*application='App'*/[0m
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT /*application='App'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='App'*/[0m
+  [1m[36mStudent Create (2.1ms)[0m  [1m[32mINSERT INTO "students" ("first_name", "last_name", "course", "profile_picture", "created_at", "updated_at") VALUES ('Paula', 'Fregene', NULL, NULL, '2025-05-13 06:04:01.795009', '2025-05-13 06:04:01.795009') RETURNING "id" /*application='App'*/[0m
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT /*application='App'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='App'*/[0m
+  [1m[36mStudent Create (1.7ms)[0m  [1m[32mINSERT INTO "students" ("first_name", "last_name", "course", "profile_picture", "created_at", "updated_at") VALUES ('Sophie', 'Shin', NULL, NULL, '2025-05-13 06:04:01.801535', '2025-05-13 06:04:01.801535') RETURNING "id" /*application='App'*/[0m
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT /*application='App'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='App'*/[0m
+  [1m[36mStudent Create (1.8ms)[0m  [1m[32mINSERT INTO "students" ("first_name", "last_name", "course", "profile_picture", "created_at", "updated_at") VALUES ('Yuyang', 'Pan', NULL, NULL, '2025-05-13 06:04:01.807260', '2025-05-13 06:04:01.807260') RETURNING "id" /*application='App'*/[0m
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT /*application='App'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='App'*/[0m
+  [1m[36mCourse Create (1.9ms)[0m  [1m[32mINSERT INTO "courses" ("name", "created_at", "updated_at") VALUES ('CS 397', '2025-05-13 06:04:01.820351', '2025-05-13 06:04:01.820351') RETURNING "id" /*application='App'*/[0m
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT /*application='App'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='App'*/[0m
+  [1m[36mCourse Create (1.7ms)[0m  [1m[32mINSERT INTO "courses" ("name", "created_at", "updated_at") VALUES ('CS 150', '2025-05-13 06:04:01.827104', '2025-05-13 06:04:01.827104') RETURNING "id" /*application='App'*/[0m
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT /*application='App'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='App'*/[0m
+  [1m[36mMembership Create (5.2ms)[0m  [1m[32mINSERT INTO "memberships" ("student_id", "user_id", "course_id", "created_at", "updated_at") VALUES (4, 1, 3, '2025-05-13 06:04:01.844737', '2025-05-13 06:04:01.844737') RETURNING "id" /*application='App'*/[0m
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT /*application='App'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='App'*/[0m
+  [1m[36mMembership Create (1.8ms)[0m  [1m[32mINSERT INTO "memberships" ("student_id", "user_id", "course_id", "created_at", "updated_at") VALUES (5, 1, 3, '2025-05-13 06:04:01.854384', '2025-05-13 06:04:01.854384') RETURNING "id" /*application='App'*/[0m
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT /*application='App'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='App'*/[0m
+  [1m[36mMembership Create (2.2ms)[0m  [1m[32mINSERT INTO "memberships" ("student_id", "user_id", "course_id", "created_at", "updated_at") VALUES (6, 2, 4, '2025-05-13 06:04:01.859799', '2025-05-13 06:04:01.859799') RETURNING "id" /*application='App'*/[0m
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT /*application='App'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='App'*/[0m
+  [1m[36mMembership Create (1.9ms)[0m  [1m[32mINSERT INTO "memberships" ("student_id", "user_id", "course_id", "created_at", "updated_at") VALUES (4, 2, 4, '2025-05-13 06:04:01.865687', '2025-05-13 06:04:01.865687') RETURNING "id" /*application='App'*/[0m
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT /*application='App'*/[0m
