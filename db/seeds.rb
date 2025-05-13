@@ -13,7 +13,7 @@ users.each do |attrs|
   u.password_confirmation = attrs[:password_confirmation]
   u.save!
 end
-user_records = users.map { |data| User.create!(data) }
+
 # Seed Courses
 courses = [
   { name: 'CS 397' },
