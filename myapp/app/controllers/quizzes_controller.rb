@@ -1,4 +1,6 @@
 class QuizzesController < ApplicationController
+    before_action :authenticate_user!
+
     def index
       if params[:course]
         course = Course.find_by(name: params[:course])

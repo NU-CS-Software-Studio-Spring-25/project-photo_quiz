@@ -21,14 +21,17 @@
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
-    <%= render "layouts/header" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    
   </head>
   
   <body>
-    <div class="container py-4">
+    <% unless devise_controller? %>
+      <%= render "layouts/header" %>
+    <% end %>
+
+    <div class="<%= devise_controller? ? "" : "container py-4" %>">
       <%= yield %>
-       <p class="notice"><%= notice %></p>
-       <p class="alert"><%= alert %></p>
     </div>
   </body>
 </html>
