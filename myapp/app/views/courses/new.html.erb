@@ -1,11 +1,14 @@
-<% content_for :name, "New course" %>
-
-<h1>New course</h1>
-
-<%= render "form", course: @course %>
-
-<br>
-
-<div>
-  <%= link_to "Back to Directory", students_path %>
+<div class="course-container">
+  <div class="login-card">
+    <h1 class="login-title text-center">New Course</h1>
+    <br/>
+    <div class="form-group text-start">
+      <%= render "form", course: @course, class: "form-control"%>
+    </div>
+    <br/>
+    <div class="form-actions mt-2 text-start">
+      <%= link_to "Back to Directory", students_path, class: "me-3" %>
+    </div>
+  </div>
 </div>
+

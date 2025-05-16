@@ -213,6 +213,13 @@ body {
   align-items: center;  
   padding: 0;
 }
+.course-container {
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+  padding: 0;
+}
 
 /* inner card: white background + purple outline */
 .form-card {

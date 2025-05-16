@@ -1,22 +1,26 @@
-<%= form_with(model: course) do |form| %>
+<%= form_with(model: course, local: true) do |f| %>
   <% if course.errors.any? %>
-    <div style="color: red">
+    <div class="text-danger mb-3">
       <h2><%= pluralize(course.errors.count, "error") %> prohibited this course from being saved:</h2>
-
       <ul>
-        <% course.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+        <% course.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+  <div class="form-group text-start">
+    <%= f.label :name, "Course Name" %><br/>
+    <%= f.text_field :name,
+          class: "form-control",
+          placeholder: "e.g. CS 397" %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="form-actions mt-4 d-flex justify-content-end">
+    <%= f.submit(
+          course.new_record? ? "Create Course" : "Update Course",
+          class: "btn btn-nu"
+        ) %>
   </div>
 <% end %>
