@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resources :courses
-  devise_for :users
+  devise_for :users,
+    sign_out_via: %i[delete get]
+  
   root "students#index"
 
   resources :students do

@@ -127,7 +127,7 @@ body {
     background-color: var(--nu-purple-dark);
     color: #fff;
     border: 1px solid var(--nu-purple-dark);
-    padding: .6rem 1.2rem;
+    padding: .8rem 1.2rem;
     border-radius: .75rem;
     
     font-size: 1.2rem;
@@ -207,9 +207,18 @@ body {
 }
 /* outer wrapper: light purple background */
 .form-container {
+  min-height: 100vh;
   display: flex;
   justify-content: center;
-  padding: 2rem 0;
+  align-items: center;  
+  padding: 0;
+}
+.course-container {
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+  padding: 0;
 }
 
 /* inner card: white background + purple outline */
@@ -386,6 +395,53 @@ body {
   background: #fff url('<%= asset_path("search.svg") %>') no-repeat 1rem center;
   background-size: 1.2em;
 }
+
+/* Login page */
+/* inner card: white background + purple outline */
+.login-card {
+  background-color: #fff;
+  border: 1px solid rgba(78,42,132,0.8);
+  box-shadow: rgba(78,42,132,0.8) 0px 0px 5px 0px;
+  padding: 2rem;
+  max-width: 600px;
+  width: 100%;
+  align-items: center;
+}
+.login-title {
+  margin-bottom: 1.5rem;
+  color: var(--nu-purple-dark);
+  font-size: 2rem;
+  text-align: center;
+}
+.login-card .form-control {
+  max-width: 530px;
+  width: 100%;
+  margin-top: .5rem;
+  padding: .8rem 1.5rem;
+  border-radius: .75rem;
+  border: 1px solid rgba(78,42,132,0.8);
+  background-color: #fff;
+}
+.login-card .form-group {
+  margin-bottom: 1.5rem;
+}
+/* focus state */
+.login-card .form-control:focus {
+  box-shadow: 0 0 0 0.2rem rgba(78,42,132,0.25);
+  border-color: rgba(78,42,132,0.8);
+}
+
+.login-card .form-actions {
+  display: flex;
+  justify-content: flex-start;
+  gap: 1rem;
+}
+.login-card .form-actions .btn {
+  padding:.8rem 1.2rem;
+  width:100%;
+}
+
+
 @media (max-width: 767px) {
     .hero {
       flex-direction: column;
@@ -440,6 +496,28 @@ body {
       }
       .form-row {
         flex-direction: column;
+      }
+
+      .login-card {
+        max-width: 80%;  
+        width: 100%;
+        padding: 1.5rem;  
+      }
+    
+      /* inputs should fill the card, not exceed it */
+      .login-card .form-control {
+        max-width: 100%;
+        width: 100%;
+      }
+    
+      /* tighten up spacing for mobile */
+      .login-card .form-group {
+        margin-bottom: 1rem;
+      }
+    
+      /* right-align button if you’re using flex */
+      .login-card .form-actions {
+        justify-content: flex-end;
       }
     
   }
