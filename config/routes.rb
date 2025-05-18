@@ -1,19 +1,21 @@
 Rails.application.routes.draw do
-  root "students#index"
   devise_for :users,
     sign_out_via: %i[delete get]
+
+  root to: "students#index"
+
+  
   
   resources :students do
-    member do
-      get "confirm_destroy"
-    end
+    member { get :confirm_destroy }
+  end
   
   resources :courses
   resources :quizzes, only: [:index]
-  end
+  
 
 
-  get "quizzes", to: "quizzes#index"
+  #get "quizzes", to: "quizzes#index"
   # root :to => redirect('/students')
 
   # Default Stuffs => Might need to be deleted later
