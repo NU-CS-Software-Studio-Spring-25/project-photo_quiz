@@ -1,20 +1,18 @@
 Rails.application.routes.draw do
-  devise_for :users,
-    sign_out_via: %i[delete get]
+  # Devise
+  devise_for :users, sign_out_via: %i[delete get]
 
+  # Single root for your app
   root to: "students#index"
 
-  
-  
+  # your resources
   resources :students do
     member { get :confirm_destroy }
   end
-  
+
   resources :courses
   resources :quizzes, only: [:index]
-  
-
-
+end
   #get "quizzes", to: "quizzes#index"
   # root :to => redirect('/students')
 
@@ -31,4 +29,3 @@ Rails.application.routes.draw do
 
   # # Defines the root path route ("/")
   # # root "posts#index"
-end
