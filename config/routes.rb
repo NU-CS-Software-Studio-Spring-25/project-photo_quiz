@@ -1,14 +1,15 @@
 Rails.application.routes.draw do
-  resources :courses
+  root "students#index"
   devise_for :users,
     sign_out_via: %i[delete get]
   
-  root "students#index"
-
   resources :students do
     member do
       get "confirm_destroy"
     end
+  
+  resources :courses
+  resources :quizzes, onlyL [:index]
   end
 
 
