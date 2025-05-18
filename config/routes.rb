@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     end
   
   resources :courses
-  resources :quizzes, onlyL [:index]
+  resources :quizzes, only: [:index]
   end
 
 
