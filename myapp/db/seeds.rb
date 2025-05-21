@@ -1,4 +1,5 @@
 require 'faker'
+require 'open-uri'
 # Seed Professors
 users = [
   { full_name: 'Alice Smith', email: 'alice@example.com', password: 'password', password_confirmation: 'password' },
@@ -70,13 +71,19 @@ end
 40.times do
   student = Student.create!(
     first_name: Faker::Name.first_name,
-    last_name: Faker::Name.last_name,
-    profile_picture: Faker::Avatar.image, # Generates a random avatar URL
-    # name_mastery: rand(0..5), # Random mastery level between 0 and 5
-    # learned: [true, false].sample # Randomly assign true or false
+    last_name: Faker::Name.last_name
   )
-  # Use Faker to generate a URL for the profile picture (this will be an image URL string)
-  student.profile_picture = Faker::Avatar.image(slug: student.first_name.downcase, size: "150x150", format: "png")
+
+  avatar_url = Faker::Avatar.image(slug: student.first_name.downcase, size: "150x150", format: "png")
+
+  downloaded_image = URI.open(avatar_url)
+
+  student.profile_picture.attach(
+    io: downloaded_image,
+    filename: "#{student.first_name.downcase}.png",
+    content_type: "image/png"
+  )
+
   student.save!
 end
 # Seed Memberships (connect Professors, Courses, and Students)
