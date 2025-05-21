@@ -34,7 +34,7 @@ class StudentsController < ApplicationController
         if params[:course_id].present?
           begin
             course = Course.find(params[:course_id])
-            @student.update(course: course.name) # 你原有的逻辑保留
+            @student.update(course: course.name)
             Membership.create!(student: @student, course: course, user: current_user)
   
             format.html { redirect_to students_path, notice: "Student was successfully created." }
