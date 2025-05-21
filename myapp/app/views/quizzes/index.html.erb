@@ -147,7 +147,7 @@
 
             input.classList.toggle("correct", ok);
             input.classList.toggle("incorrect", !ok);
-          } // MCQ 
+          } // MCQ
           else if (Array.isArray(q.options)) {
             const sel = optsEl.querySelector("input[name='answer']:checked");
             if (!sel) return alert("Please pick an answer.");
@@ -173,9 +173,7 @@
           if (current < questions.length) renderQuestion();
           else {
             alert(`Score: ${results.filter(Boolean).length} / ${questions.length}`);
-            document.getElementById("quiz-container").classList.add("d-none");
-            photoEl.classList.add("d-none");
-            btnEl.classList.add("d-none");
+            quizContainer.classList.add("d-none");
           }
         }
       };
