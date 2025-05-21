@@ -133,14 +133,21 @@
         const q = questions[current];
         let ok = false;
         if (mode === "check") {
+          // Typing answer
           if (q.type === "name") {
             const input = document.getElementById("text-answer");
-            const ans        = input.value;
-            const norm       = normalize(ans);
+            const ans        = input.value.trim();
             const correctNorm= normalize(q.correct_name);
-            ok = correctNorm.startsWith(norm) || norm.startsWith(correctNorm.split(" ")[0]);
-            input.classList.add(ok ? "correct" : "incorrect");
-          }
+            const norm       = normalize(ans);
+
+            if (!ans) return alert("Please type an answer.");
+            
+            const firstName = correctNorm.split(" ")[0];
+            ok = (norm === correctNorm) || (norm === firstName)
+
+            input.classList.toggle("correct", ok);
+            input.classList.toggle("incorrect", !ok);
+          } // MCQ 
           else if (Array.isArray(q.options)) {
             const sel = optsEl.querySelector("input[name='answer']:checked");
             if (!sel) return alert("Please pick an answer.");
