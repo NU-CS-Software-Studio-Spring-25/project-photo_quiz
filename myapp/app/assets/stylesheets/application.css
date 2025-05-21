@@ -179,6 +179,8 @@ body {
   }
 .card-large .card-img-top {
     height: 16rem;
+    width: 100%;
+    object-fit: cover;
     background: #EDE0F7 url('<%= asset_path("nu_shield.png") %>') center/40% no-repeat;
   }
 .card-large .card-body {
