@@ -183,6 +183,18 @@ Check the Heroku logs for errors:
 heroku logs --tail
 ```
 
----
+### **Heroku database error**
+After applying changes try reseting and loading again. 
+```bash
+heroku pg:reset DATABASE_URL --confirm photoquiz --app photoquiz
+heroku run rails db:migrate --app photoquiz
+heroku run rails db:seed    --app photoquiz
+```
+Make sure that seed is present
+```bash
+heroku run rails console --app photoquiz
+> User.count           # should be ≥ 1
+> User.find_by(email: "alice@example.com")
+```
 
-Feel free to customize this guide further based on your app's specific requirements!
+---
