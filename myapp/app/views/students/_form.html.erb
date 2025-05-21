@@ -1,6 +1,6 @@
 <div class="course-container">
   <div class="form-card">
-    <%= form_with(model: @student, local: true) do |form| %>
+    <%= form_with(model: @student, local: true, html: { multipart: true }) do |form| %>
       <h2 class="form-card-title">
         <%= @student.new_record? ? "New Student" : "Edit Student" %>
       </h2>
@@ -8,7 +8,12 @@
       <div class="form-row">
         <!-- LEFT: photo preview + upload -->
         <div class="form-photo">
-            <div class="photo-preview-box"></div>
+          <% if @student.profile_picture.attached? %>
+            <%= image_tag @student.profile_picture.variant(resize_to_limit: [150, 150]), class: "photo-preview-box" %>
+          <% else %>
+            <div class="photo-preview-box">No photo yet</div>
+          <% end %>
+
           <div class="form-group mt-2">
             <%= form.label :profile_picture %>
             <%= form.file_field :profile_picture, class: "form-control" %>
@@ -27,20 +32,18 @@
           </div>
 
           <div class="form-group">
-            <%= form.label :course %>
             <%= label_tag :course_id, "Select Course" %>
             <%= select_tag :course_id,
                   options_from_collection_for_select(Course.all, :id, :name),
                   prompt: "Choose a Course",
                   class: "form-control" %>
           </div>
-
         </div>
       </div>
 
       <div class="form-actions mt-4">
         <%= form.submit class: "btn btn-nu" %>
-        <%= link_to 'Cancel', students_path, class: "btn-nu-secondary" %>
+        <%= link_to 'Cancel', students_path, class: "btn btn-nu-secondary" %>
       </div>
     <% end %>
   </div>
