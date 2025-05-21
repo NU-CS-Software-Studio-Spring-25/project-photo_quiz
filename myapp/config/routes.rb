@@ -2,10 +2,10 @@ Rails.application.routes.draw do
   # Devise
   devise_for :users, sign_out_via: %i[delete get]
 
-  # Single root for your app
+  # Single root
   root to: "students#index"
 
-  # your resources
+  # resources
   resources :students do
     member { get :confirm_destroy }
   end
