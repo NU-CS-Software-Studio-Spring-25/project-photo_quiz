@@ -28,8 +28,10 @@
       <div class="cards-container">
         <% course.students.each do |student| %>
           <div class="card card-large">
-            <% img = student.profile_picture.presence || "default-profile.png" %>
-            <%= image_tag img, class: "card-img-top" %>
+            <%= image_tag(
+              student.profile_picture.presence || "default-profile.png",
+              class: "card-img-top"
+            ) %>
             
             <div class="card-body">
               <p class="course-code"><%= course.name %></p>
