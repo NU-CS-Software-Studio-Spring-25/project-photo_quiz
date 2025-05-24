@@ -23,7 +23,7 @@ class CoursesController < ApplicationController
 
   # POST /courses or /courses.json
   def create
-    @course = Course.new(course_params)
+    @course = current_user.owned_courses.build(course_params)
 
     respond_to do |format|
       if @course.save

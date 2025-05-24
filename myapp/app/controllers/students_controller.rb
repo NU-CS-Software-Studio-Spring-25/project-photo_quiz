@@ -1,12 +1,12 @@
 class StudentsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_student, only: [ :show, :edit, :update, :destroy, :confirm_destroy ]
-  before_action :load_courses,  only: %i[ new edit create update ]
-
+  before_action :load_courses, only: %i[new edit create update]
+  
   # GET /students
   # GET /students.json
   def index
-    @courses = current_user.courses.includes(:students)
+    @courses = current_user.courses.includes(:students).distinct
     @students = current_user.students
   end
 
@@ -86,7 +86,7 @@ class StudentsController < ApplicationController
   private
 
     def load_courses
-      @courses = Student.distinct.pluck(:course)
+      @courses = current_user.owned_courses
     end
 
     # Use callbacks to share common setup or constraints between actions.

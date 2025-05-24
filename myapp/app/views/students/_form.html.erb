@@ -34,7 +34,7 @@
           <div class="form-group">
             <%= label_tag :course_id, "Select Course" %>
             <%= select_tag :course_id,
-                  options_from_collection_for_select(Course.all, :id, :name),
+                  options_from_collection_for_select(@courses, :id, :name),
                   prompt: "Choose a Course",
                   class: "form-control" %>
           </div>
