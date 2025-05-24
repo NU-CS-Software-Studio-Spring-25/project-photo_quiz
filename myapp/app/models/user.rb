@@ -6,6 +6,7 @@ class User < ApplicationRecord
          
   has_many :memberships
   has_many :courses, through: :memberships
+  has_many :students, through: :memberships
   # Apply validation for full_name only when creating or updating the user
   validates :full_name, presence: true, if: :new_record?
 end

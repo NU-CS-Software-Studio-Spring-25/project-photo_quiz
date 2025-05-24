@@ -6,8 +6,8 @@ class StudentsController < ApplicationController
   # GET /students
   # GET /students.json
   def index
-    @courses = Course.includes(:students).all
-    @students = Student.all
+    @courses = current_user.courses.includes(:students)
+    @students = current_user.students
   end
 
   # GET /students/1
