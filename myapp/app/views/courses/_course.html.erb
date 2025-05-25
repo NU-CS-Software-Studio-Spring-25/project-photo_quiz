@@ -1,7 +1,19 @@
-<div id="<%= dom_id course %>">
+<div id="<%= dom_id course %>" class="card p-3 mb-3">
   <p>
-    <strong>name:</strong>
+    <strong>Name:</strong>
     <%= course.name %>
   </p>
 
+  <p>
+    <strong>Invite Code:</strong>
+    <code><%= course.code %></code>
+  </p>
+
+  <p>
+    <strong>Invite Link:</strong>
+    <code><%= "#{request.base_url}/students/new?course_code=#{course.code}" %></code>
+  </p>
+
+  <%= link_to "Copy Invite Link", "#", class: "btn btn-sm btn-outline-primary",
+      onclick: "navigator.clipboard.writeText('#{request.base_url}/students/new?course_code=#{course.code}'); alert('Link copied!')" %>
 </div>

@@ -43,9 +43,24 @@ class StudentsController < ApplicationController
             format.html { redirect_to new_student_path, alert: "Selected course not found." }
             format.json { render json: { error: "Course not found" }, status: :unprocessable_entity }
           end
+  
+        elsif params[:course_code].present?
+          course = Course.find_by(code: params[:course_code].strip.upcase)
+  
+          if course
+            @student.update(course: course.name)
+            Membership.create!(student: @student, course: course, user: course.users.first)
+  
+            format.html { redirect_to students_path, notice: "Student was successfully created with course code." }
+            format.json { render :show, status: :created, location: @student }
+          else
+            format.html { redirect_to new_student_path, alert: "Invalid course code." }
+            format.json { render json: { error: "Invalid course code" }, status: :unprocessable_entity }
+          end
+  
         else
-          format.html { redirect_to new_student_path, alert: "Please select a course." }
-          format.json { render json: { error: "No course selected" }, status: :unprocessable_entity }
+          format.html { redirect_to new_student_path, alert: "Please select a course or enter a course code." }
+          format.json { render json: { error: "No course selected or code provided" }, status: :unprocessable_entity }
         end
       else
         format.html { render :new }
@@ -53,6 +68,7 @@ class StudentsController < ApplicationController
       end
     end
   end
+  
   
 
   # PATCH/PUT /students/1

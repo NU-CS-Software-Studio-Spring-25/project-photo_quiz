@@ -26,17 +26,16 @@
             <%= form.label :first_name %>
             <%= form.text_field :first_name, class: "form-control" %>
           </div>
+
           <div class="form-group">
             <%= form.label :last_name %>
             <%= form.text_field :last_name, class: "form-control" %>
           </div>
 
+          <!-- 🔄 Replace dropdown with invite code input -->
           <div class="form-group">
-            <%= label_tag :course_id, "Select Course" %>
-            <%= select_tag :course_id,
-                  options_from_collection_for_select(Course.all, :id, :name),
-                  prompt: "Choose a Course",
-                  class: "form-control" %>
+            <%= label_tag :course_code, "Course Code (Invite Code)" %>
+            <%= text_field_tag :course_code, nil, class: "form-control", placeholder: "e.g. X7Y2KL" %>
           </div>
         </div>
       </div>
