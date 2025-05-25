@@ -1,17 +1,16 @@
 <div class="course-container">
   <div class="form-card">
     <%= form_with(model: @student, local: true, html: { multipart: true }) do |form| %>
-       <% if @student.errors.any? %>
-      <div class="text-danger mb-3">
-        <h2><%= pluralize(@student.errors.count, "error") %> prohibited this student from being saved:</h2>
-        <ul>
-          <% @student.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
-
+      <% if @student.errors.any? %>
+        <div class="text-danger mb-3">
+          <h2><%= pluralize(@student.errors.count, "error") %> prohibited this student from being saved:</h2>
+          <ul>
+            <% @student.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
 
       <h2 class="form-card-title">
         <%= @student.new_record? ? "New Student" : "Edit Student" %>
@@ -32,23 +31,31 @@
           </div>
         </div>
 
-        <!-- RIGHT: all the other fields -->
+        <!-- RIGHT: name fields + course selection -->
         <div class="form-fields">
           <div class="form-group">
             <%= form.label :first_name %>
             <%= form.text_field :first_name, class: "form-control" %>
           </div>
+
           <div class="form-group">
             <%= form.label :last_name %>
             <%= form.text_field :last_name, class: "form-control" %>
           </div>
 
+          <!-- Course Selection via dropdown -->
           <div class="form-group">
             <%= label_tag :course_id, "Select Course" %>
             <%= select_tag :course_id,
                   options_from_collection_for_select(@courses, :id, :name, params[:course_id]),
                   prompt: "Choose a Course",
                   class: "form-control" %>
+          </div>
+
+          <!-- Course Selection via Invite Code -->
+          <div class="form-group mt-3">
+            <%= label_tag :course_code, "Or enter Invite Code instead" %>
+            <%= text_field_tag :course_code, params[:course_code], class: "form-control", placeholder: "e.g. X7Y2KL" %>
           </div>
         </div>
       </div>
