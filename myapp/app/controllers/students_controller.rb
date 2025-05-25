@@ -45,12 +45,12 @@ class StudentsController < ApplicationController
           end
         else
           flash.now[:alert] = "Please select a course."
-          format.html { render :new }
+          format.html { render :new, status: :unprocessable_entity  }
           format.json { render json: { error: "No course selected" }, status: :unprocessable_entity }
         end
       else
         flash.now[:alert] = "Failed to create student. Please make sure First name, Last name, and Course are filled."
-        format.html { render :new }
+        format.html { render :new, status: :unprocessable_entity  }
         format.json { render json: @student.errors, status: :unprocessable_entity }
       end
     end
@@ -66,7 +66,7 @@ class StudentsController < ApplicationController
         format.json { render :show, status: :ok, location: @student }
       else
         flash.now[:alert] = "Failed to update student. Please make sure First name, Last name, and Course are filled."
-        format.html { render :edit }
+        format.html { render :edit, status: :unprocessable_entity  }
         format.json { render json: @student.errors, status: :unprocessable_entity }
       end
     end

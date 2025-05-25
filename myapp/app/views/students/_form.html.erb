@@ -1,6 +1,18 @@
 <div class="course-container">
   <div class="form-card">
     <%= form_with(model: @student, local: true, html: { multipart: true }) do |form| %>
+       <% if @student.errors.any? %>
+      <div class="text-danger mb-3">
+        <h2><%= pluralize(@student.errors.count, "error") %> prohibited this student from being saved:</h2>
+        <ul>
+          <% @student.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+
       <h2 class="form-card-title">
         <%= @student.new_record? ? "New Student" : "Edit Student" %>
       </h2>
