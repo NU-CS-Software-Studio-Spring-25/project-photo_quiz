@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     member { get :confirm_destroy }
   end
 
-  resources :courses
+  resources :courses, except: [:index, :show]
   resources :quizzes, only: [:index]
 end
   #get "quizzes", to: "quizzes#index"

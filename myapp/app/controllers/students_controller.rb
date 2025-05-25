@@ -6,8 +6,38 @@ class StudentsController < ApplicationController
   # GET /students
   # GET /students.json
   def index
-    @courses = current_user.courses.includes(:students).distinct
-    @students = current_user.students
+    students_scope = current_user.students.includes(:courses).distinct
+    courses_scope = current_user.courses.includes(:students).distinct
+
+    if params[:query].present?
+      query = params[:query].downcase.strip
+      query_words = query.split
+
+      student_conditions = query_words.map.with_index do |_, i|
+        "(LOWER(students.first_name) LIKE :w#{i} OR LOWER(students.last_name) LIKE :w#{i})"
+      end.join(" AND ")
+
+      course_conditions = query_words.map.with_index do |_, i|
+        "LOWER(courses.name) LIKE :w#{i}"
+      end.join(" OR ")
+
+      query_params = {}
+      query_words.each_with_index { |word, i| query_params[:"w#{i}"] = "%#{word}%" }
+
+      # Combine student and course search in one query
+      students_filtered = students_scope
+        .left_outer_joins(:courses)
+        .where("#{student_conditions} OR #{course_conditions}", **query_params)
+        .distinct
+
+      @students = students_filtered.page(params[:page]).per(50)
+      @students_grouped = @students.group_by { |student| student.courses.first }
+      @courses = courses_scope.where(id: students_filtered.joins(:courses).select('courses.id'))
+    else
+      @students = students_scope.page(params[:page]).per(20)
+      @students_grouped = @students.group_by { |student| student.courses.first }
+      @courses = courses_scope
+    end
   end
 
   # GET /students/1

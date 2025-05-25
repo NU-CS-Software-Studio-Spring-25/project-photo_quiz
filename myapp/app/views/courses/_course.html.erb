@@ -1,7 +1,13 @@
-<div id="<%= dom_id course %>">
-  <p>
-    <strong>name:</strong>
-    <%= course.name %>
-  </p>
+<div class="course-row">
+  <p class="course-code"><%= course.name %></p>
 
+  <div class="course-actions">
+    <%= link_to edit_course_path(course), class: "edit-icon", title: "Edit" do %>
+      ✏️
+    <% end %>
+
+    <%= link_to course, method: :delete, data: { confirm: "Are you sure?" }, class: "delete-icon", title: "Delete" do %>
+      🗑️
+    <% end %>
+  </div>
 </div>
