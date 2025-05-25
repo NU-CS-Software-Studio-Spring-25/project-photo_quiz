@@ -4,7 +4,7 @@ class CoursesController < ApplicationController
 
   # GET /courses or /courses.json
   def index
-    @courses = Course.all
+    @courses = current_user.courses.includes(:students).distinct
   end
 
   # GET /courses/1 or /courses/1.json
