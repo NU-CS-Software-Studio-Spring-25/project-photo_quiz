@@ -1,12 +1,22 @@
 
     <% if @students.present? %>
       <%= paginate @students %>
-      <% students_grouped = @students.group_by { |student| student.courses.first } %>
+      <% students_grouped = @students.includes(:courses).flat_map { |student| student.courses.map { |course| [course, student] } }
+                              .group_by(&:first)
+                              .transform_values { |pairs| pairs.map(&:last) } %>
 
       <% students_grouped.each do |course, students| %>
         <% next unless course %>
 
-        <h2><%= course.name %></h2>
+        <div class="course-header d-flex justify-content-between align-items-center mb-2">
+          <h2 class="m-0"><%= course.name %></h2>
+          <div class="course-actions d-flex gap-2">
+            <%= link_to "✏️", edit_course_path(course), data: { turbo: false }, class: "btn btn-sm btn-outline-primary me-2" %>
+            <%= link_to course, method: :delete, data: { confirm: "Are you sure you want to delete this course?" }, class: "delete-icon", title: "Delete Course" do %>
+              🗑️
+            <% end %>
+          </div>
+        </div>
 
         <div class="cards-container d-flex flex-wrap gap-3 mb-5">
           <% students.each do |student| %>
