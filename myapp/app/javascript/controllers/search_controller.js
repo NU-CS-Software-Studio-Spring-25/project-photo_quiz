@@ -25,6 +25,6 @@ export default class extends Controller {
     this.timeout = setTimeout(() => {
       console.log("Actually submitting search for:", this.inputTarget.value);
       this.element.requestSubmit();
-    }, 500); // 500ms delay - adjust this as needed
+    }, 520); // 500ms delay - adjust this as needed
   }
 }
