@@ -179,6 +179,8 @@ body {
   }
 .card-large .card-img-top {
     height: 16rem;
+    width: 100%;
+    object-fit: cover;
     background: #EDE0F7 url('<%= asset_path("nu_shield.png") %>') center/40% no-repeat;
   }
 .card-large .card-body {
@@ -521,3 +523,18 @@ body {
       }
     
   }
+
+.course-actions a {
+  font-size: 1.3rem;
+  color: #555;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.course-actions a:hover {
+  color: #007bff; /* blue on hover */
+}
+
+.delete-icon:hover {
+  color: #dc3545; /* red for delete */
+}

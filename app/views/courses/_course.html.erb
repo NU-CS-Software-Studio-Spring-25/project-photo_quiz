@@ -1,7 +1,21 @@
-<div id="<%= dom_id course %>">
-  <p>
-    <strong>name:</strong>
-    <%= course.name %>
-  </p>
+<div id="<%= dom_id course %>" class="card p-3 mb-3 d-flex justify-content-between align-items-center">
+  <div>
+    <p><strong>Name:</strong> <%= course.name %></p>
+    <p><strong>Invite Code:</strong> <code><%= course.code %></code></p>
+    <p><strong>Invite Link:</strong>
+      <code><%= "#{request.base_url}/students/new?course_code=#{course.code}" %></code>
+    </p>
+    <%= link_to "Copy Invite Link", "#", class: "btn btn-sm btn-outline-primary",
+        onclick: "navigator.clipboard.writeText('#{request.base_url}/students/new?course_code=#{course.code}'); alert('Link copied!')" %>
+  </div>
 
+  <div class="course-actions text-end">
+    <%= link_to edit_course_path(course), class: "edit-icon me-2", title: "Edit" do %>
+      ✏️
+    <% end %>
+
+    <%= link_to course, method: :delete, data: { confirm: "Are you sure?" }, class: "delete-icon", title: "Delete" do %>
+      🗑️
+    <% end %>
+  </div>
 </div>
