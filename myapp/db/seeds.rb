@@ -76,14 +76,16 @@ end
 
 all_students = Student.all.to_a
 
-# --- Seed Memberships (connect Professors, Courses, and Students) ---
-all_students.each do |student|
-  # Assign each student to 1–2 random courses and a random user
-  all_courses.sample(2).each do |course|
-    Membership.create!(
-      student: student,
-      course: course,
-      user: course.user # Use the course's owner as the user
-    )
+user_records.each do |user|
+  user_courses = Course.where(user: user)
+
+  user_courses.each do |course|
+    all_students.sample(rand(5..10)).each do |student|
+      Membership.create!(
+        student: student,
+        course: course,
+        user: user 
+      )
+    end
   end
 end
