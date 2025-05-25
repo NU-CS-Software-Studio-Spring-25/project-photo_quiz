@@ -1,6 +1,7 @@
 require 'faker'
 require 'open-uri'
-# Seed Professors
+
+# --- Seed Professors ---
 users = [
   { full_name: 'Alice Smith', email: 'alice@example.com', password: 'password', password_confirmation: 'password' },
   { full_name: 'Bob Jones',   email: 'bob@example.com',   password: 'password', password_confirmation: 'password' },
@@ -16,15 +17,30 @@ end
 
 user_records = User.all.to_a
 
-# Seed Courses
+# --- Seed Courses (unique, no duplicates) ---
 courses = [
   { name: 'CS 397' },
   { name: 'CS 150' },
   { name: 'ENG 210' },
   { name: 'HIST 210' }
 ]
-course_records = courses.map { |data| Course.create!(data) }
-# Seed Students
+
+course_records = courses.map.with_index do |data, i|
+  Course.create!(data.merge(user: user_records[i % user_records.length]))
+end
+
+# Add some random courses, but make sure names are unique
+10.times do |i|
+  name = Faker::Educator.unique.course_name
+  Course.create!(
+    name: name,
+    user: user_records[i % user_records.length]
+  )
+end
+
+all_courses = Course.all.to_a
+
+# --- Seed Students (unique, no duplicates) ---
 students = [
   { first_name: 'Paula', last_name: 'Fregene'},
   { first_name: 'Sophie', last_name: 'Shin'},
@@ -41,33 +57,8 @@ students = [
   { first_name: 'Wow', last_name: 'Ee'}
 ]
 student_records = students.map { |data| Student.create!(data) }
-# Seed Memberships
-student_records.each do |student|
-  # Assign each student to 1–2 courses
-  course_records.sample(2).each do |course|
-    Membership.create!(
-      student_id: student.id,
-      course_id: course.id,
-      user_id: user_records.sample.id # Assign to a random professor
-    )
-  end
-end
-# Seed Professors
-40.times do
-  User.create!(
-    full_name: "#{Faker::Name.first_name} #{Faker::Name.last_name}",
-    email: Faker::Internet.unique.email,
-    password: 'password',
-    password_confirmation: 'password'
-  )
-end
-# Seed Courses
-10.times do
-  Course.create!(
-    name: Faker::Educator.course_name
-  )
-end
-# Seed Students
+
+# Add some random students
 40.times do
   student = Student.create!(
     first_name: Faker::Name.first_name,
@@ -75,22 +66,24 @@ end
   )
 
   avatar_url = Faker::Avatar.image(slug: student.first_name.downcase, size: "150x150", format: "png")
-
   downloaded_image = URI.open(avatar_url)
-
   student.profile_picture.attach(
     io: downloaded_image,
     filename: "#{student.first_name.downcase}.png",
     content_type: "image/png"
   )
-
-  student.save!
 end
-# Seed Memberships (connect Professors, Courses, and Students)
-40.times do
-  Membership.create!(
-    user_id: User.pluck(:id).sample, # Random professor
-    course_id: Course.pluck(:id).sample,       # Random course
-    student_id: Student.pluck(:id).sample      # Random student
-  )
+
+all_students = Student.all.to_a
+
+# --- Seed Memberships (connect Professors, Courses, and Students) ---
+all_students.each do |student|
+  # Assign each student to 1–2 random courses and a random user
+  all_courses.sample(2).each do |course|
+    Membership.create!(
+      student: student,
+      course: course,
+      user: course.user # Use the course's owner as the user
+    )
+  end
 end
