@@ -81,7 +81,7 @@ user_records.each do |user|
 
   user_courses.each do |course|
     all_students.sample(rand(5..10)).each do |student|
-      Membership.create!(
+      Membership.find_or_create_by!(
         student: student,
         course: course,
         user: user 
