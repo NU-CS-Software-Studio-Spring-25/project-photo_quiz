@@ -1,30 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>Photo Quiz (NU)</title>
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css"/>
-  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-
-</head>
-<body>
-<!-- QUIZ -->
-  <div id="quiz-section" class="container py-4">
-    <div class="actions mb-4">
-      <h4>Quiz</h4>
-      <select id="class-select" class="form-select w-auto rounded-pill">
-        <option value="" selected>Select class…</option>
-        <% @courses.each do |course| %>
-          <option value="<%= course %>"><%= course %></option>
-        <% end %>
-      </select>
-      <button id="start-quiz" class="btn btn-nu">Start Quiz</button>
-    </div>
-    <div id="quiz-container" class="d-none">
+<div id="quiz-section" class="container py-4">
+  <div class="actions mb-4">
+    <h4>Quiz</h4>
+    <select id="class-select" class="form-select w-auto rounded-pill">
+      <option value="" selected>Select class…</option>
+      <% @courses.each do |course| %>
+        <option value="<%= course.id %>"><%= course.name %></option>
+      <% end %>
+    </select>
+    <button id="start-quiz" class="btn btn-nu">Start Quiz</button>
+  </div>
+  <div id="quiz-container" class="d-none">
     <!-- Photo -->
-    <div id="question-photo" class="mx-auto mb-4 d-none"></div>
+    <div id="question-photo" class="mx-auto mb-4 d-none"> </div>
     <!-- Options/Text-input -->
     <div id="options-container" class="mb-3"></div>
     <!-- Feedback + Progress + Next/Check button -->
@@ -35,153 +22,5 @@
         <span id="progress" class="fs-6 ms-4 text-end"></span>
       </div>
     </div>
-  
-  <!-- Bootstrap JS & Quiz logic -->
-  <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  <%= javascript_include_tag "application", "data-turbo-track": "reload" %>
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-  let questions = [], current = 0, results = [], mode = "check";
-  const photoEl = document.getElementById("question-photo");
-  const optsEl  = document.getElementById("options-container");
-  const fbEl    = document.getElementById("feedback");
-  const btnEl   = document.getElementById("action-btn");
-
-  function normalize(s) {
-    return s.toLowerCase().trim().replace(/\s+/g, " ");
-  }
-
-  function renderQuestion() {
-    const q = questions[current];
-
-    // 1) photo
-    photoEl.style.backgroundImage = `url('${q.photo_url}')`;
-    photoEl.classList.toggle("d-none", !q.photo_url);
-
-    // 2) text vs MCQ
-    if (q.type === "name") {
-      optsEl.innerHTML = `
-        <input id="text-answer" type="text"
-               class="form-control mb-3 search-input"
-               placeholder="Type name…">`;
-    }
-    else {
-      optsEl.innerHTML = `<div class="options-grid">` +
-        q.options.map(opt => `
-          <label class="option-box">
-            <input type="radio" name="answer" value="${opt}" hidden>
-            <div class="option-text">${opt}</div>
-          </label>
-        `).join("") +
-        `</div>`;
-    }
-
-    // 3) reset feedback/button/progress
-    fbEl.textContent  = "";
-    btnEl.textContent = "Check";
-    btnEl.classList.remove("d-none");
-    document.getElementById("progress")
-            .textContent = `${current+1} / ${questions.length}`;
-    mode = "check";
-  } // ← make sure this closes renderQuestion!
-
-  // START QUIZ
-  document.getElementById("start-quiz").onclick = () => {
-    const course = document.getElementById("class-select").value;
-    if (!course) return alert("Select a class first.");
-
-    fetch(`/quizzes?course=${encodeURIComponent(course)}`)
-      .then(r => r.json())
-      .then(data => {
-        // Shuffle array
-        data.sort(() => Math.random() - .5);
-
-        // Pick 25% to be name‐type
-        const nameCount = Math.ceil(data.length * 0.25);
-        const nameIdxs  = new Set();
-        while (nameIdxs.size < nameCount) {
-          nameIdxs.add(Math.floor(Math.random() * data.length));
-        }
-
-        // Annotate each question with a type
-        questions = data.map((q,i) => ({
-          ...q,
-          type: (nameIdxs.has(i) && q.correct_name) ? "name" : "mcq"
-        }));
-
-        current = 0;
-        results = [];
-        document.getElementById("quiz-container")
-                .classList.remove("d-none");
-        renderQuestion();
-      })
-      .catch(() => alert("Could not load quiz."));
-
-
-      };
-      // delegate clicks on option-boxes to toggle “selected” class
-      optsEl.addEventListener("click", e => {
-        const box = e.target.closest(".option-box");
-        if (box) {
-          // unselect others
-          optsEl.querySelectorAll(".option-box").forEach(b=>b.classList.remove("selected"));
-          box.classList.add("selected");
-          box.querySelector("input").checked = true;
-        }
-      });
-      btnEl.onclick = () => {
-        const q = questions[current];
-        const correctNorm= normalize(q.correct_name);
-        let ok = false;
-        if (mode === "check") {
-          // Typing answer
-          if (q.type === "name") {
-            const input = document.getElementById("text-answer");
-            const ans        = input.value.trim();
-            const norm       = normalize(ans);
-
-            if (!ans) return alert("Please type an answer.");
-            
-            const firstName = correctNorm.split(" ")[0];
-            ok = (norm === correctNorm) || (norm === firstName)
-
-            input.classList.toggle("correct", ok);
-            input.classList.toggle("incorrect", !ok);
-          } // MCQ
-          else if (Array.isArray(q.options)) {
-            const sel = optsEl.querySelector("input[name='answer']:checked");
-            if (!sel) return alert("Please pick an answer.");
-            const selNorm = normalize(sel.value);
-            ok = (selNorm === correctNorm);
-           // only highlight the selected box…  
-            const selBox = sel.closest(".option-box");
-            if (ok) {
-              selBox.classList.add("correct");
-            } else {
-              selBox.classList.add("incorrect");
-              const correctBox = Array.from(optsEl.querySelectorAll(".option-box"))
-                .find(box =>
-                  normalize(box.querySelector(".option-text").textContent) === correctNorm
-                );
-              if (correctBox) correctBox.classList.add("correct");
-            }
-          }
-          
-          fbEl.textContent = ok ? "✅ Correct!" : "❌ Sorry, wrong.";
-          results.push(ok);
-          btnEl.textContent = "Next";
-          mode = "next";
-        }
-        else {
-          current++;
-          if (current < questions.length) renderQuestion();
-          else {
-            alert(`Score: ${results.filter(Boolean).length} / ${questions.length}`);
-            quizContainer.classList.add("d-none");
-          }
-        }
-      };
-    });
-  </script>
-</body>
-</html>
+  </div>
+</div>
