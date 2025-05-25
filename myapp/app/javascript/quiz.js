@@ -98,7 +98,10 @@ document.addEventListener("DOMContentLoaded", () => {
         newBtnEl.classList.remove("d-none");
         renderQuestion();
       })
-      .catch(err => console.error("Quiz fetch failed:", err));
+      .catch(() => {
+        alert("Could not load quiz.");
+        quizContainer.classList.add("d-none");
+      });
   });
 
   // Delegate clicks on option-boxes to toggle “selected” class
