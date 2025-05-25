@@ -6,7 +6,6 @@ class StudentsController < ApplicationController
   # GET /students
   # GET /students.json
   def index
-    # Base scopes
     students_scope = current_user.students.includes(:courses).distinct
     courses_scope = current_user.courses.includes(:students).distinct
 
@@ -23,21 +22,17 @@ class StudentsController < ApplicationController
       end.join(" OR ")
 
       query_params = {}
-      query_words.each_with_index do |word, i|
-        query_params[:"w#{i}"] = "%#{word}%"
-      end
+      query_words.each_with_index { |word, i| query_params[:"w#{i}"] = "%#{word}%" }
 
-      matching_students_by_name = students_scope.where(student_conditions, query_params)
-      matching_courses = courses_scope.where(course_conditions, query_params)
+      # Combine student and course search in one query
+      students_filtered = students_scope
+        .left_outer_joins(:courses)
+        .where("#{student_conditions} OR #{course_conditions}", **query_params)
+        .distinct
 
-      matching_students_by_course = students_scope.joins(:courses)
-        .where(courses: { id: matching_courses.pluck(:id) })
-      combined_student_ids = (matching_students_by_name.pluck(:id) + matching_students_by_course.pluck(:id)).uniq
-      students_filtered = students_scope.where(id: combined_student_ids)
-
-      @students = students_filtered.page(params[:page]).per(50) #pagination
-      @students_grouped = @students.group_by { |student| student.courses.first } #group students pagination
-      @courses = courses_scope.where(id: matching_courses.pluck(:id))
+      @students = students_filtered.page(params[:page]).per(50)
+      @students_grouped = @students.group_by { |student| student.courses.first }
+      @courses = courses_scope.where(id: students_filtered.joins(:courses).select('courses.id'))
     else
       @students = students_scope.page(params[:page]).per(20)
       @students_grouped = @students.group_by { |student| student.courses.first }
