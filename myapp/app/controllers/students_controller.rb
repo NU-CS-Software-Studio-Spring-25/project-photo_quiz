@@ -1,13 +1,13 @@
 class StudentsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:new]
   before_action :set_student, only: [ :show, :edit, :update, :destroy, :confirm_destroy ]
-  before_action :load_courses,  only: %i[ new edit create update ]
-
+  before_action :load_courses, only: %i[new edit create update]
+  
   # GET /students
   # GET /students.json
   def index
-    @courses = Course.includes(:students).all
-    @students = Student.all
+    @courses = current_user.courses.includes(:students).distinct
+    @students = current_user.students
   end
 
   # GET /students/1
@@ -34,21 +34,23 @@ class StudentsController < ApplicationController
         if params[:course_id].present?
           begin
             course = Course.find(params[:course_id])
-            @student.update(course: course.name)
             Membership.create!(student: @student, course: course, user: current_user)
   
-            format.html { redirect_to students_path, notice: "Student was successfully created." }
+            format.html { redirect_to students_path, flash: { success: "Student was successfully created." } }
             format.json { render :show, status: :created, location: @student }
           rescue ActiveRecord::RecordNotFound
-            format.html { redirect_to new_student_path, alert: "Selected course not found." }
+            flash.now[:alert] = "Selected course not found."
+            format.html { render :new }
             format.json { render json: { error: "Course not found" }, status: :unprocessable_entity }
           end
         else
-          format.html { redirect_to new_student_path, alert: "Please select a course." }
+          flash.now[:alert] = "Please select a course."
+          format.html { render :new, status: :unprocessable_entity  }
           format.json { render json: { error: "No course selected" }, status: :unprocessable_entity }
         end
       else
-        format.html { render :new }
+        flash.now[:alert] = "Failed to create student. Please make sure First name, Last name, and Course are filled."
+        format.html { render :new, status: :unprocessable_entity  }
         format.json { render json: @student.errors, status: :unprocessable_entity }
       end
     end
@@ -60,10 +62,11 @@ class StudentsController < ApplicationController
   def update
     respond_to do |format|
       if @student.update(student_params)
-        format.html { redirect_to students_path, notice: "Student was successfully updated." }
+        format.html { redirect_to students_path, flash: {success: "Student was successfully updated."} }
         format.json { render :show, status: :ok, location: @student }
       else
-        format.html { render :edit }
+        flash.now[:alert] = "Failed to update student. Please make sure First name, Last name, and Course are filled."
+        format.html { render :edit, status: :unprocessable_entity  }
         format.json { render json: @student.errors, status: :unprocessable_entity }
       end
     end
@@ -74,9 +77,10 @@ class StudentsController < ApplicationController
   def destroy
     respond_to do |format|
       if @student.destroy
-        format.html { redirect_to students_path, notice: "Student was successfully destroyed." }
+        format.html { redirect_to students_path, flash: {success: "Student was successfully destroyed."} }
         format.json { head :no_content }
       else
+        flash.now[:alert] = "Failed to destroy student. Please try again."
         format.html { redirect_to students_url, alert: "Failed to destroy student." }
         format.json { render json: @student.errors, status: :unprocessable_entity }
       end
@@ -86,7 +90,7 @@ class StudentsController < ApplicationController
   private
 
     def load_courses
-      @courses = Student.distinct.pluck(:course)
+      @courses = current_user.owned_courses
     end
 
     # Use callbacks to share common setup or constraints between actions.
