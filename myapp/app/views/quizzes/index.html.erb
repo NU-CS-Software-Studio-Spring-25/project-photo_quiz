@@ -131,13 +131,13 @@
       });
       btnEl.onclick = () => {
         const q = questions[current];
+        const correctNorm= normalize(q.correct_name);
         let ok = false;
         if (mode === "check") {
           // Typing answer
           if (q.type === "name") {
             const input = document.getElementById("text-answer");
             const ans        = input.value.trim();
-            const correctNorm= normalize(q.correct_name);
             const norm       = normalize(ans);
 
             if (!ans) return alert("Please type an answer.");
@@ -151,15 +151,19 @@
           else if (Array.isArray(q.options)) {
             const sel = optsEl.querySelector("input[name='answer']:checked");
             if (!sel) return alert("Please pick an answer.");
-            ok = (sel.value === q.correct_name);
+            const selNorm = normalize(sel.value);
+            ok = (selNorm === correctNorm);
            // only highlight the selected box…  
             const selBox = sel.closest(".option-box");
             if (ok) {
               selBox.classList.add("correct");
             } else {
               selBox.classList.add("incorrect");
-              const trueInput = optsEl.querySelector(`input[value="${q.correct_name}"]`);
-              if (trueInput) trueInput.closest(".option-box").classList.add("correct");
+              const correctBox = Array.from(optsEl.querySelectorAll(".option-box"))
+                .find(box =>
+                  normalize(box.querySelector(".option-text").textContent) === correctNorm
+                );
+              if (correctBox) correctBox.classList.add("correct");
             }
           }
           
