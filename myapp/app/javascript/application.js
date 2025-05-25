@@ -1,6 +1,7 @@
 // Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
-import "quiz"
+import "@hotwired/turbo-rails"
 import "controllers"
+import "quiz"
 import * as Rails from '@rails/ujs';
 console.log(Rails)
 Rails.start()
