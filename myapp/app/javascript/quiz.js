@@ -170,7 +170,12 @@ document.addEventListener("DOMContentLoaded", () => {
      }
 
      if (mode === "check") {
-       fbEl.textContent = ok ? "✅ Correct!" : "❌ Sorry, wrong.";
+      if (q.type === "name") {
+        fbEl.innerHTML = ok ? "✅ Correct!" : `❌ Sorry, wrong. Correct answer is: <b>${q.correct_name}</b>`;
+      }
+      else {
+        fbEl.textContent = ok ? "✅ Correct!" : "❌ Sorry, wrong.";
+      }
        results.push(ok);
        newBtnEl.textContent = "Next";
        mode = "next";
