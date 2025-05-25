@@ -4,7 +4,6 @@ class QuizzesController < ApplicationController
   def index
     if params[:course]
       course = current_user.owned_courses.find_by(id: params[:course])
-      return render(json: { error: "Select a class first" }, status: :unprocessable_entity) unless course
       students = course ? course.students : Student.none
 
       default_image = ActionController::Base.helpers.asset_path("default-profile.png")
