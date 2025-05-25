@@ -20,7 +20,6 @@
 
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>    
   </head>
   
   <body>
@@ -47,5 +46,6 @@
     <div class="<%= devise_controller? ? "" : "container py-4" %>">
       <%= yield %>
     </div>
+    <%= javascript_importmap_tags %>    
   </body>
 </html>
