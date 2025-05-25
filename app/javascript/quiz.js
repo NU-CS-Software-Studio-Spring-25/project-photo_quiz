@@ -85,6 +85,16 @@ document.addEventListener("DOMContentLoaded", () => {
           type: (nameIdxs.has(i) && q.correct_name) ? "name" : "mcq"
         }));
 
+        questions.forEach(q => {
+          if (q.type === "mcq") {
+            const opts = new Set(q.options);
+            opts.add(q.correct_name);                      // ensure correct is present
+            q.options = Array.from(opts)
+                            .sort(() => Math.random() - 0.5);
+            
+          }
+        });
+
         if (questions.length === 0) {
           alert("No quiz questions available for this course.");
           quizContainer.classList.add("d-none");
@@ -98,7 +108,10 @@ document.addEventListener("DOMContentLoaded", () => {
         newBtnEl.classList.remove("d-none");
         renderQuestion();
       })
-      .catch(err => console.error("Quiz fetch failed:", err));
+      .catch(() => {
+        alert("Could not load quiz.");
+        quizContainer.classList.add("d-none");
+      });
   });
 
   // Delegate clicks on option-boxes to toggle “selected” class
@@ -119,39 +132,63 @@ document.addEventListener("DOMContentLoaded", () => {
     if (mode === "check") {
       if (q.type === "name") {
         const input = document.getElementById("text-answer");
-        const ans = input.value;
-        const norm = normalize(ans);
+        const ansRaw = input.value;
+        const ans     = ansRaw.trim();
+
+        if (!ans) return alert("Please type an answer.");
+
+        const norm        = normalize(ans);
         const correctNorm = normalize(q.correct_name);
-        ok = correctNorm.startsWith(norm) || norm.startsWith(correctNorm.split(" ")[0]);
+        ok = (norm === correctNorm) ||
+             (norm === correctNorm.split(" ")[0]);
+
+        input.classList.remove("correct", "incorrect");
         input.classList.add(ok ? "correct" : "incorrect");
+
       } else if (Array.isArray(q.options)) {
         const sel = newOptsEl.querySelector("input[name='answer']:checked");
         if (!sel) return alert("Please pick an answer.");
-        ok = (sel.value === q.correct_name);
-        // only highlight the selected box…
+
+        const selNorm     = normalize(sel.value);
+        const correctNorm = normalize(q.correct_name);
+        ok = (selNorm === correctNorm);
+
         const selBox = sel.closest(".option-box");
         if (ok) {
           selBox.classList.add("correct");
         } else {
           selBox.classList.add("incorrect");
-          const trueInput = newOptsEl.querySelector(`input[value="${q.correct_name}"]`);
-          if (trueInput) trueInput.closest(".option-box").classList.add("correct");
+          // highlight the true one
+          const correctBox = Array.from(
+            newOptsEl.querySelectorAll(".option-box")
+          ).find(box =>
+            normalize(box.querySelector(".option-text").textContent) === correctNorm
+          );
+          if (correctBox) correctBox.classList.add("correct");
         }
       }
-      fbEl.textContent = ok ? "✅ Correct!" : "❌ Sorry, wrong.";
-      results.push(ok);
-      newBtnEl.textContent = "Next";
-      mode = "next";
-    } else {
-      current++;
-      if (current < questions.length) {
-        renderQuestion();
-      } else {
-        alert(`Score: ${results.filter(Boolean).length} / ${questions.length}`);
-        quizContainer.classList.add("d-none");
-        photoEl.classList.add("d-none");
-        newBtnEl.classList.add("d-none");
+     }
+
+     if (mode === "check") {
+      if (q.type === "name") {
+        fbEl.innerHTML = ok ? "✅ Correct!" : `❌ Sorry, wrong. Correct answer is: <b>${q.correct_name}</b>`;
       }
-    }
+      else {
+        fbEl.textContent = ok ? "✅ Correct!" : "❌ Sorry, wrong.";
+      }
+       results.push(ok);
+       newBtnEl.textContent = "Next";
+       mode = "next";
+     } else {
+       current++;
+       if (current < questions.length) {
+         renderQuestion();
+       } else {
+         alert(`Score: ${results.filter(Boolean).length} / ${questions.length}`);
+         quizContainer.classList.add("d-none");
+         photoEl.classList.add("d-none");
+         newBtnEl.classList.add("d-none");
+       }
+     }
+   });
   });
-});
