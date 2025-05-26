@@ -1,32 +1,24 @@
 # QuizzesController handles displaying quizzes associated with the user or course.
 class QuizzesController < ApplicationController
+  include QuizzesHelper
   before_action :authenticate_user!
 
   def index
-    if params[:course]
-      course = current_user.owned_courses.find_by(id: params[:course])
-      students = course ? course.students : Student.none
+    owned_courses = current_user.owned_courses
+    course_id = params[:course]
 
-      default_image = ActionController::Base.helpers.asset_path("default-profile.png")
+    return QuizzesHelper.load_courses(owned_courses) unless course_id.present?
 
-      if students.empty?
-        render json: { error: "No students found for the selected course." }, status: :unprocessable_entity
-        return
-      end
+    course = owned_courses.find_by(id: course_id)
+    students = course ? course.students : Student.none
 
-      questions = students.map do |student|
-        {
-          photo_url: (student.profile_picture.attached? ?
-            Rails.application.routes.url_helpers.rails_blob_url(student.profile_picture) :
-            default_image),
-          options: students.sample([ 3, students.size ].min).map { |s| "#{s.first_name} #{s.last_name}" },
-          correct_name: "#{student.first_name} #{student.last_name}"
-        }
-      end
+    return QuizzesHelper.render_no_students_error if students.empty?
 
-      render json: questions
-    else
-      @courses = current_user.owned_courses.order(:name)
-    end
+    default_image = ActionController::Base.helpers.asset_path("default-profile.png")
+
+    questions = QuizzesHelper.build_questions(students, default_image)
+
+    render json: questions
   end
+
 end

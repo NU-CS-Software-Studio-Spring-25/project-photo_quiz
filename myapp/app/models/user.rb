@@ -1,3 +1,6 @@
+# User model for Devise authentication
+# User model for Devise authentication
+# This model handles user registration, authentication, and associations with courses and students.
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -8,6 +11,7 @@ class User < ApplicationRecord
   has_many :owned_courses, class_name: "Course"
   has_many :courses, through: :memberships
   has_many :students, through: :memberships
+  
   # Apply validation for full_name only when creating or updating the user
   validates :full_name, presence: true, if: :new_record?
 end

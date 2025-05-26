@@ -1,3 +1,4 @@
+# Course model for managing courses in the application
 class Course < ApplicationRecord
   belongs_to :user
   has_many :memberships, dependent: :destroy
