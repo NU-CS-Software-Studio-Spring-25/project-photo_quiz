@@ -5,6 +5,10 @@ ruby ">= 3.2.8"
 gem "rails", "~> 8.0.2"
 gem 'faker'
 
+gem "rubocop", require: false
+gem "erb_lint", require: false
+gem "reek", require: false
+
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem "propshaft"
 # Use postgresql as the database for Active Record
