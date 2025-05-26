@@ -71,8 +71,9 @@ body {
   }
   .hero-logo {
     flex-shrink: 0;                          /* never squash */
-    margin-right: 20px;                      /* extra breathing-room */
-    width: 60px;                             /* optional fixed width */
+    margin-right: -10px; 
+    margin-bottom: -20px;
+    width: 80px;                             /* optional fixed width */
   }
   
   /* 2) Title + subtitle reset margins */
@@ -109,6 +110,12 @@ body {
     margin-right: auto;
     font-size: 1.5rem;
     font-weight: 600;
+  }
+
+.actions h1 {
+    margin: 0;
+    white-space: nowrap;
+    margin-right: auto;
   }
 .actions .form-control,
 .actions .form-select {
@@ -181,7 +188,7 @@ body {
     height: 16rem;
     width: 100%;
     object-fit: cover;
-    background: #EDE0F7 url('<%= asset_path("nu_shield.png") %>') center/40% no-repeat;
+    background: #EDE0F7 url('<%= asset_path("logo.png") %>') center/40% no-repeat;
   }
 .card-large .card-body {
     padding: 1rem;
@@ -385,6 +392,7 @@ body {
 }
 #feedback {
   min-height: 1.5em;
+  margin-bottom: 1.5rem;
 }
 .search-input {
   display: block;
@@ -397,7 +405,24 @@ body {
   background: #fff url('<%= asset_path("search.svg") %>') no-repeat 1rem center;
   background-size: 1.2em;
 }
+#quiz-section #options-container {
+  margin-bottom: 2rem; /* Increased space below options */
+}
 
+#quiz-section .d-flex.justify-content-between.align-items-center {
+  margin-top: 1.5rem; /* Increased space above feedback/progress/button row */
+}
+
+#quiz-section #feedback {
+  min-height: 1.5em;
+  margin-bottom: 1.5rem;
+  margin-top: 3rem;
+  margin-right: 2rem; /* Increased space between feedback and the button/progress group */
+}
+
+#quiz-section #action-btn {
+  margin-right: 1.5rem; /* Increased space between Check/Next button and progress text */
+}
 /* Login page */
 /* inner card: white background + purple outline */
 .login-card {
@@ -443,7 +468,141 @@ body {
   width:100%;
 }
 
+/* ...existing code... */
+.simple-site-footer {
+  background: linear-gradient(135deg, var(--nu-purple-dark) 0%, var(--text-default) 50%, rgba(78,42,132,0.8));
+  color: rgba(255, 255, 255, 0.7);
+  padding: 2rem 0;
+  text-align: center;
+}
 
+.simple-footer-content {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.footer-logo-area {
+  margin-bottom: 1.5rem;
+}
+
+.footer-logo-simple {
+  max-height: 40px; /* Adjust as needed */
+  width: auto;
+}
+
+.footer-nav-simple {
+  margin-bottom: 1.5rem;
+}
+
+.footer-nav-simple a {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  margin: 0 0.75rem;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+
+.footer-nav-simple a:hover {
+  color: #ffffff;
+}
+
+.footer-social-icons {
+  margin-bottom: 1.5rem;
+}
+
+.footer-social-icons a {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  margin: 0 0.5rem;
+  font-size: 1.2rem; /* Adjust icon size */
+  transition: color 0.3s ease;
+}
+
+.footer-social-icons a:hover {
+  color: #ffffff;
+}
+
+.footer-copyright-simple {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Ensure Bootstrap Icons are available if not already globally styled for size */
+.footer-social-icons .bi {
+  vertical-align: middle;
+}
+
+.custom-pagination-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  border-radius: 9999px; 
+  padding: 0.5rem 0.75rem; 
+  margin: 2.5rem auto;  
+  max-width: fit-content;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+.pagination-links-wrapper .pagination {
+  align-items: center;
+  display: flex;
+
+  list-style: none; /* Attempt to remove list-style dots if .pagination is a ul */
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.pagination-links-wrapper .page-item {
+  margin: 0 0.1rem; /* Slightly reduced margin between items */
+}
+
+.pagination-links-wrapper .page-item .page-link {
+  border: none;
+  border-radius: 0.3rem; /* Slightly softer corners for non-active items */
+  color: #555e68;       /* Default text color */
+  background-color: transparent;
+  padding: 0.4rem 0.65rem; /* Adjusted padding */
+  font-size: 0.875rem;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.pagination-links-wrapper .page-item .page-link:hover {
+  color: var(--nu-purple-dark); /* Use your theme color */
+  background-color: rgba(78, 42, 132, 0.05); /* Light purple hover */
+}
+
+.pagination-links-wrapper .page-item.active .page-link {
+  background-color: var(--nu-purple-dark); /* Your primary purple color */
+  color: white;
+  font-weight: 600;
+  border-radius: 50%; /* Circular shape */
+  width: 2.1em;       /* Adjust for circle size */
+  height: 2.1em;      /* Adjust for circle size */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  box-shadow: 0 0 0 4px rgba(182, 163, 201, 0.35); /* Light purple glow - adjust color to match your theme */
+                                                 /* Example: color-mix(in srgb, var(--nu-purple-light) 35%, transparent); */
+}
+
+.pagination-links-wrapper .page-item.disabled .page-link {
+  color: #adb5bd;
+  background-color: transparent;
+  pointer-events: none;
+}
+
+
+.pagination-summary-wrapper {
+  font-size: 0.6rem;
+  color: #6c757d;
+  margin-left: 1rem; /* Space between links and summary */
+  white-space: nowrap;
+  padding: 0.4rem 0; /* Align vertically with page links */
+}
 @media (max-width: 767px) {
     .hero {
       flex-direction: column;
@@ -520,6 +679,29 @@ body {
       /* right-align button if you’re using flex */
       .login-card .form-actions {
         justify-content: flex-end;
+      }
+
+      .custom-pagination-container {
+        flex-direction: column;
+        padding: 0.7rem 1rem;
+        max-width: 95%; /* Allow it to take more width on small screens */
+      }
+
+      .pagination-summary-wrapper {
+        margin-left: 0;
+        margin-top: 0.6rem;
+        font-size: 0.75rem;
+      }
+
+      .pagination-links-wrapper .page-item .page-link {
+        padding: 0.35rem 0.55rem;
+        font-size: 0.8rem;
+      }
+
+      .pagination-links-wrapper .page-item.active .page-link {
+        width: 1.9em;
+        height: 1.9em;
+        box-shadow: 0 0 0 3px rgba(182, 163, 201, 0.3);
       }
     
   }
