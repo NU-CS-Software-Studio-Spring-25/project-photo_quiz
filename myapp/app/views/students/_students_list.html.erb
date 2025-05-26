@@ -7,15 +7,29 @@
   <% students_grouped.each do |course, students| %>
     <% next unless course %>
 
-    <div class="course-header d-flex justify-content-between align-items-center mb-2">
-      <h2 class="m-0"><%= course.name %></h2>
-      <div class="course-actions d-flex gap-2">
-        <%= link_to "✏️", edit_course_path(course), data: { turbo: false }, class: "btn btn-sm btn-outline-primary me-2" %>
-        <%= link_to course, method: :delete, data: { confirm: "Are you sure you want to delete this course?" }, class: "delete-icon", title: "Delete Course" do %>
-          🗑️
+    <div class="course-header mb-2">
+    <div class="d-flex justify-content-between align-items-start flex-wrap w-100">
+      <!-- LEFT: course title + code + edit/delete -->
+      <div>
+        <h2 class="m-0"><%= course.name %></h2>
+        <p class="course-code small mt-1 mb-2">Invite Code: <%= course.code %></p>
+        <div class="d-flex align-items-center gap-2">
+          <%= link_to "✏️", edit_course_path(course), data: { turbo: false }, class: "btn btn-sm btn-outline-primary no-underline" %>
+          <%= link_to "🗑️", course, method: :delete, data: { confirm: "Are you sure you want to delete this course?" }, class: "btn btn-sm btn-outline-danger no-underline" %>
+        </div>
+      </div>
+  
+      <!-- RIGHT: copy link aligned to full page right -->
+      <div class="ms-auto mt-2">
+        <%= button_tag type: 'button',
+                       class: 'btn copy-link-btn',
+                       onclick: "navigator.clipboard.writeText('#{request.base_url}/students/new?course_code=#{course.code}'); alert('Invite link copied!')" do %>
+          🔗 Copy Invite Link
         <% end %>
       </div>
     </div>
+  </div>
+  
 
     <div class="cards-container d-flex flex-wrap gap-3 mb-5">
       <% students.each do |student| %>
@@ -42,7 +56,7 @@
     </div>
   <% end %>
 
-  <% if @students.total_pages > 1 %> <%# Only show pagination if there's more than one page %>
+  <% if @students.total_pages > 1 %>
     <div class="custom-pagination-container">
       <div class="pagination-links-wrapper">
         <%= paginate @students, theme: 'bootstrap4', previous_label: '<span aria-hidden="true">&laquo;</span> Previous', next_label: 'Next <span aria-hidden="true">&raquo;</span>', outer_window: 0, window: 2 %>
