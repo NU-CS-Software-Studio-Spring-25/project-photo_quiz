@@ -1,3 +1,4 @@
+# QuizzesController handles displaying quizzes associated with the user or course.
 class QuizzesController < ApplicationController
   before_action :authenticate_user!
 
