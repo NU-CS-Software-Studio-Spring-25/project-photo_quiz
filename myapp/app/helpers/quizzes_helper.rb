@@ -40,5 +40,5 @@ module QuizzesHelper
         end
     end
 
-    module_function :load_courses, :render_no_students_error. :build_questions
+    module_function :load_courses, :render_no_students_error, :build_questions
 end
