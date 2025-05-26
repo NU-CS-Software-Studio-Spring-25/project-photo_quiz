@@ -69,6 +69,7 @@ student_records = students.map { |data| Student.create!(data) }
     last_name: last_name,
     profile_picture: Faker::Avatar.image
   )
+  student.profile_picture = Faker::Avatar.image(slug: student.first_name.downcase, size: "150x150", format: "png")
 
   avatar_url = Faker::Avatar.image(slug: student.first_name.downcase, size: "150x150", format: "png")
   downloaded_image = URI.open(avatar_url)
