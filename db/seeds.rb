@@ -66,7 +66,8 @@ student_records = students.map { |data| Student.create!(data) }
 
   student = Student.create!(
     first_name: first_name,
-    last_name: last_name
+    last_name: last_name,
+    profile_picture: Faker::Avatar.image
   )
 
   avatar_url = Faker::Avatar.image(slug: student.first_name.downcase, size: "150x150", format: "png")
