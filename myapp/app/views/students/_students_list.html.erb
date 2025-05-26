@@ -21,11 +21,14 @@
       <% students.each do |student| %>
         <div class="card card-large" style="width: 15rem;">
           <% if student.profile_picture.attached? %>
-            <%= image_tag student.profile_picture.variant(resize_to_limit: [400, 400]).processed, class: "card-img-top" %>
+            <% begin %>
+              <%= image_tag student.profile_picture.variant(resize_to_limit: [400, 400]).processed, class: "card-img-top" %>
+            <% rescue ActiveStorage::FileNotFoundError, ActiveStorage::InvariableError %>
+              <%= image_tag "default-profile.png", class: "card-img-top" %>
+            <% end %>
           <% else %>
             <%= image_tag "default-profile.png", class: "card-img-top" %>
           <% end %>
-
           <div class="card-body">
             <p class="course-code"><%= course.name %></p>
             <h6><%= student.first_name %> <%= student.last_name %></h6>
@@ -39,7 +42,16 @@
     </div>
   <% end %>
 
-  <%= paginate @students %>
+  <% if @students.total_pages > 1 %> <%# Only show pagination if there's more than one page %>
+    <div class="custom-pagination-container">
+      <div class="pagination-links-wrapper">
+        <%= paginate @students, theme: 'bootstrap4', previous_label: '<span aria-hidden="true">&laquo;</span> Previous', next_label: 'Next <span aria-hidden="true">&raquo;</span>', outer_window: 0, window: 2 %>
+      </div>
+      <div class="pagination-summary-wrapper">
+        <%= page_entries_info @students, entry_name: 'result' %>
+      </div>
+    </div>
+  <% end %>
 
 <% else %>
   <p class="text-center text-muted mt-5">No Students or Course Found matching that criteria.</p>

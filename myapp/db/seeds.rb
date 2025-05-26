@@ -31,7 +31,8 @@ end
 
 # Add some random courses, but make sure names are unique
 10.times do |i|
-  name = Faker::Educator.unique.course_name
+  name = Faker::Educator.unique.course_name.gsub(/[^\w\s\-']/, '')
+  
   Course.create!(
     name: name,
     user: user_records[i % user_records.length]
@@ -60,9 +61,12 @@ student_records = students.map { |data| Student.create!(data) }
 
 # Add some random students
 40.times do
+  first_name = Faker::Name.first_name.gsub(/[^\w\s\-']/, '')
+  last_name = Faker::Name.last_name.gsub(/[^\w\s\-']/, '')
+
   student = Student.create!(
-    first_name: Faker::Name.first_name,
-    last_name: Faker::Name.last_name
+    first_name: first_name,
+    last_name: last_name
   )
 
   avatar_url = Faker::Avatar.image(slug: student.first_name.downcase, size: "150x150", format: "png")
