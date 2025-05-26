@@ -21,11 +21,14 @@
       <% students.each do |student| %>
         <div class="card card-large" style="width: 15rem;">
           <% if student.profile_picture.attached? %>
-            <%= image_tag student.profile_picture.variant(resize_to_limit: [400, 400]).processed, class: "card-img-top" %>
+            <% begin %>
+              <%= image_tag student.profile_picture.variant(resize_to_limit: [400, 400]).processed, class: "card-img-top" %>
+            <% rescue ActiveStorage::FileNotFoundError, ActiveStorage::InvariableError %>
+              <%= image_tag "default-profile.png", class: "card-img-top" %>
+            <% end %>
           <% else %>
             <%= image_tag "default-profile.png", class: "card-img-top" %>
           <% end %>
-
           <div class="card-body">
             <p class="course-code"><%= course.name %></p>
             <h6><%= student.first_name %> <%= student.last_name %></h6>
