@@ -81,10 +81,11 @@ class StudentsController < ApplicationController
             @student.update(course: course.name)
             Membership.create!(student: @student, course: course, user: course.users.first)
   
-            format.html { redirect_to students_path, notice: "Student was successfully created with course code." }
+            format.html { redirect_to students_path, flash: {notice: "Student was successfully created with course code."} }
             format.json { render :show, status: :created, location: @student }
           else
-            format.html { redirect_to new_student_path, alert: "Invalid course code." }
+            flash.now[:alert] = "Invalid course code."
+            format.html { render :new }
             format.json { render json: { error: "Invalid course code" }, status: :unprocessable_entity }
           end
   
