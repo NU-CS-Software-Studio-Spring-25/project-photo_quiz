@@ -14,7 +14,7 @@
   <div class="hero-links">
     <%= link_to 'Directory', students_path, class: 'btn btn-outline-light' %>
     <%= link_to 'Quiz',      quizzes_path,  class: 'btn btn-outline-light' %>
-    <%= link_to "Profile", edit_user_registration_path class: 'btn btn-outline-light' %>
+    <%= link_to "Profile", edit_user_registration_path, class: 'btn btn-outline-light' %>
     <%= link_to 'Logout', destroy_user_session_path,
                         method: :delete,
                         data: { confirm: 'Are you sure?' },
