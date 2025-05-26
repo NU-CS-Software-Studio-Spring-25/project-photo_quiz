@@ -392,6 +392,7 @@ body {
 }
 #feedback {
   min-height: 1.5em;
+  margin-bottom: 1.5rem;
 }
 .search-input {
   display: block;
@@ -413,7 +414,10 @@ body {
 }
 
 #quiz-section #feedback {
-  margin-right: 1rem; /* Space between feedback and the button/progress group */
+  min-height: 1.5em;
+  margin-bottom: 1.5rem;
+  margin-top: 3rem;
+  margin-right: 2rem; /* Increased space between feedback and the button/progress group */
 }
 
 #quiz-section #action-btn {
@@ -591,12 +595,6 @@ body {
   pointer-events: none;
 }
 
-/* Styling for Previous/Next text if you don't use HTML entities in labels */
-.pagination-links-wrapper .page-item.previous .page-link::before,
-.pagination-links-wrapper .page-item.next .page-link::after {
-  /* If you want to add chevrons via CSS, you can do it here */
-  /* Example: content: '<'; margin-right: 0.3em; */
-}
 
 .pagination-summary-wrapper {
   font-size: 0.6rem;

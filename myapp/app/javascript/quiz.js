@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const startBtn = document.getElementById("start-quiz");
   const classSelect = document.getElementById("class-select");
   const progressEl = document.getElementById("progress");
-
+  
   // Remove previous listeners if any (defensive, in case of hot reloads)
   startBtn.replaceWith(startBtn.cloneNode(true));
   btnEl.replaceWith(btnEl.cloneNode(true));
