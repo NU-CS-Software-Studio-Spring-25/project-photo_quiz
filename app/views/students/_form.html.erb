@@ -55,7 +55,7 @@
           <!-- Course Selection via Invite Code -->
           <div class="form-group mt-3">
             <%= label_tag :course_code, "Or enter Invite Code instead" %>
-            <%= text_field_tag :course_code, params[:course_code], class: "form-control", placeholder: "e.g. X7Y2KL" %>
+            <%= text_field_tag :course_code, params[:course_code], class: "form-control", placeholder: "e.g. X7Y2KL", autocomplete: "off" %>
           </div>
         </div>
       </div>

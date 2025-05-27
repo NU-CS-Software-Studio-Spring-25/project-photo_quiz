@@ -1,3 +1,4 @@
+# CoursesController manages course-related actions including creation, update, and deletion.
 class CoursesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_course, only: %i[ show edit update destroy ]
@@ -19,7 +20,7 @@ class CoursesController < ApplicationController
 
   # GET /courses/1/edit
   def edit
-    @course = Course.find(params[:id])
+    # @course already set by set_course
   end
 
   # POST /courses or /courses.json
@@ -28,11 +29,9 @@ class CoursesController < ApplicationController
 
     respond_to do |format|
       if @course.save
-        format.html { redirect_to students_path, flash: {success: "Course was successfully created. Now add a student for it to appear on Dashboard."} }
-        format.json { render :show, status: :created, location: @course }
+        respond_success(format, "Course was successfully created. Now add a student for it to appear on Dashboard.")
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @course.errors, status: :unprocessable_entity }
+        respond_failure(format, :new)
       end
     end
   end
@@ -41,11 +40,9 @@ class CoursesController < ApplicationController
   def update
     respond_to do |format|
       if @course.update(course_params)
-        format.html { redirect_to students_path, flash: {success: "Course was successfully updated."} }
-        format.json { render :show, status: :ok, location: @course }
+        respond_success(format, "Course was successfully updated.")
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @course.errors, status: :unprocessable_entity }
+        respond_failure(format, :edit)
       end
     end
   end
@@ -53,11 +50,7 @@ class CoursesController < ApplicationController
   # DELETE /courses/1 or /courses/1.json
   def destroy
     @course.destroy!
-
-    respond_to do |format|
-      format.html { redirect_to students_path, status: :see_other, flash: {success: "Course was successfully destroyed."} }
-      format.json { head :no_content }
-    end
+    respond_to_destroy
   end
 
   private
@@ -69,5 +62,25 @@ class CoursesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def course_params
       params.require(:course).permit(:name)
+    end
+
+    # Responds with success and a message for HTML and JSON formats.
+    def respond_success(format, message)
+      format.html { redirect_to students_path, flash: { success: message } }
+      format.json { render :show, status: :ok, location: @course }
+    end
+
+    # Responds with failure and renders the action for HTML and JSON formats.
+    def respond_failure(format, action)
+      format.html { render action, status: :unprocessable_entity }
+      format.json { render json: @course.errors, status: :unprocessable_entity }
+    end
+
+    # Responds to the destroy action with a redirect or no content based on the format.
+    def respond_to_destroy
+      respond_to do |format|
+        format.html { redirect_to students_path, status: :see_other, flash: { success: "Course was successfully destroyed." } }
+        format.json { head :no_content }
+      end
     end
 end
