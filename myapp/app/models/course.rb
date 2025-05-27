@@ -14,7 +14,7 @@ class Course < ApplicationRecord
 
   def generate_unique_code
     self.code = loop do
-      random_code = SecureRandom.alphanumeric(6).upcase 
+      random_code = SecureRandom.alphanumeric(6).upcase
       break random_code unless Course.exists?(code: random_code)
     end
   end

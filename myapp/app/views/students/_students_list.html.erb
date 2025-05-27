@@ -1,5 +1,4 @@
 <% if @students.present? %>
-  <%= paginate @students %>
   <% students_grouped = @students.includes(:courses).flat_map { |student| student.courses.map { |course| [course, student] } }
                           .group_by(&:first)
                           .transform_values { |pairs| pairs.map(&:last) } %>

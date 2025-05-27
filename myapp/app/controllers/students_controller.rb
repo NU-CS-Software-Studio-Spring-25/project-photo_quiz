@@ -1,8 +1,10 @@
 class StudentsController < ApplicationController
-  before_action :authenticate_user!, except: [:new]
-  before_action :set_student, only: [:show, :edit, :update, :destroy, :confirm_destroy]
+  before_action :authenticate_user!, except: [ :new ]
+  before_action :set_student, only: [ :show, :edit, :update, :destroy, :confirm_destroy ]
   before_action :load_courses, only: %i[new edit create update]
 
+  # GET /students
+  # GET /students.json
   def index
     students_scope = current_user.students.includes(:courses).distinct
     courses_scope = current_user.courses.includes(:students).distinct
@@ -29,7 +31,7 @@ class StudentsController < ApplicationController
 
       @students = students_filtered.page(params[:page]).per(50)
       @students_grouped = @students.group_by { |student| student.courses.first }
-      @courses = courses_scope.where(id: students_filtered.joins(:courses).select('courses.id'))
+      @courses = courses_scope.where(id: students_filtered.joins(:courses).select("courses.id"))
     else
       @students = students_scope.page(params[:page]).per(20)
       @students_grouped = @students.group_by { |student| student.courses.first }
@@ -74,8 +76,7 @@ class StudentsController < ApplicationController
             format.json { render json: { error: "Invalid code format" }, status: :unprocessable_entity }
             return
           end
-
-          course = Course.find_by(code: raw_code)
+          course = Course.find_by(code: params[:course_code].strip.upcase)
 
           if course
             @student.update(course: course.name)
