@@ -468,6 +468,10 @@ body {
   width:100%;
 }
 
+.login-card .text-danger {
+  color: #dc3545 !important;
+}
+
 /* Error Pages Styling */
 .error-page {
   display: flex;
