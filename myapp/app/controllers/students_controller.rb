@@ -1,5 +1,5 @@
 class StudentsController < ApplicationController
-  before_action :authenticate_user!, except: [ :new ]
+  before_action :authenticate_user!, except: [ :new, :create ]
   before_action :set_student, only: [ :show, :edit, :update, :destroy, :confirm_destroy ]
   before_action :load_courses, only: %i[new edit create update]
 
@@ -96,10 +96,13 @@ class StudentsController < ApplicationController
   respond_to do |format|
     ActiveRecord::Base.transaction do
       if @student.save
+        user = course.user
+        puts "Creating user: #{user} for course: #{course.name}"
+
         Membership.create!(
           student: @student,
           course: course,
-          user: params[:course_id].present? ? current_user : course.users.first
+          user: user
         )
 
         format.html { redirect_to students_path, flash: { success: "Student was successfully created." } }
@@ -146,7 +149,7 @@ end
   private
 
     def load_courses
-      if current_user
+      if user_signed_in?
         @courses = current_user.owned_courses
       elsif params[:course_code].present?
         course = Course.find_by(code: params[:course_code].strip.upcase)
