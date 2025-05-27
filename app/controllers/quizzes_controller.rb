@@ -15,11 +15,19 @@ class QuizzesController < ApplicationController
       end
 
       questions = students.map do |student|
+        photo_url = if student.profile_picture.attached?
+          Rails.application.routes.url_helpers.rails_blob_url(
+            student.profile_picture,
+            host: request.base_url
+          )
+        else
+          view_context.asset_url("default-profile.png", host: request.base_url)
+        end
+
         {
-          photo_url: (student.profile_picture.attached? ?
-            Rails.application.routes.url_helpers.rails_blob_url(student.profile_picture) :
-            default_image),
-          options: students.sample([ 3, students.size ].min).map { |s| "#{s.first_name} #{s.last_name}" },
+          photo_url:    photo_url,
+          options:      students.sample([3, students.size].min)
+                            .map { |s| "#{s.first_name} #{s.last_name}" },
           correct_name: "#{student.first_name} #{student.last_name}"
         }
       end
