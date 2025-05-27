@@ -58,8 +58,8 @@ body {
 
     padding: 1rem 50px;                      /* 2rem top/bottom, 50px left/right */
     background:
-      linear-gradient(135deg, rgba(78,42,132,0.8), rgba(58,31,102,0.8)),
-      url('<%= asset_path("hero.jpg") %>') center/cover no-repeat;
+      linear-gradient(135deg, rgba(78,42,132,0.8), rgba(58,31,102,0.8));
+      /*url('<%= asset_path("hero.jpg") %>') center/cover no-repeat; */
     color: #fff;
   }
   
