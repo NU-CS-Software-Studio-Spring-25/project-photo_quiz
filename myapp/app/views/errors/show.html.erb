@@ -1,4 +1,4 @@
-<div class="text-center my-5">
+<div class="error-page">
   <h1><%= @message %></h1>
   <p>
     <% if @status_code.to_i == 404 %>
@@ -11,5 +11,5 @@
       An unexpected error occurred.
     <% end %>
   </p>
-  <%= link_to "Back to Home", root_path, class: "btn btn-primary mt-3" %>
+  <%= link_to "Back to Home", root_path, class: "btn" %>
 </div>
