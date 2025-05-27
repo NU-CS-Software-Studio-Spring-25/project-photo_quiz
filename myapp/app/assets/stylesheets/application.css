@@ -472,7 +472,46 @@ body {
   color: #dc3545 !important;
 }
 
-/* ...existing code... */
+/* Error Pages Styling */
+.error-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  text-align: center;
+  background-color: var(--bg-page);
+  color: var(--text-default);
+  padding: 2rem;
+}
+
+.error-page h1 {
+  font-size: 4rem;
+  font-weight: bold;
+  color: var(--nu-purple-dark);
+  margin-bottom: 1rem;
+}
+
+.error-page p {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.error-page a {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  font-size: 1.2rem;
+  color: #fff;
+  background-color: var(--nu-purple-dark);
+  border-radius: 0.75rem;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.error-page a:hover {
+  background-color: rgba(58, 31, 102, 0.8);
+}
+
 .simple-site-footer {
   background: linear-gradient(135deg, var(--nu-purple-dark) 0%, var(--text-default) 50%, rgba(78,42,132,0.8));
   color: rgba(255, 255, 255, 0.7);
@@ -710,69 +749,67 @@ body {
     
   }
 
-.course-actions a {
-  font-size: 1.3rem;
-  color: #555;
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
+  .course-actions a {
+    font-size: 1.3rem;
+    color: #555;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
 
-.course-actions a:hover {
-  color: #007bff; /* blue on hover */
-}
+  .course-actions a:hover {
+    color: #007bff; /* blue on hover */
+  }
 
-.delete-icon:hover {
-  color: #dc3545; /* red for delete */
-}
+  .delete-icon:hover {
+    color: #dc3545; /* red for delete */
+  }
 
-.alert {
-  padding: 0.75rem 1.25rem;
-  border-radius: 0.5rem;
-  margin-bottom: 1rem;
-  font-weight: 500;
-}
+  .alert {
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+    font-weight: 500;
+  }
 
-.alert-success {
-  background-color: #d4edda;
-  border: 1px solid #28a745;
-  color: #155724;
-}
+  .alert-success {
+    background-color: #d4edda;
+    border: 1px solid #28a745;
+    color: #155724;
+  }
 
-.alert-danger {
-  background-color: #f8d7da;
-  border: 1px solid #dc3545;
-  color: #721c24;
-}
+  .alert-danger {
+    background-color: #f8d7da;
+    border: 1px solid #dc3545;
+    color: #721c24;
+  }
 
-.alert-info {
-  background-color: #d1ecf1;
-  border: 1px solid #0c5460;
-  color: #0c5460;
-}
+  .alert-info {
+    background-color: #d1ecf1;
+    border: 1px solid #0c5460;
+    color: #0c5460;
+  }
 
-.alert-secondary {
-  background-color: #f7f7f7;
-  border: 1px solid #ccc;
-  color: #555;
-}
+  .alert-secondary {
+    background-color: #f7f7f7;
+    border: 1px solid #ccc;
+    color: #555;
+  }
 
-.copy-link-btn {
-  background-color: var(--text-default);  
-  border: none;
-  color: #fff;
-  padding: 0.4rem 0.8rem;
-  font-size: 0.85rem;
-  font-weight: 500;
-  border-radius: 0.5rem;
-  transition: background-color 0.2s ease;
-}
+  .copy-link-btn {
+    background-color: var(--text-default);  
+    border: none;
+    color: #fff;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    border-radius: 0.5rem;
+    transition: background-color 0.2s ease;
+  }
 
-.copy-link-btn:hover {
-  background-color: #220545; 
-  color: #fff;
-}
-.no-underline {
-  text-decoration: none !important;
-}
-
-
+  .copy-link-btn:hover {
+    background-color: #220545; 
+    color: #fff;
+  }
+  .no-underline {
+    text-decoration: none !important;
+  }

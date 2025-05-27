@@ -12,6 +12,11 @@ Rails.application.routes.draw do
 
   resources :courses, except: [:index, :show]
   resources :quizzes, only: [:index]
+
+  # Adding routes for custom error pages
+  match '/404', to: 'errors#show', code: 404, via: :all
+  match '/500', to: 'errors#show', code: 500, via: :all
+  match '/400', to: 'errors#show', code: 400, via: :all
 end
   #get "quizzes", to: "quizzes#index"
   # root :to => redirect('/students')
