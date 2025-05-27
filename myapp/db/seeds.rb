@@ -93,14 +93,3 @@ user_records.each do |user|
     end
   end
 end
-
-me = User.find_or_create_by!(email: "me@example.com") do |u|
-  u.full_name = "Me"
-  u.password = "password"
-end
-
-Course.limit(3).each { |c| c.update!(user: me) }
-
-Student.limit(5).each do |student|
-  Membership.find_or_create_by!(user: me, course: Course.first, student: student)
-end

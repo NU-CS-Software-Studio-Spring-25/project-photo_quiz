@@ -721,7 +721,7 @@ body {
   color: #dc3545; /* red for delete */
 }
 
-.alert-danger {
+/* .alert-danger {
   color: red;
   font-weight: bold;
   margin-bottom: 1rem;
@@ -731,7 +731,39 @@ body {
   color: green;
   font-weight: bold;
   margin-bottom: 1rem;
+} */
+
+.alert {
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+  font-weight: 500;
 }
+
+.alert-success {
+  background-color: #d4edda;
+  border: 1px solid #28a745;
+  color: #155724;
+}
+
+.alert-danger {
+  background-color: #f8d7da;
+  border: 1px solid #dc3545;
+  color: #721c24;
+}
+
+.alert-info {
+  background-color: #d1ecf1;
+  border: 1px solid #0c5460;
+  color: #0c5460;
+}
+
+.alert-secondary {
+  background-color: #f7f7f7;
+  border: 1px solid #ccc;
+  color: #555;
+}
+
 .copy-link-btn {
   background-color: var(--text-default);  
   border: none;

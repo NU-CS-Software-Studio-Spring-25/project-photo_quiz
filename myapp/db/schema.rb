@@ -162,8 +162,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_26_012852) do
     t.string "profile_picture"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "name_mastery"
-    t.boolean "learned"
   end
 
   create_table "users", force: :cascade do |t|
