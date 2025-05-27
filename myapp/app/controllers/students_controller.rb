@@ -142,7 +142,14 @@ class StudentsController < ApplicationController
   private
 
     def load_courses
-      @courses = current_user.owned_courses
+      if current_user
+        @courses = current_user.owned_courses
+      elsif params[:course_code].present?
+        course = Course.find_by(code: params[:course_code].strip.upcase)
+        @courses = course ? [course] : []
+      else
+        @courses = []
+      end
     end
 
     def set_student
