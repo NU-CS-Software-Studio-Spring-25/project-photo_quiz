@@ -468,6 +468,10 @@ body {
   width:100%;
 }
 
+.login-card .text-danger {
+  color: #dc3545 !important;
+}
+
 /* ...existing code... */
 .simple-site-footer {
   background: linear-gradient(135deg, var(--nu-purple-dark) 0%, var(--text-default) 50%, rgba(78,42,132,0.8));

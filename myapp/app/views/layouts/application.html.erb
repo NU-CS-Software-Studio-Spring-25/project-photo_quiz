@@ -24,7 +24,7 @@
   </head>
 
   <body>
-    <% unless devise_controller? %>
+    <% if !devise_controller? || (controller_name == "registrations" && action_name.in?(%w[edit update])) %>
       <%= render "layouts/header" %>
     <% end %>
 
