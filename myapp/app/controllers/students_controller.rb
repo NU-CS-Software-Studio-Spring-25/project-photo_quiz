@@ -1,5 +1,5 @@
 class StudentsController < ApplicationController
-  before_action :authenticate_user!, except: [ :new, :create ]
+  before_action :authenticate_user!, except: [ :new, :create, :thank_you ]
   before_action :set_student, only: [ :show, :edit, :update, :destroy, :confirm_destroy ]
   before_action :load_courses, only: %i[new edit create update]
 
@@ -105,7 +105,7 @@ class StudentsController < ApplicationController
           user: user
         )
 
-        format.html { redirect_to students_path, flash: { success: "Student was successfully created." } }
+        format.html { redirect_to thank_you_student_path(@student), flash: { success: "Student was successfully created." } }
         format.json { render :show, status: :created, location: @student }
       else
         flash.now[:alert] = "Failed to create student. Please make sure First name, Last name, and Course are filled."
@@ -144,6 +144,10 @@ end
         format.json { render json: @student.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def thank_you
+    @student = Student.find(params[:id])
   end
 
   private
