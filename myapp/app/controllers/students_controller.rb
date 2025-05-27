@@ -75,6 +75,14 @@ class StudentsController < ApplicationController
           end
 
         elsif params[:course_code].present?
+          raw_code = params[:course_code].strip.upcase
+
+          unless raw_code.match?(/\A[A-Z]{6}\z/)
+            flash.now[:alert] = "Invite code must be exactly 6 uppercase letters (A–Z)."
+            format.html { render :new, status: :unprocessable_entity }
+            format.json { render json: { error: "Invalid code format" }, status: :unprocessable_entity }
+            return
+          end
           course = Course.find_by(code: params[:course_code].strip.upcase)
 
           if course
@@ -88,7 +96,6 @@ class StudentsController < ApplicationController
             format.html { render :new }
             format.json { render json: { error: "Invalid course code" }, status: :unprocessable_entity }
           end
-
         else
           flash.now[:alert] = "Please select a course or enter a course code."
           format.html { render :new, status: :unprocessable_entity }
@@ -96,13 +103,11 @@ class StudentsController < ApplicationController
         end
       else
         flash.now[:alert] = "Failed to create student. Please make sure First name, Last name, and Course are filled."
-        format.html { render :new, status: :unprocessable_entity  }
+        format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @student.errors, status: :unprocessable_entity }
       end
     end
   end
-
-
 
   # PATCH/PUT /students/1
   # PATCH/PUT /students/1.json
@@ -113,7 +118,7 @@ class StudentsController < ApplicationController
         format.json { render :show, status: :ok, location: @student }
       else
         flash.now[:alert] = "Failed to update student. Please make sure First name, Last name, and Course are filled."
-        format.html { render :edit, status: :unprocessable_entity  }
+        format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @student.errors, status: :unprocessable_entity }
       end
     end
@@ -140,12 +145,10 @@ class StudentsController < ApplicationController
       @courses = current_user.owned_courses
     end
 
-    # Use callbacks to share common setup or constraints between actions.
     def set_student
       @student = Student.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def student_params
       params.require(:student).permit(:first_name, :last_name, :profile_picture)
     end

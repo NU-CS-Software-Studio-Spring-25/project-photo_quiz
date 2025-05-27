@@ -82,4 +82,5 @@ class CoursesController < ApplicationController
         format.html { redirect_to students_path, status: :see_other, flash: { success: "Course was successfully destroyed." } }
         format.json { head :no_content }
       end
+    end
 end
