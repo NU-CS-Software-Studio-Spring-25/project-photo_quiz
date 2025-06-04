@@ -10,6 +10,12 @@ Rails.application.routes.draw do
     member { get :confirm_destroy }
   end
 
+  resources :quizzes, only: [:index] do
+    collection do
+      get 'results' # Add this line for the results page
+    end
+  end
+
   resources :courses, except: [:index, :show]
   resources :quizzes, only: [:index]
 

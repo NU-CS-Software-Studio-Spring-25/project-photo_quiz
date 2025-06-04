@@ -184,10 +184,14 @@ document.addEventListener("DOMContentLoaded", () => {
        if (current < questions.length) {
          renderQuestion();
        } else {
-         alert(`Score: ${results.filter(Boolean).length} / ${questions.length}`);
-         quizContainer.classList.add("d-none");
-         photoEl.classList.add("d-none");
-         newBtnEl.classList.add("d-none");
+        //  alert(`Score: ${results.filter(Boolean).length} / ${questions.length}`);
+        //  quizContainer.classList.add("d-none");
+        //  photoEl.classList.add("d-none");
+        //  newBtnEl.classList.add("d-none");
+        const correctCount = results.filter(Boolean).length;
+        const totalCount = questions.length;
+        const courseId = classSelect.value; 
+        window.location.href = `/quizzes/results?course_id=${encodeURIComponent(courseId)}&correct=${correctCount}&total=${totalCount}`;
        }
      }
    });
