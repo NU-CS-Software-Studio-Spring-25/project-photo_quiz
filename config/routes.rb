@@ -7,9 +7,20 @@ Rails.application.routes.draw do
 
   # resources
   resources :students do
-    member { get :confirm_destroy }
+  member do
+      get :confirm_destroy
+      get :thank_you
+    end
   end
 
+  resources :quizzes, only: [:index] do
+    collection do
+      get 'results'
+      post 'record_answer'
+    end
+  end
+
+  
   resources :courses, except: [:index, :show]
   resources :quizzes, only: [:index]
 

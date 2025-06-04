@@ -1,0 +1,40 @@
+<div class="form-container">
+    <div class="login-card">
+    <h1 class="login-title text-center">Quiz Results</h1>
+    <br>
+
+    <% if @course %>
+      <h3 class="text-center fs-4 mb-1">Course: <%= @course.name %></h3>
+    <% elsif @course_id.present? %>
+      <p class="text-center text-danger">Course information not found.</p>
+    <% end %>
+
+    <div class="text-center mb-4">
+      <p class="fs-5">
+        You answered <strong><%= @correct_answers %></strong> out of <strong><%= @total_questions %></strong> questions correctly.
+      </p>
+      <% if @total_questions > 0 %>
+        <% percentage = ((@correct_answers.to_f / @total_questions) * 100).round(1) %>
+        <p class="fs-5">Your score: <strong><%= percentage %>%</strong></p>
+      <% end %>
+    </div>
+
+    <hr>
+
+    <div id="learning-progress-section" class="mt-4">
+      <h3 class="text-center fs-5 mb-3">Class Learning Progress</h3>
+      <% if @course %>
+        <p class="text-center fs-4">
+          Overall Mastery: <strong><%= @learning_progress_percentage %>%</strong>
+        </p>
+      <% else %>
+        <p class="text-center text-muted">(Learning progress data unavailable.)</p>
+      <% end %>
+    </div>
+
+    <div class="form-actions mt-4 d-flex justify-content-center">
+      <%= link_to "Try Another Quiz", quizzes_path, class: "btn btn-nu" %>
+      <%= link_to "Back to Courses", courses_path, class: "btn btn-nu-secondary" %>
+    </div>
+  </div>
+</div>

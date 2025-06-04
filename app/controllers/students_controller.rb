@@ -1,5 +1,5 @@
 class StudentsController < ApplicationController
-  before_action :authenticate_user!, except: [ :new ]
+  before_action :authenticate_user!, except: [ :new, :create, :thank_you ]
   before_action :set_student, only: [ :show, :edit, :update, :destroy, :confirm_destroy ]
   before_action :load_courses, only: %i[new edit create update]
 
@@ -59,48 +59,54 @@ class StudentsController < ApplicationController
   def create
     @student = Student.new(student_params)
 
-    respond_to do |format|
+    # Validate presence of first_name and last_name
+    if @student.first_name.blank? || @student.last_name.blank?
+      flash.now[:alert] = "First name and Last name can't be blank."
+      return render :new, status: :unprocessable_entity
+    end
+
+    # Validate course selection or code
+    course = nil
+    if params[:course_id].present?
+      begin
+        course = Course.find(params[:course_id])
+      rescue ActiveRecord::RecordNotFound
+        flash.now[:alert] = "Selected course not found."
+        return render :new, status: :unprocessable_entity
+      end
+    elsif params[:course_code].present?
+      raw_code = params[:course_code].strip.upcase
+
+      unless raw_code.match?(/\A[A-Z0-9]{6}\z/)
+        flash.now[:alert] = "Invite code must be exactly 6 uppercase letters (A–Z) with numbers."
+        return render :new, status: :unprocessable_entity
+      end
+
+      course = Course.find_by(code: raw_code)
+      unless course
+        flash.now[:alert] = "Invalid course code."
+        return render :new, status: :unprocessable_entity
+      end
+    else
+      flash.now[:alert] = "Please select a course or enter a course code."
+      return render :new, status: :unprocessable_entity
+    end
+
+  # Only now: safe to save the student and create membership
+  respond_to do |format|
+    ActiveRecord::Base.transaction do
       if @student.save
-        if params[:course_id].present?
-          begin
-            course = Course.find(params[:course_id])
-            Membership.create!(student: @student, course: course, user: current_user)
+        user = course.user
+        puts "Creating user: #{user} for course: #{course.name}"
 
-            format.html { redirect_to students_path, flash: { success: "Student was successfully created." } }
-            format.json { render :show, status: :created, location: @student }
-          rescue ActiveRecord::RecordNotFound
-            flash.now[:alert] = "Selected course not found."
-            format.html { render :new }
-            format.json { render json: { error: "Course not found" }, status: :unprocessable_entity }
-          end
+        Membership.create!(
+          student: @student,
+          course: course,
+          user: user
+        )
 
-        elsif params[:course_code].present?
-          raw_code = params[:course_code].strip.upcase
-
-          unless raw_code.match?(/\A[A-Z]{6}\z/)
-            flash.now[:alert] = "Invite code must be exactly 6 uppercase letters (A–Z)."
-            format.html { render :new, status: :unprocessable_entity }
-            format.json { render json: { error: "Invalid code format" }, status: :unprocessable_entity }
-            return
-          end
-          course = Course.find_by(code: params[:course_code].strip.upcase)
-
-          if course
-            @student.update(course: course.name)
-            Membership.create!(student: @student, course: course, user: course.users.first)
-
-            format.html { redirect_to students_path, flash: { notice: "Student was successfully created with course code." } }
-            format.json { render :show, status: :created, location: @student }
-          else
-            flash.now[:alert] = "Invalid course code."
-            format.html { render :new }
-            format.json { render json: { error: "Invalid course code" }, status: :unprocessable_entity }
-          end
-        else
-          flash.now[:alert] = "Please select a course or enter a course code."
-          format.html { render :new, status: :unprocessable_entity }
-          format.json { render json: { error: "No course selected or code provided" }, status: :unprocessable_entity }
-        end
+        format.html { redirect_to thank_you_student_path(@student), flash: { success: "Student was successfully created." } }
+        format.json { render :show, status: :created, location: @student }
       else
         flash.now[:alert] = "Failed to create student. Please make sure First name, Last name, and Course are filled."
         format.html { render :new, status: :unprocessable_entity }
@@ -108,6 +114,7 @@ class StudentsController < ApplicationController
       end
     end
   end
+end
 
   # PATCH/PUT /students/1
   # PATCH/PUT /students/1.json
@@ -117,7 +124,7 @@ class StudentsController < ApplicationController
         format.html { redirect_to students_path, flash: { success: "Student was successfully updated." } }
         format.json { render :show, status: :ok, location: @student }
       else
-        flash.now[:alert] = "Failed to update student. Please make sure First name, Last name, and Course are filled."
+        flash.now[:alert] = "Failed to update student. Please make sure First name and Last name are filled."
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @student.errors, status: :unprocessable_entity }
       end
@@ -139,10 +146,21 @@ class StudentsController < ApplicationController
     end
   end
 
+  def thank_you
+    @student = Student.find(params[:id])
+  end
+
   private
 
     def load_courses
-      @courses = current_user.owned_courses
+      if user_signed_in?
+        @courses = current_user.owned_courses
+      elsif params[:course_code].present?
+        course = Course.find_by(code: params[:course_code].strip.upcase)
+        @courses = course ? [course] : []
+      else
+        @courses = []
+      end
     end
 
     def set_student
