@@ -44,17 +44,24 @@
           </div>
 
           <!-- Course Selection via dropdown -->
-          <div class="form-group">
-            <%= label_tag :course_id, "Select Course" %>
-            <%= select_tag :course_id,
-                  options_from_collection_for_select(@courses, :id, :name, params[:course_id]),
-                  prompt: "Choose a Course",
-                  class: "form-control" %>
-          </div>
+          <% if @courses.present? %>
+            <div class="form-group">
+              <%= label_tag :course_id, "Select Course" %>
+              <%= select_tag :course_id,
+                    options_from_collection_for_select(@courses, :id, :name, params[:course_id]),
+                    prompt: "Choose a Course",
+                    class: "form-control" %>
+            </div>
+            <p>
+              <small class="text-muted">
+                Or you can enter an invite code below to join a course directly.
+              </small>
+            </p>
+          <% end %>
 
           <!-- Course Selection via Invite Code -->
           <div class="form-group mt-3">
-            <%= label_tag :course_code, "Or enter Invite Code instead" %>
+            <%= label_tag :course_code, "Invite Code" %>
             <%= text_field_tag :course_code, params[:course_code], class: "form-control", placeholder: "e.g. X7Y2KL", autocomplete: "off" %>
           </div>
         </div>

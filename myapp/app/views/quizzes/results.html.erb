@@ -1,10 +1,10 @@
-<div class="container py-4">
-  <div class="login-card">
+<div class="form-container">
+    <div class="login-card">
     <h1 class="login-title text-center">Quiz Results</h1>
     <br>
 
     <% if @course %>
-      <h2 class="text-center fs-4 mb-3">Course: <%= @course.name %></h2>
+      <h3 class="text-center fs-4 mb-1">Course: <%= @course.name %></h3>
     <% elsif @course_id.present? %>
       <p class="text-center text-danger">Course information not found.</p>
     <% end %>
@@ -21,15 +21,61 @@
 
     <hr>
 
-    <div id="learning-progress-section" class="mt-4">
-      <h3 class="text-center fs-5 mb-3">Learning Progress</h3>
-      <p class="text-center text-muted">(Overall learning progress for this course will be displayed here in the next update.)</p>
-      <%# This section will be populated with mastery data later %>
+    <div id="learning-progress-section" class="mt-4 d-flex flex-column align-items-center">
+        <h3 class="text-center fs-5 mb-3">Class Learning Progress</h3>
+        <div class="chart-container" style="width:340px; height:340px;">
+            <canvas id="masteryChart"
+                    data-mastered="<%= @name_mastery2 %>"
+                    data-learning="<%= @name_mastery1 %>"
+                    data-unlearned="<%= @name_mastery0 %>">
+            </canvas>
+        </div>
+      <% if @course %>
+        <p class="text-center fs-4">
+          Overall Mastery: <strong><%= @learning_progress_percentage %>%</strong>
+        </p>
+      <% else %>
+        <p class="text-center text-muted">(Learning progress data unavailable.)</p>
+      <% end %>
     </div>
 
     <div class="form-actions mt-4 d-flex justify-content-center">
-      <%= link_to "Try Another Quiz", quizzes_path, class: "btn btn-nu me-2" %>
+      <%= link_to "Try Another Quiz", quizzes_path, class: "btn btn-nu" %>
       <%= link_to "Back to Courses", courses_path, class: "btn btn-nu-secondary" %>
     </div>
   </div>
 </div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", ()=> {
+    const ctx = document.getElementById("masteryChart").getContext("2d");
+
+    const data = {
+      labels: ["Mastered","Learning","Unlearned"],
+      datasets: [{
+        data: [<%= @name_mastery2 %>,<%= @name_mastery1 %>,<%= @name_mastery0 %>],
+        backgroundColor: ["#3A1F66","#8E44AD","#D3D3D3"],
+        hoverOffset: 20
+      }]
+    };
+
+    const options = {
+      responsive: true,
+      cutout: "60%",
+      animation: { animateScale: true, duration: 1000 },
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: ctx => `${ctx.label}: ${ctx.parsed}%`
+          }
+        },
+        legend: {
+          position: "bottom",
+          labels: { boxWidth: 12, padding: 16 }
+        }
+      }
+    };
+
+    new Chart(ctx, { type: "doughnut", data, options });
+  });
+</script>

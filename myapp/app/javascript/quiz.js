@@ -21,6 +21,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const newBtnEl = document.getElementById("action-btn");
   const newOptsEl = document.getElementById("options-container");
 
+  function getCsrfToken() {
+    const token = document.querySelector('meta[name="csrf-token"]');
+    return token ? token.content : null;
+  }
+
   function normalize(s) {
     return s.toLowerCase().trim().replace(/\s+/g, " ");
   }
@@ -177,6 +182,27 @@ document.addEventListener("DOMContentLoaded", () => {
         fbEl.textContent = ok ? "✅ Correct!" : "❌ Sorry, wrong.";
       }
        results.push(ok);
+       if (ok && q.student_id) { // Only if correct and student_id is available
+         fetch('/quizzes/record_answer', {
+           method: 'POST',
+           headers: {
+             'Content-Type': 'application/json',
+             'X-CSRF-Token': getCsrfToken() // Send CSRF token
+           },
+           body: JSON.stringify({
+             student_id: q.student_id,
+             course_id: classSelect.value, // For context if needed by backend later
+             correct: true // 'ok' variable already confirms this
+           })
+         })
+         .then(response => response.json())
+         .then(data => {
+           console.log('Answer recorded:', data);
+         })
+         .catch(err => {
+           console.error('Failed to record answer:', err);
+         });
+       }
        newBtnEl.textContent = "Next";
        mode = "next";
      } else {
@@ -184,10 +210,6 @@ document.addEventListener("DOMContentLoaded", () => {
        if (current < questions.length) {
          renderQuestion();
        } else {
-        //  alert(`Score: ${results.filter(Boolean).length} / ${questions.length}`);
-        //  quizContainer.classList.add("d-none");
-        //  photoEl.classList.add("d-none");
-        //  newBtnEl.classList.add("d-none");
         const correctCount = results.filter(Boolean).length;
         const totalCount = questions.length;
         const courseId = classSelect.value; 
