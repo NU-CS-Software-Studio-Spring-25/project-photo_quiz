@@ -8,6 +8,8 @@ class User < ApplicationRecord
   has_many :owned_courses, class_name: "Course"
   has_many :courses, through: :memberships
   has_many :students, through: :memberships
-  # Apply validation for full_name only when creating or updating the user
-  validates :full_name, presence: true, if: :new_record?
+  validates :full_name, presence: true
+  validates :full_name, length: { maximum: 50 }
+  VALID_NAME_REGEX = /\A[a-zA-Z\s\-']+\z/
+  validates :full_name, format: { with: VALID_NAME_REGEX, message: "only allows letters, spaces, hyphens, and apostrophes" }
 end
