@@ -21,8 +21,15 @@
 
     <hr>
 
-    <div id="learning-progress-section" class="mt-4">
-      <h3 class="text-center fs-5 mb-3">Class Learning Progress</h3>
+    <div id="learning-progress-section" class="mt-4 d-flex flex-column align-items-center">
+        <h3>Class Learning Progress</h3>
+        <div class="chart-container" style="width:340px; height:340px;">
+            <canvas id="masteryChart"
+                    data-mastered="<%= @name_mastery2 %>"
+                    data-learning="<%= @name_mastery1 %>"
+                    data-unlearned="<%= @name_mastery0 %>">
+            </canvas>
+        </div>
       <% if @course %>
         <p class="text-center fs-4">
           Overall Mastery: <strong><%= @learning_progress_percentage %>%</strong>
@@ -38,3 +45,37 @@
     </div>
   </div>
 </div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", ()=> {
+    const ctx = document.getElementById("masteryChart").getContext("2d");
+
+    const data = {
+      labels: ["Mastered","Learning","Unlearned"],
+      datasets: [{
+        data: [<%= @name_mastery2 %>,<%= @name_mastery1 %>,<%= @name_mastery0 %>],
+        backgroundColor: ["#3A1F66","#8E44AD","#D3D3D3"],
+        hoverOffset: 20
+      }]
+    };
+
+    const options = {
+      responsive: true,
+      cutout: "60%",
+      animation: { animateScale: true, duration: 1000 },
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: ctx => `${ctx.label}: ${ctx.parsed}%`
+          }
+        },
+        legend: {
+          position: "bottom",
+          labels: { boxWidth: 12, padding: 16 }
+        }
+      }
+    };
+
+    new Chart(ctx, { type: "doughnut", data, options });
+  });
+</script>

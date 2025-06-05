@@ -69,29 +69,38 @@ class QuizzesController < ApplicationController
     @course_id = params[:course_id]
     @correct_answers = params[:correct].to_i
     @total_questions = params[:total].to_i
+    @course            = current_user.owned_courses.find_by(id: @course_id)
 
-    @course = current_user.owned_courses.find_by(id: @course_id)
-    @learning_progress_percentage = 0
-    @students_in_course_with_mastery = []
+    # ensure we always have a relation to work with
+    students_in_course = @course ? @course.students : Student.none
 
-    if @course
-      students_in_course = @course.students # Assuming @course.students gives all students in the course
-      total_students_in_course = students_in_course.count
+    # compute bucket counts
+    total             = students_in_course.count
+    @mastered_count   = students_in_course.where("name_mastery >= ?", 2).count
+    @learning_count   = students_in_course.where(name_mastery: 1).count
+    @unlearned_count  = students_in_course.where(name_mastery: 0).count
 
-      if total_students_in_course > 0
-        total_achieved_mastery_points = students_in_course.sum(:name_mastery)
-        # Max possible mastery points = number of students * 2 (since mastery is 2 per student)
-        max_possible_mastery_points = total_students_in_course * 2.0 
-
-        if max_possible_mastery_points > 0
-          @learning_progress_percentage = ((total_achieved_mastery_points.to_f / max_possible_mastery_points) * 100).round(1)
-        end
-        
-        # For displaying individual student progress (optional)
-        @students_in_course_with_mastery = students_in_course.select(:id, :first_name, :last_name, :name_mastery, :learned).order(:last_name, :first_name)
-      end
-    elsif @course_id.present?
-      flash.now[:alert] = "Could not find the specified course." # Use flash.now for render
+    # percentages for Chart.js
+    if total > 0
+      @name_mastery2 = (@mastered_count.to_f  / total * 100).round(1)
+      @name_mastery1 = (@learning_count.to_f  / total * 100).round(1)
+      @name_mastery0 = (@unlearned_count.to_f / total * 100).round(1)
+    else
+      @name_mastery2 = @name_mastery1 = @name_mastery0 = 0
     end
+
+    # overall learning-progress percentage
+    max_points = total * 2.0
+    @learning_progress_percentage =
+      if max_points > 0
+        ((students_in_course.sum(:name_mastery).to_f / max_points) * 100).round(1)
+      else
+        0
+      end
+
+    # optional: individual student mastery details
+    @students_in_course_with_mastery =
+      students_in_course.select(:id, :first_name, :last_name, :name_mastery, :learned)
+                        .order(:last_name, :first_name)
   end
 end

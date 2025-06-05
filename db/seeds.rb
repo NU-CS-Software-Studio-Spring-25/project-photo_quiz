@@ -5,6 +5,9 @@ require 'open-uri'
 users = [
   { full_name: 'Alice Smith', email: 'alice@example.com', password: 'password', password_confirmation: 'password' },
   { full_name: 'Bob Jones',   email: 'bob@example.com',   password: 'password', password_confirmation: 'password' },
+  { full_name: 'Charlie Brown', email: 'charlie@example.com', password: 'password', password_confirmation: 'password' },
+  { full_name: 'Chloe Kim', email: 'cloi@example.com', password: 'password', password_confirmation: 'password' },
+  { full_name: 'Watt Electric', email: 'power@example.com', password: 'password', password_confirmation: 'password' }
 ]
 
 users.each do |attrs|
