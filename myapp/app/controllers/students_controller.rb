@@ -109,7 +109,7 @@ class StudentsController < ApplicationController
         format.html { redirect_to thank_you_student_path(@student), flash: { success: "Student was successfully created." } }
         format.json { render :show, status: :created, location: @student }
       else
-        flash.now[:alert] = "Failed to create student. Please make sure First name, Last name, and Course are filled."
+        flash.now[:alert] = "Failed to create student. Please ensure that you have correctly filled out each field properly."
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @student.errors, status: :unprocessable_entity }
       end
