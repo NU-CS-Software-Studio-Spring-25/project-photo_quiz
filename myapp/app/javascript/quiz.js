@@ -34,18 +34,32 @@ document.addEventListener("DOMContentLoaded", () => {
     // Render options
     if (q.type === "name") {
       newOptsEl.innerHTML = `
-        <input id="text-answer" type="text"
-               class="form-control mb-3 search-input"
-               placeholder="Type name…">`;
+      <label for="text-answer" class="visually-hidden">Type your answer</label>
+      <input id="text-answer" type="text"
+            class="form-control mb-3 search-input"
+            placeholder="Type name…"
+            aria-describedby="name-help">
+      <small id="name-help" class="form-text text-muted">
+        Enter student first name, last name, or both.
+      </small>
+    `;
     } else {
-      newOptsEl.innerHTML = `<div class="options-grid">` +
-        q.options.map((opt, i) => `
-          <label class="option-box">
-            <input type="radio" name="answer" value="${opt}" hidden>
-            <div class="option-text">${opt}</div>
+       newOptsEl.innerHTML = `
+      <fieldset class="options-grid" role="radiogroup" aria-label="Answer choices">
+        ${q.options.map((opt, i) => `
+          <label class="option-box" for="answer-${i}">
+            <input
+              type="radio"
+              name="answer"
+              id="answer-${i}"
+              value="${opt}"
+              class="visually-hidden"
+              aria-label="Option ${opt}"
+            >
+            <span class="option-text">${opt}</span>
           </label>
-        `).join("") +
-        `</div>`;
+        `).join("")}
+      </fieldset>`;
     }
 
     // Reset feedback/button/progress
