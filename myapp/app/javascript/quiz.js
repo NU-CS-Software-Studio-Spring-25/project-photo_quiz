@@ -38,11 +38,12 @@ document.addEventListener("DOMContentLoaded", () => {
       <input id="text-answer" type="text"
             class="form-control mb-3 search-input"
             placeholder="Type name…"
-            aria-describedby="name-help">
+            aria-describedby="name-help"
+            aria-label="Student name" />
       <small id="name-help" class="form-text text-muted">
         Enter student first name, last name, or both.
       </small>
-    `;
+      `;
     } else {
        newOptsEl.innerHTML = `
       <fieldset class="options-grid" role="radiogroup" aria-label="Answer choices">
