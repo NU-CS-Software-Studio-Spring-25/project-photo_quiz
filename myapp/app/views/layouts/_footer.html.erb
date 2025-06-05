@@ -5,7 +5,8 @@
       </div>
       <nav class="footer-nav-simple">
         <%= link_to "Home", root_path %>
-        <%= link_to "Students", students_path %>
+        <%= link_to "Directory", students_path %>
+        <%= link_to 'Dashboard', dashboards_path %>
         <%= link_to "Quizzes", quizzes_path %>
         <%= link_to "For Students", new_student_path %>
         <% if user_signed_in? %>
