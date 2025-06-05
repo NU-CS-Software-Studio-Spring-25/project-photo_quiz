@@ -25,6 +25,8 @@
         <h3>Class Learning Progress</h3>
         <div class="chart-container" style="width:340px; height:340px;">
             <canvas id="masteryChart"
+                    role="img"
+                    aria-label="Class learning progress: <%= @name_mastery2 %>% mastered, <%= @name_mastery1 %>% learning, <%= @name_mastery0 %>% unlearned."
                     data-mastered="<%= @name_mastery2 %>"
                     data-learning="<%= @name_mastery1 %>"
                     data-unlearned="<%= @name_mastery0 %>">

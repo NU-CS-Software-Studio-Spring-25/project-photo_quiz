@@ -32,6 +32,7 @@ course_records = courses.map.with_index do |data, i|
   Course.create!(data.merge(user: user_records[i % user_records.length]))
 end
 
+
 # Add some random courses, but make sure names are unique
 10.times do |i|
   name = Faker::Educator.unique.course_name.gsub(/[^\w\s\-']/, '')
