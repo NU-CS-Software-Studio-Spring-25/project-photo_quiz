@@ -14,7 +14,11 @@
     <%= f.label :name, "Course Name" %><br>
     <%= f.text_field :name,
           class: "form-control",
-          placeholder: "e.g. CS 397" %>
+          placeholder: "e.g. CS 397",
+          aria: { describedby: "course-name-help" } %>
+    <small id="course-name-help" class="form-text text-muted">
+      Enter the official course code, e.g., CS 397.
+    </small>
   </div>
 
   <div class="form-actions mt-4 d-flex justify-content-end">
