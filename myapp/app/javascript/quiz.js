@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Show photo
     photoEl.style.backgroundImage = `url('${q.photo_url}')`;
     photoEl.classList.toggle("d-none", !q.photo_url);
-
+  
     // Render options
     if (q.type === "name") {
       newOptsEl.innerHTML = `
@@ -42,12 +42,14 @@ document.addEventListener("DOMContentLoaded", () => {
         q.options.map((opt, i) => `
           <label class="option-box">
             <input type="radio" name="answer" value="${opt}" hidden>
-            <div class="option-text">${opt}</div>
+            <div class="option-text"
+                 role="button"
+                 tabindex="0">${opt}</div>
           </label>
         `).join("") +
         `</div>`;
     }
-
+  
     // Reset feedback/button/progress
     fbEl.textContent  = "";
     newBtnEl.textContent = "Check";
@@ -55,6 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
     progressEl.textContent = `${current + 1} / ${questions.length}`;
     mode = "check";
   }
+  
 
   // Start Quiz
   newStartBtn.addEventListener("click", () => {
