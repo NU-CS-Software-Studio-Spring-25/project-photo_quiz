@@ -10,9 +10,13 @@
  */
 
 
-@import "bootstrap";
-@import "bootstrap/scss/bootstrap";
- 
+/*
+ *= link_tree ../images
+ *= link_directory ../stylesheets .css
+*/
+html, body {
+  overflow-x: hidden;
+}
 
 body {
     margin: 0;
@@ -58,8 +62,8 @@ body {
 
     padding: 1rem 50px;                      /* 2rem top/bottom, 50px left/right */
     background:
-      linear-gradient(135deg, rgba(78,42,132,0.8), rgba(58,31,102,0.8)),
-      url('<%= asset_path("hero.jpg") %>') center/cover no-repeat;
+      linear-gradient(135deg, rgba(78,42,132,0.8), rgba(58,31,102,0.8));
+      /*url('<%= asset_path("hero.jpg") %>') center/cover no-repeat; */
     color: #fff;
   }
   
@@ -86,7 +90,7 @@ body {
   .hero-links {
     display: flex;
     align-items: center; 
-    gap: 30px;                               /* space between buttons */
+    gap: 10px;                               /* space between buttons */
     margin-right: 50px;                      /* distance from right edge */
   }
   .hero-links .btn {
@@ -646,6 +650,272 @@ body {
   white-space: nowrap;
   padding: 0.4rem 0; /* Align vertically with page links */
 }
+
+/* ─── DASHBOARD “Your Progress” CARD ─────────────────────────────────────── */
+.progress-card {
+  width: 100%;
+  max-width: 1200px;       /* or whatever your content max-width is */
+  margin: 0 auto 3rem;     /* center it & add bottom gap */
+  display: flex;
+  justify-content: center; /* center chart + details */
+  align-items: center;
+  gap: 3rem;
+  border: 2px solid var(--nu-purple-dark);
+  border-radius: .75rem;
+  padding: 2rem;
+  background: #fff;
+}
+.chart-container.large {
+  position: relative;
+  width: 350px;      
+  height: 350px;
+}
+.chart-container.large canvas {
+  width: 100%;
+  height: 100%;
+}
+.center-text {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+.center-text .label { font-size: 1.1rem }
+.center-text .value { font-size: 2rem; font-weight: 600 }
+
+/* vertically center the summary text next to chart */
+.progress-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+.progress-details p { margin: .5rem 0 }
+/* ─── DONUT & CENTER TEXT ───────────────────────────────────────────── */
+.chart-container.large {
+  position: relative;
+  width: 300px;
+  height: 300px;
+}
+.chart-container.large canvas {
+  width: 100%;
+  height: 100%;
+}
+.center-text {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+.center-text .label {
+  font-size: 1rem;
+  color: var(--text-default);
+}
+.center-text .value {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--text-default);
+}
+/* ─── LEADERBOARD FULL-BLEED & DECOR ───────────────────────────────── */
+.leaderboard-section-wrapper {
+  
+  margin-right: 0;
+  width: 100vw;
+  position: relative;
+  background: var(--nu-purple-dark);
+  padding: 1rem 50px;   
+  overflow: hidden;
+}
+
+.leaderboard-title {
+  color: #fff;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-size: 2rem;
+}
+@media (min-width: 576px) {
+  .leaderboard-section-wrapper {
+    margin-left: -5vw; margin-right: -5vw;
+  }
+}
+.leaderboard-section-wrapper .container {
+  padding-inline: clamp(var(--page-pad-min), 5vw, var(--page-pad-max));
+}
+/* subtle blurred bubbles */
+.leaderboard-section-wrapper::before,
+.leaderboard-section-wrapper::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+  filter: blur(80px);
+}
+.leaderboard-section-wrapper::before {
+  width: 250px; height: 250px;
+  top: 20px; 
+}
+.leaderboard-section-wrapper::after {
+  width: 350px; height: 350px;
+  top: -50px; 
+}
+
+/* ─── PODIUM TOP-3 ────────────────────────────────────────────────────────── */
+.podium {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+.podium-item {
+  flex: 1 1 120px;      /* grow/shrink, min 120px */
+  max-width: 160px;     /* cap at 160px */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  text-align: center;
+}
+.podium-name {
+  color: #fff;
+  margin-bottom: .5rem;
+  font-weight: 600;
+}
+.podium-bar {
+  --bar-height: 0%;
+  width: 100%;
+  height: 0;
+  background: #8E44AD;
+  border-radius: 6px 6px 0 0;
+  position: relative;
+  animation: grow-bar 1s ease-out forwards;
+}
+.podium-bar.highlight {
+  background: #ffce00;
+}
+.podium-item:nth-child(1) .podium-bar {
+  height: 100px !important;
+}
+.podium-item:nth-child(2) .podium-bar {
+  height:  70px !important;
+}
+.podium-item:nth-child(3) .podium-bar {
+  height:  50px !important;
+}
+@keyframes grow-bar {
+  from { height: 0; }
+  to   { height: var(--bar-height); }
+}
+
+.podium-bar .position {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.podium-pts {
+  color: #fff;
+  margin-top: .5rem;
+  font-size: .9rem;
+}
+.podium-bar .name  { margin-top: 4px; font-size: 1rem }
+.podium-bar .pts   { margin-bottom: 6px; font-size: .9rem }
+
+/* ─── OTHER RANKS & YOUR POSITION ─────────────────────────────────────── */
+
+.your-position {
+  background: #fff;
+  color: var(--nu-purple-dark);
+  border: 2px solid #fff;
+  border-radius: .5rem;
+  display: inline-block;
+  padding: .75rem 1rem;
+  margin: 1rem auto 0;
+  font-weight: 600;
+}
+.other-ranks .list-group-item {
+  background: #fff;
+  color: var(--text-default);
+  padding: 1rem 1rem;
+  max-width: 80%;
+  margin-bottom: .5rem;
+  border: none;
+  
+  border-radius: .25rem;
+}
+.other-ranks {
+  list-style: none;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0;
+}
+.other-ranks li {
+  display: flex;
+  align-items: center;
+  padding: .75rem 1rem;
+  background: #fff;
+  border-radius: .5rem;
+  margin-bottom: .5rem;
+}
+.other-ranks .rank {
+  flex: 0 0 auto;
+  width: 2.5rem;
+  font-weight: 600;
+}
+.other-ranks .name {
+  flex: 1 1 auto;
+  text-align: left;
+}
+.other-ranks .pts {
+  flex: 0 0 auto;
+  font-weight: 600;
+}
+
+/* ─── CTA BUTTONS ───────────────────────────────────────────────────────── */
+.btn-outline-nu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 2px solid var(--nu-purple-dark);
+  background: transparent;
+  color: var(--nu-purple-dark);
+  border-radius: .75rem;
+  padding: 4rem 5rem;
+  font-size: 1.1rem;
+  
+  text-decoration: none;
+}
+.cta-buttons {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  max-width: 1100px;
+  padding: 3rem 0rem;
+  margin: 0 auto 2rem;     /* center under everything */
+}
+.cta-buttons .btn-outline-nu {
+  flex: 1;
+  margin: 0;
+}
+.btn-outline-nu::after {
+  content: "›";
+  font-size: 1.5rem;
+  margin-left: .5rem;
+}
+.btn-outline-nu:hover {
+  background: rgba(58,31,102,0.1);
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+  cursor: pointer;
+}
+
+
 @media (max-width: 767px) {
     .hero {
       flex-direction: column;
@@ -666,7 +936,15 @@ body {
         margin: .1rem 0;        /* vertical spacing between buttons */
         text-align: center;
       }
-    
+    .cta-buttons  {
+        display: block;
+        width: 100%;            /* full width of the inset container */
+        display: inline-block; 
+        margin: 1rem 0.9rem;        /* vertical spacing between buttons */
+        text-align: center;
+        padding: 3rem 0rem;
+        margin: 0 auto 1rem;   
+      }
 
     .btn-nu-secondary {
         display: block;
@@ -745,6 +1023,10 @@ body {
         width: 1.9em;
         height: 1.9em;
         box-shadow: 0 0 0 3px rgba(182, 163, 201, 0.3);
+      }
+      .podium-item {
+        flex: 1 1 45%;     /* two across on small devices */
+        max-width: none;
       }
     
   }

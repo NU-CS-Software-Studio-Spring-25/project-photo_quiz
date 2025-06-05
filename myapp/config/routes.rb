@@ -12,7 +12,15 @@ Rails.application.routes.draw do
       get :thank_you
     end
   end
-  
+
+  resources :quizzes, only: [:index] do
+    collection do
+      get 'results'
+      post 'record_answer'
+    end
+  end
+
+  resources :dashboards, only: [:index]
   resources :courses, except: [:index, :show]
   resources :quizzes, only: [:index]
   resources :professors, only: [:new, :create]
