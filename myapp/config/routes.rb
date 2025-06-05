@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   devise_for :users, sign_out_via: %i[delete get]
 
   # Single root
-  root to: "students#index"
+  root to: "homepage#index"
 
   # resources
   resources :students do

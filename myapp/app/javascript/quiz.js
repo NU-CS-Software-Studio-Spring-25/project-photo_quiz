@@ -25,11 +25,17 @@ document.addEventListener("DOMContentLoaded", () => {
     return s.toLowerCase().trim().replace(/\s+/g, " ");
   }
 
+  // Add accessible aria-label for dynamically updated images
+  function updatePhotoAccessibility(photoEl, description) {
+    photoEl.setAttribute('aria-label', description || 'Quiz question image');
+  }
+
   function renderQuestion() {
     const q = questions[current];
     // Show photo
     photoEl.style.backgroundImage = `url('${q.photo_url}')`;
     photoEl.classList.toggle("d-none", !q.photo_url);
+    updatePhotoAccessibility(photoEl, q.photo_description); // Add accessibility
 
     // Render options
     if (q.type === "name") {
@@ -191,4 +197,38 @@ document.addEventListener("DOMContentLoaded", () => {
        }
      }
    });
+
+  // Adding landmarks for accessibility
+
+  // Wrap the quiz container in a <main> landmark
+  const mainEl = document.createElement("main");
+  mainEl.setAttribute("role", "main");
+  mainEl.setAttribute("aria-labelledby", "quiz-title");
+  quizContainer.parentNode.insertBefore(mainEl, quizContainer);
+  mainEl.appendChild(quizContainer);
+
+  // Add an <h1> for the quiz title if not already present
+  if (!document.getElementById("quiz-title")) {
+    const quizTitle = document.createElement("h1");
+    quizTitle.id = "quiz-title";
+    quizTitle.textContent = "Photo Quiz"; // Adjust title as needed
+    mainEl.insertBefore(quizTitle, quizContainer);
+  }
+
+  // Ensure feedback section has an appropriate role
+  fbEl.setAttribute("role", "status");
+  fbEl.setAttribute("aria-live", "polite");
+
+  // Ensure options container has a role of group
+  optsEl.setAttribute("role", "group");
+  optsEl.setAttribute("aria-labelledby", "options-label");
+
+  // Add a visually hidden label for options if not present
+  if (!document.getElementById("options-label")) {
+    const optionsLabel = document.createElement("span");
+    optionsLabel.id = "options-label";
+    optionsLabel.textContent = "Answer options";
+    optionsLabel.classList.add("visually-hidden");
+    optsEl.parentNode.insertBefore(optionsLabel, optsEl);
+  }
   });
