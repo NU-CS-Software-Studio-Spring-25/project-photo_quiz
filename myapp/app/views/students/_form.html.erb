@@ -71,7 +71,7 @@
               class: "form-control",
               aria: { describedby: "first-name-help" } %>
             <small id="first-name-help" class="form-text text-muted">
-              Enter your first name or nickname that you would like to be recognized as.
+              Enter your first name or nickname that you would like to be recognized as. (25 characters max)
             </small>       
           </div>
 
@@ -81,7 +81,7 @@
               class: "form-control",
               aria: { describedby: "last-name-help" } %>
             <small id="last-name-help" class="form-text text-muted">
-              Enter your last name as shown on your school record.
+              Enter your last name as shown on your school record. (25 characters max)
             </small>     
           </div>
 
@@ -109,7 +109,11 @@
           <!-- Course Selection via Invite Code -->
           <div class="form-group mt-3">
             <%= label_tag :course_code, "Invite Code" %>
-            <%= text_field_tag :course_code, params[:course_code], class: "form-control", placeholder: "e.g. X7Y2KL", autocomplete: "off" %>
+            <%= text_field_tag :course_code, params[:course_code],
+                class: "form-control",
+                placeholder: "e.g. X7Y2KL",
+                autocomplete: "off",
+                id: "course_code" %>
           </div>
         </div>
       </div>
