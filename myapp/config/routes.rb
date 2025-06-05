@@ -3,7 +3,12 @@ Rails.application.routes.draw do
   devise_for :users, sign_out_via: %i[delete get]
 
   # Single root
-  root to: "homepage#index"
+  #root to: 'dashboards#index', as: :authenticated_root
+  
+
+  # when user is not signed in, root → homepage#index
+  root to: 'homepage#index', as: :unauthenticated_root
+  
 
   # resources
   resources :students do

@@ -32,7 +32,7 @@
   </head>
 
   <body>
-    <% if !devise_controller? || (controller_name == "registrations" && action_name.in?(%w[edit update])) %>
+    <% if !devise_controller?  || controller_name == "homepage" || (controller_name == "registrations" && action_name.in?(%w[edit update])) %>
       <%= render "layouts/header" %>
     <% end %>
 
