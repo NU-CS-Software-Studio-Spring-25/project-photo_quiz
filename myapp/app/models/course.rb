@@ -7,6 +7,7 @@ class Course < ApplicationRecord
   before_create :generate_unique_code
 
   validates :name, presence: true
+  validates :name, length: { maximum: 25 }
   VALID_COURSE_NAME_REGEX = /\A[a-zA-Z0-9\s\-\']+\z/
   validates :name, format: { with: VALID_COURSE_NAME_REGEX, message: "only allows letters, numbers, spaces, hyphens, and apostrophes" }
 

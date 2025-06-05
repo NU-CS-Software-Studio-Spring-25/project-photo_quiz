@@ -57,9 +57,22 @@ Rails.application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
 
+  # Setup Email delivery method.
+  # Use (Google) SMTP for sending emails.
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: ENV["SMTP_ADDRESS"],
+    port: ENV['SMTP_PORT'].to_i,
+    domain: ENV['SMTP_DOMAIN'],
+    user_name: ENV['GMAIL_USERNAME'],
+    password: ENV['GMAIL_PASSWORD'],
+    authentication: "plain",
+    enable_starttls_auto: true,
+  }
   # Set host to be used by links generated in mailer templates.
-  config.action_mailer.default_url_options = { host: "https://photoquiz-3b8e3c177329.herokuapp.com", protocol: 'https' }
+  config.action_mailer.default_url_options = { host: "photoquiz-3b8e3c177329.herokuapp.com/", protocol: "https" }
 
+  
   # Specify outgoing SMTP server. Remember to add smtp/* credentials via rails credentials:edit.
   # config.action_mailer.smtp_settings = {
   #   user_name: Rails.application.credentials.dig(:smtp, :user_name),

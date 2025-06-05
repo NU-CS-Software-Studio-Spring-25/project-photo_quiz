@@ -8,6 +8,8 @@ gem 'faker'
 gem "rubocop", require: false
 gem "erb_lint", require: false
 gem "reek", require: false
+gem 'dotenv-rails', groups: [:development, :test]
+gem "sidekiq"
 
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem "propshaft"
