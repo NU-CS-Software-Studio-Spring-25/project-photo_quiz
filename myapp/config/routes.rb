@@ -13,9 +13,9 @@ Rails.application.routes.draw do
     end
   end
   
+  resources :homepage, only: [:index]
   resources :courses, except: [:index, :show]
   resources :quizzes, only: [:index]
-  resources :professors, only: [:new, :create]
 
   # Adding routes for custom error pages
   match '/404', to: 'errors#show', code: 404, via: :all
