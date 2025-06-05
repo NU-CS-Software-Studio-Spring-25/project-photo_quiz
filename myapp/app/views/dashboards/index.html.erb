@@ -4,6 +4,8 @@
   <div class="progress-card">
     <div class="chart-container large">
       <canvas id="dashboardDonut"
+      role="img"
+              aria-label="learning progress: <%= @name_mastery2 %>% mastered, <%= @name_mastery1 %>% learning, <%= @name_mastery0 %>% unlearned."
               data-progress="<%= @overall_progress %>">
       </canvas>
       <div class="center-text">
