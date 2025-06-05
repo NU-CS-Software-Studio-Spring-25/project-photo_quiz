@@ -104,7 +104,8 @@ class StudentsController < ApplicationController
           course: course,
           user: user
         )
-
+        StudentMailer.new_student_notification(@student, user, course).deliver_later
+        Rails.logger.info "Sending email to #{user.email} for student #{@student.first_name} #{@student.last_name} in course #{course.name}"
         format.html { redirect_to thank_you_student_path(@student), flash: { success: "Student was successfully created." } }
         format.json { render :show, status: :created, location: @student }
       else
