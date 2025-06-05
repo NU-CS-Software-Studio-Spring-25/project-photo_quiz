@@ -1,0 +1,119 @@
+<div class="container py-4">
+  <h1>Your progress</h1>
+
+  <div class="progress-card">
+    <div class="chart-container large">
+      <canvas id="dashboardDonut"
+              data-progress="<%= @overall_progress %>">
+      </canvas>
+      <div class="center-text">
+        <div class="label">Overall Progress</div>
+        <div class="value"><%= @overall_progress %>%</div>
+      </div>
+    </div>
+    <div class="progress-details">
+    
+      <p>Total: <strong><%= current_user.owned_courses.count %></strong> courses &amp;
+         <strong><%= @students.size %></strong> students</p>
+
+      <% if @most_learnt_course %>
+        <p>
+          Most learnt course:<br>
+          <%= link_to @most_learnt_course.name, course_path(@most_learnt_course) %><br>
+          <%= @most_learnt_learned_count %> learnt, <%= @most_learnt_learning_count %> learning
+        </p>
+      <% end %>
+
+      <% if @least_learnt_course %>
+        <p>
+          Least learnt course:<br>
+          <%= link_to @least_learnt_course.name, course_path(@least_learnt_course) %><br>
+          <%= @least_learnt_learned_count %> learnt, <%= @least_learnt_learning_count %> learning
+        </p>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="leaderboard-section-wrapper">
+  <h1 class="leaderboard-title">Leaderboard</h1>
+
+  <div class="podium">
+    <% @top3.each_with_index do |u, idx| %>
+      <% pct = @max_mastery.zero? ? 0 : ((u.total_mastery.to_f / @max_mastery) * 100).round %>
+      <div class="podium-item">
+        <div class="podium-name"><%= u.email.split('@').first.upcase %></div>
+        <div class="podium-bar<%= ' highlight' if u.id == current_user.id %>"
+             style="--bar-height: <%= pct %>%;">
+          <span class="position"><%= idx+1 %></span>
+        </div>
+        <div class="podium-pts"><%= u.total_mastery %> pts</div>
+      </div>
+    <% end %>
+  </div>
+
+  <% if @others.any? %>
+    <ul class="other-ranks">
+      <% @others.each_with_index do |u, idx| %>
+        <li>
+          <span class="rank">#<%= idx+4 %></span>
+          <span class="name"><%= u.email.split('@').first %></span>
+          <span class="pts"><%= u.total_mastery %> pts</span>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
+
+<div class="cta-buttons">
+  <%= link_to "Go to Students Directory",
+              students_path,
+              class: "btn-outline-nu" %>
+
+  <%= link_to "Quiz yourself!",
+              quizzes_path,
+              class: "btn-outline-nu" %>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const canvas = document.getElementById("dashboardDonut");
+    if (!canvas) return;
+
+    const ctx      = canvas.getContext("2d");
+    const progress = parseFloat(canvas.dataset.progress) || 0;
+
+    new Chart(ctx, {
+      type: "doughnut",
+      data: {
+        labels: ["Mastered","Learning","Unlearned"],
+        datasets: [{
+          data: [<%= @name_mastery2 %>,<%= @name_mastery1 %>,<%= @name_mastery0 %>],
+          backgroundColor: ["#3A1F66","#8E44AD","#D3D3D3"],
+          hoverOffset: 20
+        }]
+        
+      },
+      
+      options: {
+        cutout: "70%",
+        maintainAspectRatio: false,
+        animation: { animateScale: true, duration: 1000 },
+        plugins: {
+          tooltip: {
+            callbacks: {
+              label: ctx => `${ctx.label}: ${ctx.parsed}%`
+            }
+          },
+          legend: {
+            position: "bottom",
+            labels: { boxWidth: 12, padding: 16 }
+        }
+        }
+      }
+    });
+  });
+</script>
+
+
+
