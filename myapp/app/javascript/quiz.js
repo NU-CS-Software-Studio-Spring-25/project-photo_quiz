@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Show photo
     photoEl.style.backgroundImage = `url('${q.photo_url}')`;
     photoEl.classList.toggle("d-none", !q.photo_url);
-
+  
     // Render options
     if (q.type === "name") {
       newOptsEl.innerHTML = `
@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
         `).join("")}
       </fieldset>`;
     }
-
+  
     // Reset feedback/button/progress
     fbEl.textContent  = "";
     newBtnEl.textContent = "Check";
@@ -70,6 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
     progressEl.textContent = `${current + 1} / ${questions.length}`;
     mode = "check";
   }
+  
 
   // Start Quiz
   newStartBtn.addEventListener("click", () => {
