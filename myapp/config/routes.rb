@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   devise_for :users, sign_out_via: %i[delete get]
 
   # Single root
-  root to: "students#index"
+  #root to: "students#index"
+  root "dashboards#index"
+  resources :dashboards, only: [:index]
 
   # resources
   resources :students do
@@ -12,6 +14,14 @@ Rails.application.routes.draw do
       get :thank_you
     end
   end
+
+  resources :quizzes, only: [:index] do
+    collection do
+      get 'results'
+      post 'record_answer'
+    end
+  end
+
   
   resources :courses, except: [:index, :show]
   resources :quizzes, only: [:index]
