@@ -1096,7 +1096,6 @@ body {
     text-decoration: none !important;
   }
 
-/* Resolved conflict by merging styles */
 .visually-hidden {
   position: absolute !important;
   width: 1px;
