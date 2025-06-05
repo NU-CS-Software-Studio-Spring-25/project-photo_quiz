@@ -85,6 +85,11 @@ rails assets:precompile
 
 ## **5. Start the Server**
 
+
+Before starting the server, make sure to:
+1. ```redis-server```
+2. ```bundle exec sidekiq```
+
 Start the Rails server:
 
 ```bash

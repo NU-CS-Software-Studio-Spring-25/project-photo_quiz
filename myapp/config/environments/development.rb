@@ -33,8 +33,29 @@ Rails.application.configure do
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local
 
-  # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  # Setup Email delivery method.
+  # Use (Google) SMTP for sending emails.
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: ENV["SMTP_ADDRESS"],
+    port: ENV['SMTP_PORT'].to_i,
+    domain: ENV['SMTP_DOMAIN'],
+    user_name: ENV['GMAIL_USERNAME'],
+    password: ENV['GMAIL_PASSWORD'],
+    authentication: "plain",
+    enable_starttls_auto: true,
+  }
+
+  config.active_job.queue_adapter = :sidekiq
+  # Enable delivery errors to be raised.
+  config.action_mailer.raise_delivery_errors = true
+
+  # Log the mailer output to the Rails logger.
+  config.action_mailer.logger = Rails.logger
+
+  # Set the default URL options for Action Mailer.
+  config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
 
   # Make template changes take effect immediately.
   config.action_mailer.perform_caching = false
