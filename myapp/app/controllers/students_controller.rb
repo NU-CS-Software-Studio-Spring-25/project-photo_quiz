@@ -158,7 +158,7 @@ end
         @courses = current_user.owned_courses
       elsif params[:course_code].present?
         course = Course.find_by(code: params[:course_code].strip.upcase)
-        @courses = course ? [course] : []
+        @courses = course ? [ course ] : []
       else
         @courses = []
       end

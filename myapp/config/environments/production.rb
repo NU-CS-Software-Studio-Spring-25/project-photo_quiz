@@ -62,17 +62,17 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     address: ENV["SMTP_ADDRESS"],
-    port: ENV['SMTP_PORT'].to_i,
-    domain: ENV['SMTP_DOMAIN'],
-    user_name: ENV['GMAIL_USERNAME'],
-    password: ENV['GMAIL_PASSWORD'],
+    port: ENV["SMTP_PORT"].to_i,
+    domain: ENV["SMTP_DOMAIN"],
+    user_name: ENV["GMAIL_USERNAME"],
+    password: ENV["GMAIL_PASSWORD"],
     authentication: "plain",
-    enable_starttls_auto: true,
+    enable_starttls_auto: true
   }
   # Set host to be used by links generated in mailer templates.
   config.action_mailer.default_url_options = { host: "photoquiz-3b8e3c177329.herokuapp.com/", protocol: "https" }
 
-  
+
   # Specify outgoing SMTP server. Remember to add smtp/* credentials via rails credentials:edit.
   # config.action_mailer.smtp_settings = {
   #   user_name: Rails.application.credentials.dig(:smtp, :user_name),

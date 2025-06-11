@@ -1,0 +1,28 @@
+{
+  "ignored_warnings": [
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "2058ba7ca222f34164c115a77906adbb7326c126a0fa61d9ed882f75e9755d0d",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "photoquiz/app/controllers/students_controller.rb",
+      "line": 33,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "current_user.students.includes(:courses).distinct.left_outer_joins(:courses).where(\"(#{params[:query].downcase.strip.split.map.with_index do\n \"(LOWER(students.first_name) LIKE :w#{i} OR LOWER(students.last_name) LIKE :w#{i})\"\n end.join(\" AND \")}) OR (#{params[:query].downcase.strip.split.map.with_index do\n \"LOWER(courses.name) LIKE :w#{i}\"\n end.join(\" OR \")})\", **params[:query].downcase.strip.split.each_with_index.each_with_object({}) do\n hash[:\"w#{i}\"] = \"%#{word}%\"\n end)",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "StudentsController",
+        "method": "index"
+      },
+      "user_input": "params[:query].downcase.strip.split.map.with_index",
+      "confidence": "Medium",
+      "cwe_id": [
+        89
+      ],
+      "note": "Query is fully parameterized using :w#{i} placeholders and query_params. This warning is a false positive."
+    }
+  ],
+  "brakeman_version": "7.0.2"
+}

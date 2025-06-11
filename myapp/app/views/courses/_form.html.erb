@@ -15,7 +15,8 @@
     <%= f.text_field :name,
           class: "form-control",
           placeholder: "e.g. CS 397",
-          aria: { describedby: "course-name-help" } %>
+          aria: { describedby: "course-name-help" },
+          maxlength: 25 %>
     <small id="course-name-help" class="form-text text-muted">
       Enter the official course code, e.g., CS 397. (25 characters max)
     </small>
