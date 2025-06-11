@@ -22,7 +22,12 @@ Rails.application.routes.draw do
 
   resources :dashboards, only: [:index]
   resources :homepage, only: [:index]
-  resources :courses, except: [:index, :show]
+  #resources :courses, except: [:index, :show]
+  resources :courses do
+    member do
+      get :roster, defaults: { format: :pdf }
+    end
+  end
   resources :quizzes, only: [:index]
 
   # Adding routes for custom error pages

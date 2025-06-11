@@ -76,3 +76,6 @@ gem "devise", "~> 4.9"
 gem "image_processing", "~> 1.14"
 
 gem "kaminari", "~> 1.2"
+
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
