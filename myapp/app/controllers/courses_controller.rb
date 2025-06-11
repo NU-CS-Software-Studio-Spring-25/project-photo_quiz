@@ -1,7 +1,7 @@
 # CoursesController manages course-related actions including creation, update, and deletion.
 class CoursesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_course, only: %i[ show edit update destroy ]
+  before_action :set_course, only: %i[ show edit update destroy roster]
 
   # GET /courses or /courses.json
   def index
@@ -51,6 +51,18 @@ class CoursesController < ApplicationController
   def destroy
     @course.destroy!
     respond_to_destroy
+  end
+
+  def roster
+    respond_to do |format|
+      format.pdf do
+        render pdf:    "#{@course.name.parameterize}_roster",
+               layout: 'pdf',
+               template: 'courses/roster',
+               locals: { course: @course }
+      end
+      format.html { redirect_to @course }
+    end
   end
 
   private
