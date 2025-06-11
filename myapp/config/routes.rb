@@ -20,10 +20,15 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :dashboards, only: [ :index ]
-  resources :homepage, only: [ :index ]
-  resources :courses, except: [ :index, :show ]
-  resources :quizzes, only: [ :index ]
+  resources :dashboards, only: [:index]
+  resources :homepage, only: [:index]
+  #resources :courses, except: [:index, :show]
+  resources :courses do
+    member do
+      get :roster, defaults: { format: :pdf }
+    end
+  end
+  resources :quizzes, only: [:index]
 
   # Adding routes for custom error pages
   match "/404", to: "errors#show", code: 404, via: :all
