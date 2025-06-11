@@ -22,8 +22,7 @@ Rails.application.routes.draw do
 
   resources :dashboards, only: [:index]
   resources :homepage, only: [:index]
-  #resources :courses, except: [:index, :show]
-  resources :courses do
+  resources :courses, except: [:index, :show] do
     member do
       get :roster, defaults: { format: :pdf }
     end

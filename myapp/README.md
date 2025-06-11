@@ -87,7 +87,7 @@ rails assets:precompile
 
 
 Before starting the server, make sure to:
-1. ```redis-server```
+1. ```redis-server```  or ```sudo systemctl start redis``` on Ubuntu
 2. ```bundle exec sidekiq```
 
 Start the Rails server:
