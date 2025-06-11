@@ -7,7 +7,7 @@
 
       <div class="form-group text-start">
         <%= f.label :email %><br>
-        <%= f.email_field :email, class: "form-control", autofocus: true, autocomplete: "email" %>
+        <%= f.email_field :email, class: "form-control", autofocus: true, autocomplete: "email", maxlength: 255 %>
       </div>
 
       <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -16,7 +16,7 @@
 
       <div class="form-group text-start">
         <%= f.label :password, "New Password" %><em>(leave blank if you don’t want to change it)</em><br>
-        <%= f.password_field :password, class: "form-control", autocomplete: "new-password" %>
+        <%= f.password_field :password, class: "form-control", autocomplete: "new-password",  maxlength: 25,  minlength:6 %>
         <% if @minimum_password_length %>
           <em><%= @minimum_password_length %> characters minimum</em>
         <% end %>
@@ -24,12 +24,12 @@
 
       <div class="form-group text-start">
         <%= f.label :password_confirmation, "Confirm Password" %><br>
-        <%= f.password_field :password_confirmation, class: "form-control", autocomplete: "new-password" %>
+        <%= f.password_field :password_confirmation, class: "form-control", autocomplete: "new-password", maxlength: 25,  minlength:6 %>
       </div>
 
       <div class="form-group text-start">
           <%= f.label :current_password %> <em>(we need your current password to confirm your changes)</em><br>
-          <%= f.password_field :current_password, class: "form-control", autocomplete: "current-password" %>
+          <%= f.password_field :current_password, class: "form-control", autocomplete: "current-password", maxlength: 25,  minlength:6 %>
       </div>
 
       <div class="form-actions mt-4 d-flex justify-content-end">
