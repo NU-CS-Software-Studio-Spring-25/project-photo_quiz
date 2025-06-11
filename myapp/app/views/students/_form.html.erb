@@ -18,7 +18,7 @@
 
       <div class="form-row">
         <!-- LEFT: photo preview + upload -->
-              
+
           <div class="form-photo">
           <div class="photo-preview-box mt-2" style="max-width: 450px;">
             <% if @student.persisted? && @student.profile_picture.attached? %>
@@ -28,14 +28,14 @@
               <div id="no-photo-text">No photo yet</div>
               <%= tag.img id: "existing-photo", style: "display:none; max-width:150px;" %>
             <% end %>
-            <img id="preview" src="#" alt="Image preview" style="display:none; max-width:150px;" />
+            <img id="preview" src="#" alt="Image preview" style="display:none; max-width:150px;">
           </div>
 
           <div class="form-group mt-2">
             <%= form.label :profile_picture %>
-            <%= form.file_field :profile_picture, 
-                  class: "form-control", 
-                  accept: "image/png,image/jpeg", 
+            <%= form.file_field :profile_picture,
+                  class: "form-control",
+                  accept: "image/png,image/jpeg",
                   onchange: "previewImage(event)" %>
 
             <small id="profile-picture-help" class="form-text text-muted">
@@ -74,7 +74,7 @@
               maxlength: 25 %>
             <small id="first-name-help" class="form-text text-muted">
               Enter your first name or nickname that you would like to be recognized as. (25 characters max)
-            </small>       
+            </small>
           </div>
 
           <div class="form-group">
@@ -83,20 +83,13 @@
               class: "form-control",
               aria: { describedby: "last-name-help" },
               maxlength: 25 %>
-            <small id="last-name-help" class="form-text text-muted",>
-              Enter your last name as shown on your school record. (25 characters max)
-            </small>     
-          </div>
-
-          <!-- Course Selection via dropdown -->
-          <% if @courses.present? %>
+            <small id="last-name-help" class="form-text text-muted"
+           <% if @courses.present? %>
             <div class="form-group">
               <%= label_tag :course_id, "Select Course" %>
-              <%= select_tag :course_id,
-                    options_from_collection_for_select(@courses, :id, :name, params[:course_id]),
-                    prompt: "Choose a Course",
-                    class: "form-control",
-                    aria: { describedby: "course-help" } %>
+              <%= form.collection_select :course_id, @courses, :id, :name,
+                { prompt: "Choose a Course" },
+                { class: "form-control", aria: { describedby: "course-help" } } %>
               <small id="course-help" class="form-text text-muted">
                 This list includes all available courses you can join.
               </small>
@@ -107,7 +100,6 @@
               </small>
             </p>
           <% end %>
-
 
           <!-- Course Selection via Invite Code -->
           <div class="form-group mt-3">
