@@ -14,9 +14,9 @@ class DashboardsController < ApplicationController
     unlearned  = @students.count { |s| s.name_mastery == 0 }
 
     if total.positive?
-      @name_mastery2 = ( mastered.to_f  / total * 100 ).round(1)
-      @name_mastery1 = ( learning.to_f  / total * 100 ).round(1)
-      @name_mastery0 = ( unlearned.to_f / total * 100 ).round(1)
+      @name_mastery2 = (mastered.to_f  / total * 100).round(1)
+      @name_mastery1 = (learning.to_f  / total * 100).round(1)
+      @name_mastery0 = (unlearned.to_f / total * 100).round(1)
     else
       @name_mastery2 = @name_mastery1 = @name_mastery0 = 0
     end
@@ -24,7 +24,7 @@ class DashboardsController < ApplicationController
     # ── overall progress: weighted by name_mastery (0,1,2) over max points ──
     sum_points = @students.sum(&:name_mastery)
     @overall_progress = total.positive? ?
-      ( sum_points.to_f / ( total * 2 ) * 100 ).round(1) : 0
+      (sum_points.to_f / (total * 2) * 100).round(1) : 0
 
 
     # leaderboard: avg progress per professor (by email here)
@@ -35,8 +35,8 @@ class DashboardsController < ApplicationController
         "users.email, " \
         "SUM(students.name_mastery) AS total_mastery"
       )
-      .group("users.id", "users.email")      
-      .order( Arel.sql("SUM(students.name_mastery) DESC") )    
+      .group("users.id", "users.email")
+      .order(Arel.sql("SUM(students.name_mastery) DESC"))
 
     @top3      = ranked.limit(3)
     @others    = ranked.offset(3)
@@ -46,8 +46,8 @@ class DashboardsController < ApplicationController
     @user_mastery  = ranked.find { |u| u.id == current_user.id }&.total_mastery || 0
 
     #####
-    
-    
+
+
     courses = current_user.owned_courses.includes(:students)
     if courses.any?
       # pick course with highest # of “learned” students

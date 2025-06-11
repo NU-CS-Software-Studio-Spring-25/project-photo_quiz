@@ -36,7 +36,7 @@ end
 # Add some random courses, but make sure names are unique
 10.times do |i|
   name = Faker::Educator.unique.course_name.gsub(/[^\w\s\-']/, '').slice(0, 24)
-  
+
   Course.create!(
     name: name,
     user: user_records[i % user_records.length]
@@ -47,19 +47,19 @@ all_courses = Course.all.to_a
 
 # --- Seed Students (unique, no duplicates) ---
 students = [
-  { first_name: 'Paula', last_name: 'Fregene'},
-  { first_name: 'Sophie', last_name: 'Shin'},
-  { first_name: 'Yuyang', last_name: 'Pan'},
-  { first_name: 'Samar', last_name: 'Salaam'},
-  { first_name: 'Jack', last_name: 'Olantern'},
-  { first_name: 'Kim', last_name: 'Okay'},
-  { first_name: 'Watt', last_name: 'Electric'},
-  { first_name: 'Jenny', last_name: 'Jiang'},
-  { first_name: 'Mark', last_name: 'Brown'},
-  { first_name: 'Kenny', last_name: 'Lin'},
-  { first_name: 'Pom', last_name: 'Merang'},
-  { first_name: 'Jj', last_name: 'Jung'},
-  { first_name: 'Wow', last_name: 'Ee'}
+  { first_name: 'Paula', last_name: 'Fregene' },
+  { first_name: 'Sophie', last_name: 'Shin' },
+  { first_name: 'Yuyang', last_name: 'Pan' },
+  { first_name: 'Samar', last_name: 'Salaam' },
+  { first_name: 'Jack', last_name: 'Olantern' },
+  { first_name: 'Kim', last_name: 'Okay' },
+  { first_name: 'Watt', last_name: 'Electric' },
+  { first_name: 'Jenny', last_name: 'Jiang' },
+  { first_name: 'Mark', last_name: 'Brown' },
+  { first_name: 'Kenny', last_name: 'Lin' },
+  { first_name: 'Pom', last_name: 'Merang' },
+  { first_name: 'Jj', last_name: 'Jung' },
+  { first_name: 'Wow', last_name: 'Ee' }
 ]
 student_records = students.map { |data| Student.create!(data) }
 
@@ -92,7 +92,7 @@ user_records.each do |user|
       Membership.find_or_create_by!(
         student: student,
         course: course,
-        user: user 
+        user: user
       )
     end
   end
