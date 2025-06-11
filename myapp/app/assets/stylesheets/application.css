@@ -296,6 +296,8 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 1rem;
+  width: 100%;
+  max-width: 100%;
 }
 
 .form-fields {
@@ -322,7 +324,15 @@ body {
   font-size: 1.2rem;
   line-height: 1;
 }
+.form-row > .form-photo,
+.form-row > .form-fields {
+  flex: 1 1 0;
+  min-width: 300px; /* optional: prevent collapsing too small */
+}
 
+.form-row > .form-photo {
+  margin-top: 1.8rem;
+}
 /* Quiz photo box */
 #question-photo {
   width: 100%;
