@@ -18,8 +18,9 @@
 
       <div class="form-row">
         <!-- LEFT: photo preview + upload -->
+              
           <div class="form-photo">
-          <div class="photo-preview-box mt-2" style="max-width: 150px;">
+          <div class="photo-preview-box mt-2" style="max-width: 450px;">
             <% if @student.persisted? && @student.profile_picture.attached? %>
               <%= image_tag @student.profile_picture.variant(resize_to_limit: [150, 150]), id: "existing-photo", style: "display: block; max-width: 150px;" %>
               <div id="no-photo-text" style="display:none;">No photo yet</div>

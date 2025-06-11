@@ -35,7 +35,7 @@ end
 
 # Add some random courses, but make sure names are unique
 10.times do |i|
-  name = Faker::Educator.unique.course_name.gsub(/[^\w\s\-']/, '')
+  name = Faker::Educator.unique.course_name.gsub(/[^\w\s\-']/, '').slice(0, 24)
   
   Course.create!(
     name: name,
