@@ -16,8 +16,5 @@ class Student < ActiveRecord::Base
             errors.add(:profile_picture, "must be less than 5MB")
         end
     end
-
-
-
-
+    
 end

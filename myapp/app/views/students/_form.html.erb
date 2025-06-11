@@ -70,7 +70,8 @@
             <%= form.label :first_name %>
             <%= form.text_field :first_name,
               class: "form-control",
-              aria: { describedby: "first-name-help" } %>
+              aria: { describedby: "first-name-help" },
+              maxlength: 25 %>
             <small id="first-name-help" class="form-text text-muted">
               Enter your first name or nickname that you would like to be recognized as. (25 characters max)
             </small>       
@@ -80,8 +81,9 @@
             <%= form.label :last_name %>
             <%= form.text_field :last_name,
               class: "form-control",
-              aria: { describedby: "last-name-help" } %>
-            <small id="last-name-help" class="form-text text-muted">
+              aria: { describedby: "last-name-help" },
+              maxlength: 25 %>
+            <small id="last-name-help" class="form-text text-muted",>
               Enter your last name as shown on your school record. (25 characters max)
             </small>     
           </div>
@@ -114,7 +116,9 @@
                 class: "form-control",
                 placeholder: "e.g. X7Y2KL",
                 autocomplete: "off",
-                id: "course_code" %>
+                id: "course_code",
+                minlength: 6,
+                maxlength: 6 %>
           </div>
         </div>
       </div>
