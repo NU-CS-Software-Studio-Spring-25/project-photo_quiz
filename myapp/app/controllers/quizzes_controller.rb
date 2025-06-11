@@ -27,7 +27,7 @@ class QuizzesController < ApplicationController
         {
           student_id:   student.id,
           photo_url:    photo_url,
-          options:      students.sample([3, students.size].min)
+          options:      students.sample([ 3, students.size ].min)
                             .map { |s| "#{s.first_name} #{s.last_name}" },
           correct_name: "#{student.first_name} #{student.last_name}"
         }
@@ -41,7 +41,7 @@ class QuizzesController < ApplicationController
 
   def record_answer
     student = Student.find_by(id: params[:student_id])
-    is_correct = params[:correct].to_s == 'true' 
+    is_correct = params[:correct].to_s == "true"
 
     if student && is_correct && !student.learned?
       student.increment!(:name_mastery)
@@ -50,19 +50,19 @@ class QuizzesController < ApplicationController
       else
         student.save! # Save the incremented name_mastery if not yet learned
       end
-      render json: { status: 'success', name_mastery: student.name_mastery, learned: student.learned? }, status: :ok
+      render json: { status: "success", name_mastery: student.name_mastery, learned: student.learned? }, status: :ok
     elsif student && is_correct && student.learned?
-      render json: { status: 'success_already_learned', name_mastery: student.name_mastery, learned: student.learned? }, status: :ok
+      render json: { status: "success_already_learned", name_mastery: student.name_mastery, learned: student.learned? }, status: :ok
     elsif !student
-      render json: { status: 'error', message: 'Student not found' }, status: :not_found
+      render json: { status: "error", message: "Student not found" }, status: :not_found
     else # Incorrect answer or other cases
-      render json: { status: 'ignored' }, status: :ok
+      render json: { status: "ignored" }, status: :ok
     end
   rescue ActiveRecord::RecordNotFound
-    render json: { status: 'error', message: 'Student not found' }, status: :not_found
+    render json: { status: "error", message: "Student not found" }, status: :not_found
   rescue => e
     Rails.logger.error "Error in record_answer: #{e.message}"
-    render json: { status: 'error', message: 'Internal server error' }, status: :internal_server_error
+    render json: { status: "error", message: "Internal server error" }, status: :internal_server_error
   end
 
   def results

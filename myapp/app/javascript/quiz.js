@@ -51,7 +51,9 @@ document.addEventListener("DOMContentLoaded", () => {
             class="form-control mb-3 search-input"
             placeholder="Type name…"
             aria-describedby="name-help"
-            aria-label="Student name" />
+            aria-label="Student name"
+            minlength="2"
+            maxlength="50" />
       <small id="name-help" class="form-text text-muted">
         Enter student first name, last name, or both.
       </small>

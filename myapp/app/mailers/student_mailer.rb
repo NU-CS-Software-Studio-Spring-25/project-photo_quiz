@@ -1,5 +1,5 @@
 class StudentMailer < ApplicationMailer
-    default from: ENV['GMAIL_USERNAME']
+    default from: ENV["GMAIL_USERNAME"]
 
 
     def new_student_notification(student, user, course)
@@ -7,7 +7,7 @@ class StudentMailer < ApplicationMailer
         @user = user
         @course = course
         mail(
-            to: @user.email, 
+            to: @user.email,
             subject: "New student added to your course: #{@course.name}"
         )
     end

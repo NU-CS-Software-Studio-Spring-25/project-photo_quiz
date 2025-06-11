@@ -8,7 +8,7 @@ class ErrorsController < ApplicationController
         "Page Not Found"
       when 500
         "Server Error"
-      when 400  
+      when 400
         "Bad Request"
       else
         "An error has occurred"
