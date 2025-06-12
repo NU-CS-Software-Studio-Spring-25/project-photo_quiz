@@ -38,4 +38,9 @@
 /config/master.key
 
 node_modules/
-/vendor/bundle
+/vendor/bundlenode_modules/
+
+# Ignore runtime files
+/log/
+/tmp/
+/vendor/bundle/
