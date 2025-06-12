@@ -39,7 +39,7 @@ Install the required Ruby gems using Bundler:
 bundle install
 ```
 
-### **Node.js Packages**
+### **Node.js Packages** 
 If your app uses Node.js dependencies (e.g., Bootstrap), install them using npm:
 
 ```bash
