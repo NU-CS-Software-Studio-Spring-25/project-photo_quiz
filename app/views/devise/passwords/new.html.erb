@@ -1,0 +1,28 @@
+<div class="form-container">
+  <div class="login-card">
+    <h1 class="login-title text-center">Forgot your password?</h1>
+    <br>
+
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name)) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+      <div class="form-group text-start">
+        <%= f.label :email %><br>
+        <%= f.email_field :email,
+              class: "form-control",
+              autofocus: true,
+              autocomplete: "email" %>
+      </div>
+
+      <div class="form-actions mt-4 d-flex justify-content-end">
+        <%= f.submit "Send reset instructions",
+              class: "btn btn-nu" %>
+      </div>
+    <% end %>
+    <br>
+    <div class="form-actions mt-2 text-start">
+      <%= link_to "Log in", new_user_session_path, class: "me-3" %>
+      <%= link_to "Sign up", new_user_registration_path %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,7 @@
+<h1>Are you sure you want to delete "<%= @student.first_name %> <%= @student.last_name %>"?</h1>
+
+<%= form_with url: student_path(@student), method: :delete, local: true do %>
+  <%= submit_tag "Yes, Delete", class: "btn btn-nu" %>
+<% end %>
+
+<%= link_to "Cancel", students_path, class: "btn btn-nu-secondary" %>

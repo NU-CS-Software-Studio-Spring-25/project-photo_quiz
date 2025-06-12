@@ -1,0 +1,25 @@
+<footer class="simple-site-footer">
+    <div class="simple-footer-content">
+      <div class="footer-logo-area">
+        <%= image_tag "logo.png", alt: "Site Logo", class: "footer-logo-simple" %>
+      </div>
+      <nav class="footer-nav-simple">
+        <%= link_to "Home", root_path %>
+        <%= link_to "Directory", students_path %>
+        <%= link_to 'Dashboard', dashboards_path %>
+        <%= link_to "Quizzes", quizzes_path %>
+        <%= link_to "For Students", new_student_path %>
+        <% if user_signed_in? %>
+          <%= link_to "Profile", edit_user_registration_path %>
+        <% end %>
+      </nav>
+      <div class="footer-social-icons">
+        <%= link_to "https://github.com/NU-CS-Software-Studio-Spring-25/project-photo_quiz", target: "_blank", rel: "noopener noreferrer" do %>
+          <i class="bi bi-github"></i>
+        <% end %>
+      </div>
+      <div class="footer-copyright-simple">
+        &copy; <%= Date.current.year %> Northwestern University. All Rights Reserved.
+      </div>
+    </div>
+  </footer>

@@ -1,0 +1,30 @@
+<%= form_with(model: course, local: true) do |f| %>
+  <% if course.errors.any? %>
+    <div class="text-danger mb-3">
+      <h2><%= pluralize(course.errors.count, "error") %> prohibited this course from being saved:</h2>
+      <ul>
+        <% course.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group text-start">
+    <%= f.label :name, "Course Name" %><br>
+    <%= f.text_field :name,
+          class: "form-control",
+          placeholder: "e.g. CS 397",
+          aria: { describedby: "course-name-help" } %>
+    <small id="course-name-help" class="form-text text-muted">
+      Enter the official course code, e.g., CS 397. (25 characters max)
+    </small>
+  </div>
+
+  <div class="form-actions mt-4 d-flex justify-content-end">
+    <%= f.submit(
+          course.new_record? ? "Create Course" : "Update Course",
+          class: "btn btn-nu"
+        ) %>
+  </div>
+<% end %>

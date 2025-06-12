@@ -1,0 +1,29 @@
+<div class="hero">
+  <div class="hero-left">
+    <%= link_to root_path, class: "hero-logo-link" do %>
+      <%= image_tag "logo.png",
+                    class: "hero-logo",
+                    alt: "NU Shield" %>
+    <% end %>
+    <div class="hero-text">
+      <h1>Photo Quiz</h1>
+      <p>Northwestern University Edition</p>
+    </div>
+  </div>
+
+  <div class="hero-links">
+    <%= link_to 'Dashboard', dashboards_path, class: 'btn btn-outline-light' %>
+    <%= link_to 'Directory', students_path, class: 'btn btn-outline-light' %>
+    <%= link_to 'Quiz',      quizzes_path,  class: 'btn btn-outline-light' %>
+    <% if user_signed_in? %>
+      <%= link_to "Profile", edit_user_registration_path, class: 'btn btn-outline-light' %>
+      <%= link_to 'Logout', destroy_user_session_path,
+                      method: :delete,
+                      data: { confirm: 'Are you sure?' },
+                      class: 'btn btn-outline-light' %>
+    <% else %>
+      <%= link_to 'For Students', new_student_path, class: 'btn btn-outline-light' %>
+      <%= link_to 'Login', new_user_session_path, class: 'btn btn-outline-light' %>
+    <% end %>
+  </div>
+</div>
