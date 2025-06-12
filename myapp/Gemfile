@@ -79,5 +79,12 @@ gem "image_processing", "~> 1.14"
 
 gem "kaminari", "~> 1.2"
 
+group :test do
+  gem 'cucumber-rails', require: false
+  gem 'capybara'
+  gem 'database_cleaner-active_record'
+end
+
+gem 'rspec-expectations'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
