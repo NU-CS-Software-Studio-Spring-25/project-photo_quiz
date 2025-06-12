@@ -1,0 +1,23 @@
+<div class="container py-4">
+
+  <div class="actions mb-4">
+    <h1>Directory</h1>
+    <%= form_with url: students_path, method: :get, data: { turbo_frame: "students", controller: "search", action: "input->search#search" } do |f| %>
+      <%= f.text_field :query,
+        value: params[:query],
+        placeholder: "Search students or courses...",
+        class: "form-control",
+        autofocus: true,
+        data: { search_target: "input" },
+        'aria-label': "Search students or courses" %>
+    <% end %>
+    <%= link_to 'New Student', new_student_path, class: "btn btn-nu me-2" %>
+    <%= link_to 'New Course', new_course_path, class: "btn btn-nu me-2" %>
+    <%= link_to 'Quiz', quizzes_path, class: "btn btn-nu" %>
+  </div>
+
+  <%= turbo_frame_tag "students" do %>
+    <%= render partial: "students_list", locals: { students: @students } %>
+  <% end %>
+
+</div>

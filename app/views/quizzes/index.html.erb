@@ -1,0 +1,26 @@
+<div id="quiz-section" class="container py-4">
+  <div class="actions mb-4">
+    <h1>Quiz</h1>
+    <select id="class-select" class="form-select w-auto rounded-pill">
+      <option value="" selected>Select class…</option>
+      <% @courses.each do |course| %>
+        <option value="<%= course.id %>"><%= course.name %></option>
+      <% end %>
+    </select>
+    <button id="start-quiz" class="btn btn-nu">Start Quiz</button>
+  </div>
+  <div id="quiz-container" class="d-none">
+    <!-- Photo -->
+    <div id="question-photo" class="mx-auto mb-4 d-none"></div>
+    <!-- Options/Text-input -->
+    <div id="options-container" class="mb-3"></div>
+    <!-- Feedback + Progress + Next/Check button -->
+    <div class="d-flex justify-content-between align-items-center">
+      <span id="feedback" class="feedback" aria-live="polite"></span>
+      <div class="d-flex align-items-center">
+        <button id="action-btn" class="btn btn-nu d-none">Check</button>
+        <span id="progress" class="fs-6 ms-4 text-end"></span>
+      </div>
+    </div>
+  </div>
+</div>

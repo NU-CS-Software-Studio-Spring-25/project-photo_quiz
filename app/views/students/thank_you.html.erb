@@ -1,0 +1,19 @@
+<div class="thank-you-page">
+  <h1>Welcome, <%= @student.first_name %> <%= @student.last_name %>!</h1>
+  <p>
+    Welcome to <strong>Photo Quiz</strong> — a fun way for professors to get to know their students better! <br>
+    We have notified your professor about your addition to the course, and they will now be able to see your profile to start quizzing themselves on your details.
+  </p>
+  <p>We're excited to have you on board. By adding yourself to the course, you're taking the first step to help your professor get to know you better—
+  and have fun quizzing themselves along the way! Keep exploring and enjoy the journey of learning.</p>
+  <% if user_signed_in? %>
+      <p>
+    We encourage you to explore the quizzes and get comfortable. The more you participate, the better your professor can understand your learning style.
+  </p>
+
+  <%= link_to 'Go to Directory', students_path, class: "btn btn-nu me-2" %>
+    <% else %>
+      <p> You have just made the first steps in helping your professor know you more.</p>
+    <% end %>
+
+</div>
