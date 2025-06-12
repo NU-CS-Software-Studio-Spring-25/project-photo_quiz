@@ -38,4 +38,4 @@
 /config/master.key
 
 node_modules/
-/vendor/bundle
+/vendor/bundlenode_modules/
