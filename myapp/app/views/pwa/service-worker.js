@@ -1,3 +1,5 @@
+// Default Created alongside
+
 // Add a service worker for processing Web Push notifications:
 //
 // self.addEventListener("push", async (event) => {

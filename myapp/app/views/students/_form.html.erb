@@ -83,7 +83,9 @@
               class: "form-control",
               aria: { describedby: "last-name-help" },
               maxlength: 25 %>
-            <small id="last-name-help" class="form-text text-muted"
+            <small id="last-name-help" class="form-text text-muted">
+              Enter your last name as shown on your course roster. (25 characters max)
+            </small>
            <% if @courses.present? %>
             <div class="form-group">
               <%= label_tag :course_id, "Select Course" %>
@@ -107,17 +109,21 @@
             <%= text_field_tag :course_code, params[:course_code],
                 class: "form-control",
                 placeholder: "e.g. X7Y2KL",
+                aria: { describedby: "course-code" },
                 autocomplete: "off",
                 id: "course_code",
                 minlength: 6,
                 maxlength: 6 %>
+              <small id="course-code" class="form-text text-muted">
+                Enter the length size code associated with your course.
+              </small>
           </div>
         </div>
       </div>
 
       <div class="form-actions mt-4">
         <%= form.submit "Submit", class: "btn btn-nu" %>
-        <%= link_to 'Cancel', students_path, class: "btn btn-nu-secondary" %>
+        <%= link_to 'Cancel', root_path, class: "btn btn-nu-secondary" %>
       </div>
     <% end %>
   </div>

@@ -1,7 +1,6 @@
 class StudentMailer < ApplicationMailer
     default from: ENV["GMAIL_USERNAME"]
 
-
     def new_student_notification(student, user, course)
         @student = student
         @user = user
