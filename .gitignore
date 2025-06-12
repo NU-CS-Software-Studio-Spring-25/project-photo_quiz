@@ -39,3 +39,8 @@
 
 node_modules/
 /vendor/bundlenode_modules/
+
+# Ignore runtime files
+/log/
+/tmp/
+/vendor/bundle/
