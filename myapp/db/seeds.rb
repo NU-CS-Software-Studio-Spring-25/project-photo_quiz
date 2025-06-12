@@ -35,7 +35,7 @@ end
 
 # Add some random courses, but make sure names are unique
 10.times do |i|
-  name = Faker::Educator.unique.course_name.gsub(/[^\w\s\-']/, '').slice(0, 24)
+  name = Faker::Educator.unique.course_name.gsub(/[^\w\s\-']/, '')[0..24]
 
   Course.create!(
     name: name,
@@ -65,8 +65,8 @@ student_records = students.map { |data| Student.create!(data) }
 
 # Add some random students
 40.times do
-  first_name = Faker::Name.first_name.gsub(/[^\w\s\-']/, '')
-  last_name = Faker::Name.last_name.gsub(/[^\w\s\-']/, '')
+  first_name = Faker::Name.first_name.gsub(/[^\w\s\-']/, '')[0..24]
+  last_name = Faker::Name.last_name.gsub(/[^\w\s\-']/, '')[0..24]
 
   student = Student.create!(
     first_name: first_name,
