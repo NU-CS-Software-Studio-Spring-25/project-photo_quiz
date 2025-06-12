@@ -34,8 +34,10 @@
           <% end %>
 
           <%= link_to "Download PDF",
-                      roster_course_path(course, format: :pdf),
-                      class: "btn copy-link-btn" %>
+            roster_course_path(course, format: :pdf),
+            class: "btn copy-link-btn no-underline",
+            aria: { label: "Download pdf for course #{course.name}" } %>
+                        
         </div>
       </div>
     </div>
